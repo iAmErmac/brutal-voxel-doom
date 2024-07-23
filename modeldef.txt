@@ -963,3 +963,27 @@ Model NewBarrel
    Model 0 "bexpe.md3"
    FrameIndex BEXP E 0 0
 }
+
+Model Rocket2
+{
+   Path "models/voxels"
+   Model 0 "misla.md3"
+   Skin 0 "pallete.png"
+   ZOffset 38
+   Scale 1.0 1.0 1.2
+   Offset -10.0 -10.0 0.0
+   AngleOffset 90
+
+   PitchFromMomentum
+   
+   FrameIndex MISL A 0 0
+   
+   Model 0 "mislb.md3"
+   FrameIndex MISL B 0 0
+   
+   Model 0 "mislc.md3"
+   FrameIndex MISL C 0 0
+   
+   Model 0 "misld.md3"
+   FrameIndex MISL D 0 0
+}
