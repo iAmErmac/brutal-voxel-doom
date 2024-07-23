@@ -1,0 +1,206 @@
+namespace = "ZDoom";
+
+CONVERSATION
+{
+
+	Actor = "shopKeeper";
+	page
+	{
+		name = "Marine Shopkeeper";
+		dialog = "What can I get for you?";
+		/*choice
+		{
+			text = "Shotgun";
+			yesmessage = "Here's a Shotgun. Go fill up an imps face with lead.";
+			giveitem = "Shotgun~";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 50;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		*/
+		choice
+		{
+			text = "Chaingun";
+			yesmessage = "Here's a Chaingun. Good for taken out lots of zombies.";
+			giveitem = "Chaingun~";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 100;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Rocket Launcher";
+			yesmessage = "Here's a Rocket Launcher. Don't shoot at close range.";
+			giveitem = "RocketLauncher~";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 200;
+			}
+		choice
+		{
+			text = "Super Shotgun";
+			yesmessage = "Here's a Super Shotgun. Best shotgun you could have really.";
+			giveitem = "SuperShotgun~";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 400;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Ammo Clip";
+			yesmessage = "Here's an ammo clip. Got loads more.";
+			giveitem = "Clip";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 5;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Box of ammo";
+			yesmessage = "Here's a box of ammo. Got loads more.";
+			giveitem = "ClipBox";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 25;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Shotgun Shells";
+			yesmessage = "Here's some shotgun shells. Vital for any Shotgun.";
+			giveitem = "Shell";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 15;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Rocket";
+			yesmessage = "Here's a rocket. Makes big boom.";
+			giveitem = "RocketAmmo";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 20;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Box of Shotgun Shells";
+			yesmessage = "Here's a box of shotgun shells. Vital for any Shotgun.";
+			giveitem = "ShellBox";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 40;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Medikit";
+			yesmessage = "Here's a Medikit. Hopefully you won't need another.";
+			giveitem = "Medikit";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 25;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Green Armor";
+			yesmessage = "Here's a Green Suit of armor. You don't look any different wearing it though.";
+			giveitem = "GreenArmor";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 75;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Blue Armor";
+			yesmessage = "Here's a Blue Suit of armor. You don't look any different wearing it though.";
+			giveitem = "BlueArmor";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 150;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Stimpack";
+			yesmessage = "Here's a Stimpack. Hopefully you won't need another.";
+			giveitem = "Stimpack";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 10;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+		choice
+		{
+			text = "Soul Sphere";
+			yesmessage = "Here's your soul sphere. You now have over a hundred health!";
+			giveitem = "SoulSphere";
+			closedialog = true;
+			cost
+			{
+				item = "Currency";
+				amount = 100;
+			}
+			displayCost = true;
+			nomessage = "Sorry, but you need more money.";
+		}
+	}
+}

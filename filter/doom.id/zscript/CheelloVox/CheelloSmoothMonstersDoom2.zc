@@ -1,0 +1,679 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// Chaingun Guy
+//
+//===========================================================================
+
+class CheelloSmoothChaingunGuy : ChaingunGuy replaces ChaingunGuy
+{
+        Default { +INTERPOLATEANGLES }
+        double user_adiff;
+        double user_a;
+        double user_angle;
+        double user_adiff2;
+        double user_step;
+        double user_rotation;
+        States
+        {
+	See:
+
+		CPOS A 0  { user_step=Random(0,2)+6; let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS AAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		CPOS A 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS AAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		CPOS B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS BBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		CPOS B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS BBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		CPOS C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS CCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		CPOS C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS CCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		CPOS D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS DDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		CPOS D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS DDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		Loop;
+	Missile:
+
+		CPOS E 0  { user_step=10; user_angle = angle; user_rotation=SpriteRotation; A_FaceTarget(); user_adiff2 = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(user_angle+SpriteRotation, angle); user_a=1; user_angle=angle; user_rotation=-user_adiff2; A_SetSpriteRotation(user_rotation);}
+                CPOS EEEEE 1  { user_rotation=user_adiff2*(user_a/user_step-1); A_SetSpriteRotation(user_rotation); user_a++; }
+
+		CPOS E 0  { user_step=5; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS EEEEE 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		CPOS F 0 BRIGHT { user_step=4; let a = angle; A_CPosAttack(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS FFFF 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		CPOS E 0 BRIGHT { user_step=2; let a = angle; A_CPosAttack(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS EE 2 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		CPOS F 0 { user_step=1; let a = angle; A_CPosRefire(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                CPOS F 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Goto Missile+12;
+	}
+}
+
+extend class CheelloSmoothChainGunGuy
+{
+        action void A_SetSpriteSmoothRotation(actor SelfActor, double smoothangle)
+        {
+                SelfActor.A_SetSpriteRotation(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothangle:0);
+        }
+        
+        action void A_SetSmoothPitch(actor SelfActor, double smoothpitch)
+        {
+                smoothpitch = smoothpitch*CVar.GetCVar("cheello_smoothdemonsbite", players[consoleplayer]).GetInt();
+                SelfActor.A_SetPitch(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothpitch:0);
+        }
+}
+
+//===========================================================================
+//
+// Mancubus
+//
+//===========================================================================
+
+class CheelloSmoothFatso : Fatso replaces Fatso
+{
+        Default { +INTERPOLATEANGLES }
+        double user_adiff;
+        double user_a;
+        double user_angle;
+        double user_adiff2;
+        double user_step;
+        double user_rotation;
+        States
+        {
+	See:
+
+		FATT A 0  { user_step=Random(0,2)+12; let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT AAAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT A 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT AAAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		FATT B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT BBBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT BBBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		FATT C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT CCCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT CCCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		FATT D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT DDDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT DDDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		FATT E 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT EEEE 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT E 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT EEEE 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		FATT F 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT FFFF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT F 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT FFFF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Loop;
+	Missile:
+
+		FATT G 0  { user_step=20; user_angle = angle; user_rotation=SpriteRotation; A_FatRaise(); user_adiff2 = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(user_angle+SpriteRotation, angle); user_a=1; user_angle=angle; user_rotation=-user_adiff2; A_SetSpriteRotation(user_rotation);}
+                FATT GGGGGGGGGGGGGGGGGGGG 1  { user_rotation=user_adiff2*(user_a/user_step-1); A_SetSpriteRotation(user_rotation); user_a++; }
+
+
+		FATT H 0  { user_step=50; let a = angle; A_FatAttack1(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT HHHHHHHHHH 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT I 0  { user_step=25; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT IIIII 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT G 0  { user_step=5; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT GGGGG 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT H 0  { user_step=50; let a = angle; A_FatAttack2(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT HHHHHHHHHH 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT I 0  { user_step=25; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT IIIII 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT G 0  { user_step=5; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT GGGGG 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT H 0  { user_step=50; let a = angle; A_FatAttack3(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT HHHHHHHHHH 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT I 0  { user_step=25; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT IIIII 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		FATT G 0  { user_step=5; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                FATT GGGGG 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Goto See;
+	Pain:
+		FATT J 3;
+		FATT J 3 A_Pain;
+		Goto See;
+	 Raise:
+		FATT R 5;
+		FATT QPONMLK 5;
+		Goto See;
+        }
+}
+
+extend class CheelloSmoothFatso
+{
+        action void A_SetSpriteSmoothRotation(actor SelfActor, double smoothangle)
+        {
+                SelfActor.A_SetSpriteRotation(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothangle:0);
+        }
+        
+        action void A_SetSmoothPitch(actor SelfActor, double smoothpitch)
+        {
+                smoothpitch = smoothpitch*CVar.GetCVar("cheello_smoothdemonsbite", players[consoleplayer]).GetInt();
+                SelfActor.A_SetPitch(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothpitch:0);
+        }
+}
+
+//===========================================================================
+//
+// Arachnotron
+//
+//===========================================================================
+
+class CheelloSmoothArachnotron : Arachnotron replaces Arachnotron
+{
+        Default { +INTERPOLATEANGLES }
+        double user_adiff;
+        double user_a;
+        double user_angle;
+        double user_adiff2;
+        double user_step;
+        double user_rotation;
+        States
+        {
+        See:
+		BSPI A 20;
+
+		BSPI A 0  { user_step=Random(0,2)+18; let a = angle; A_BabyMetal(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI AAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		BSPI A 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI AAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		BSPI B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI BBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		BSPI B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI BBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		BSPI C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI CCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		BSPI C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI CCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		BSPI D 0  { let a = angle; A_BabyMetal(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI DDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		BSPI D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI DDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		BSPI E 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI EEE 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		BSPI E 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI EEE 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		BSPI F 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI FFF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		BSPI F 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI FFF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Goto See+1;
+	Missile:
+
+		BSPI A 0 BRIGHT { user_step=10; user_angle = angle; user_rotation=SpriteRotation; A_FaceTarget(); user_adiff2 = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(user_angle+SpriteRotation, angle); user_a=1; user_angle=angle; user_rotation=-user_adiff2; A_SetSpriteRotation(user_rotation);}
+                BSPI AAAAAAAAAA 2 BRIGHT { user_rotation=user_adiff2*(user_a/user_step-1); A_SetSpriteRotation(user_rotation); user_a++; }
+
+		BSPI G 0 BRIGHT { user_step=8; let a = angle; A_BspiAttack(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI GGGG 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+                BSPI HHHH 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		BSPI H 0 BRIGHT { let a = angle; A_SpidRefire(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BSPI H 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Goto Missile+11;
+	Pain:
+		BSPI I 3;
+		BSPI I 3 A_Pain;
+		Goto See+21;
+        Raise:
+		BSPI P 5;
+		BSPI ONMLKJ 5;
+		Goto See+21;
+	}
+}
+
+extend class CheelloSmoothArachnotron
+{
+        action void A_SetSpriteSmoothRotation(actor SelfActor, double smoothangle)
+        {
+                SelfActor.A_SetSpriteRotation(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothangle:0);
+        }
+        
+        action void A_SetSmoothPitch(actor SelfActor, double smoothpitch)
+        {
+                smoothpitch = smoothpitch*CVar.GetCVar("cheello_smoothdemonsbite", players[consoleplayer]).GetInt();
+                SelfActor.A_SetPitch(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothpitch:0);
+        }
+}
+
+//===========================================================================
+//
+// Arch Vile
+//
+//===========================================================================
+
+
+class CheelloSmoothArchvile : Archvile replaces Archvile
+{
+        Default { +INTERPOLATEANGLES }
+        double user_adiff;
+        double user_a;
+        double user_angle;
+        double user_adiff2;
+        double user_step;
+        double user_rotation;
+        States
+        {
+	See:
+		VILE A 0  { user_step=Random(0,2)+6; let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE AA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE A 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE AA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		VILE B 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE BB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE B 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE BB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		VILE C 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE CC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE C 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE CC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		VILE D 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE DD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE D 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE DD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		VILE E 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE EE 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE E 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE EE 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		VILE F 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE FF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE F 0  { let a = angle; A_VileChase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE FF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		Loop;
+	Missile:
+                VILE G 0 BRIGHT A_VileStart;
+		VILE G 0 BRIGHT { user_step=10;let a = angle; A_FaceTarget(); user_adiff = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE GGGGGGGGGG 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		VILE H 0 BRIGHT { user_step=8;let a = angle; A_VileTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE HHHHHHHH 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		VILE I 0 BRIGHT { user_step=8;let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE IIIIIIII 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE J 0 BRIGHT { let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE JJJJJJJJ 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE K 0 BRIGHT { let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE KKKKKKKK 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE L 0 BRIGHT { let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE LLLLLLLL 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE M 0 BRIGHT { let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE MMMMMMMM 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE N 0 BRIGHT { let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE NNNNNNNN 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		VILE O 0 BRIGHT { let a = angle; A_VileAttack(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                VILE NNNNNNNN 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+                VILE P 20 BRIGHT;
+
+		Goto See;
+	Heal:
+		VILE [ 10 BRIGHT;
+                VIL2 A 10 BRIGHT;
+                VILE ] 10 BRIGHT;
+		Goto See;
+	Pain:
+		VILE Q 5;
+		VILE Q 5 A_Pain;
+		Goto See;
+
+        }
+}
+
+extend class CheelloSmoothArchvile
+{
+        action void A_SetSpriteSmoothRotation(actor SelfActor, double smoothangle)
+        {
+                SelfActor.A_SetSpriteRotation(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothangle:0);
+        }
+        
+        action void A_SetSmoothPitch(actor SelfActor, double smoothpitch)
+        {
+                smoothpitch = smoothpitch*CVar.GetCVar("cheello_smoothdemonsbite", players[consoleplayer]).GetInt();
+                SelfActor.A_SetPitch(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothpitch:0);
+        }
+}
+
+//===========================================================================
+//
+// Revenant
+//
+//===========================================================================
+
+class CheelloSmoothRevenant : Revenant replaces Revenant
+{
+        Default { +INTERPOLATEANGLES }
+        double user_adiff;
+        double user_a;
+        double user_angle;
+        double user_adiff2;
+        double user_step;
+        double user_rotation;
+
+	States
+	{
+	See:
+
+		SKEL A 0  { user_step=Random(0,2)+8; let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL AA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL A 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL AA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		SKEL B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL BB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL BB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		SKEL C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL CC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL CC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		SKEL D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL DD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL DD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		SKEL E 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL EE 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL E 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL EE 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		SKEL F 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL FF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL F 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL FF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Loop;
+	Melee:
+
+		SKEL G 0 { user_step=6; let a = angle; A_FaceTarget(); user_adiff = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+
+		SKEL G 0  { user_angle = angle; user_rotation=SpriteRotation; A_SkelWhoosh(); user_adiff2 = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(user_angle+SpriteRotation, angle); user_a=1; user_angle=angle; user_rotation=-user_adiff2; A_SetSpriteRotation(user_rotation);}
+                SKEL GGGGGG 1  { user_rotation=user_adiff2*(user_a/user_step-1); A_SetSpriteRotation(user_rotation); user_a++; }
+
+		SKEL H 0 { user_step=6; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+		SKEL GGGGGG 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL I 0 { user_step=6; let a = angle; A_SkelFist(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+		SKEL IIIIII 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		Goto See;
+	Missile:
+
+		SKEL J 0 BRIGHT { user_step=10; let a = angle; A_FaceTarget(); user_adiff = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL JJJJJJJJJJ 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL K 0 { let a = angle; A_SkelMissile(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL KKKKKKKKKK 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SKEL K 0 { let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SKEL KKKKKKKKKK 1 { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Goto See;
+	Pain:
+		SKEL L 5;
+		SKEL L 5 A_Pain;
+		Goto See;
+	Raise:
+		SKEL Q 5;
+		SKEL PONML 5;
+		Goto See;
+        }
+}
+
+extend class CheelloSmoothRevenant
+{
+        action void A_SetSpriteSmoothRotation(actor SelfActor, double smoothangle)
+        {
+                SelfActor.A_SetSpriteRotation(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothangle:0);
+        }
+        
+        action void A_SetSmoothPitch(actor SelfActor, double smoothpitch)
+        {
+                smoothpitch = smoothpitch*CVar.GetCVar("cheello_smoothdemonsbite", players[consoleplayer]).GetInt();
+                SelfActor.A_SetPitch(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothpitch:0);
+        }
+}
+
+class CheelloSmoothWolfensteinSS : WolfensteinSS replaces WolfensteinSS
+{
+        Default { +INTERPOLATEANGLES }
+        double user_adiff;
+        double user_a;
+        double user_step;
+	States
+	{
+	See:
+
+		SSWV A 0  { user_step=Random(0,2)+6; let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SSWV AAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SSWV A 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SSWV AAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		SSWV B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SSWV BBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SSWV B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SSWV BBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		SSWV C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SSWV CCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SSWV C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SSWV CCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		SSWV D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SSWV DDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		SSWV D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                SSWV DDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Loop;
+	Pain:
+		SSWV H 3;
+		SSWV H 3 A_Pain;
+		Goto See;
+	Raise:
+		SSWV M 5;
+		SSWV LKJI 5;
+		Goto See ;
+        }
+}
+
+extend class CheelloSmoothWolfensteinSS
+{
+        action void A_SetSpriteSmoothRotation(actor SelfActor, double smoothangle)
+        {
+                SelfActor.A_SetSpriteRotation(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothangle:0);
+        }
+        
+        action void A_SetSmoothPitch(actor SelfActor, double smoothpitch)
+        {
+                smoothpitch = smoothpitch*CVar.GetCVar("cheello_smoothdemonsbite", players[consoleplayer]).GetInt();
+                SelfActor.A_SetPitch(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothpitch:0);
+        }
+}
+
+//===========================================================================
+//
+// Hell Knight
+//
+//===========================================================================
+
+class CheelloSmoothHellKnight : HellKnight replaces HellKnight
+{
+        Default { +INTERPOLATEANGLES }
+        double user_adiff;
+        double user_a;
+        double user_angle;
+        double user_adiff2;
+        double user_step;
+        double user_rotation;
+
+	Default
+	{
+		BloodColor "30 67 23";
+        }
+        States
+        {
+	See:
+
+		BOS2 A 0  { user_step=Random(0,2)+12; let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 AAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+		BOS2 A 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 AAA 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+
+		BOS2 B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 BBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+		BOS2 B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 BBB 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+
+		BOS2 C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 CCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+		BOS2 C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 CCC 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+
+		BOS2 D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 DDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+		BOS2 D 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 DDD 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+
+		Loop;
+	Melee:
+	Missile:
+
+		BOS2 E 0 { user_step=16; user_angle = angle; user_rotation=SpriteRotation; A_FaceTarget(); user_adiff2 = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(user_angle+SpriteRotation, angle); user_a=1; user_angle=angle; user_rotation=-user_adiff2; A_SetSpriteRotation(user_rotation);}
+                BOS2 EEEEEEEE 1 { user_rotation=user_adiff2*(user_a/user_step-1); A_SetSpriteRotation(user_rotation); user_a++; }
+
+		BOS2 F 0  { user_step=8; let a = angle; A_FaceTarget(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 FFFFFFFF 1  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+
+		BOS2 G 0  { user_step=4; let a = angle; A_BruisAttack(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                BOS2 GGGG 2  { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_a++; }
+
+		Goto See;
+	Pain:
+		BOS2 H  2;
+		BOS2 H  2 A_Pain;
+		Goto See;
+	Raise:
+		BOS2 O 8;
+		BOS2 NMLKJI  8;
+		Goto See;
+	}
+}
+
+extend class CheelloSmoothHellKnight
+{
+        action void A_SetSpriteSmoothRotation(actor SelfActor, double smoothangle)
+        {
+                SelfActor.A_SetSpriteRotation(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothangle:0);
+        }
+        
+        action void A_SetSmoothPitch(actor SelfActor, double smoothpitch)
+        {
+                smoothpitch = smoothpitch*CVar.GetCVar("cheello_smoothdemonsbite", players[consoleplayer]).GetInt();
+                SelfActor.A_SetPitch(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothpitch:0);
+        }
+}
+
+
+//===========================================================================
+//
+// PainElemental
+//
+//===========================================================================
+
+class CheelloSmoothPainElemental : PainElemental replaces PainElemental
+{
+        Default { +INTERPOLATEANGLES }
+        double user_adiff;
+        double user_a;
+        double user_angle;
+        double user_adiff2;
+        double user_step;
+        double user_rotation;
+        double user_p;
+        double user_n;
+        States
+        {
+	See:
+		PAIN A 0  { user_step=Random(0,2)+9; let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                PAIN AAA 1  { A_SetSmoothPitch(invoker, pitch* 15 / 16); A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; } 
+		PAIN A 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                PAIN AAA 1  { A_SetSmoothPitch(invoker, pitch* 15 / 16); A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		PAIN B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                PAIN BBB 1  { A_SetSmoothPitch(invoker, pitch* 15 / 16); A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		PAIN B 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                PAIN BBB 1  { A_SetSmoothPitch(invoker, pitch* 15 / 16); A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		PAIN C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                PAIN CCC 1  { A_SetSmoothPitch(invoker, pitch* 15 / 16); A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+		PAIN C 0  { let a = angle; A_Chase(); user_adiff = CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; }
+                PAIN CCC 1  { A_SetSmoothPitch(invoker, pitch* 15 / 16); A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; }
+
+		Loop;
+        Missile:
+
+		PAIN D 0  { user_step=10; user_angle = angle; user_rotation=SpriteRotation; A_FaceTarget(0,0,0,0,FAF_MIDDLE); user_adiff2 = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(user_angle+SpriteRotation, angle); user_a=1; user_angle=angle; user_rotation=-user_adiff2; A_SetSpriteRotation(user_rotation);}
+                PAIN DDDDD 1  { user_rotation=user_adiff2*(user_a/user_step-1); A_SetSpriteRotation(user_rotation); user_n++; A_SetSmoothPitch(invoker, user_p * user_n / 12); }
+
+		PAIN E 0  { user_step=5; let a = angle; A_FaceTarget(0,0,0,0,FAF_MIDDLE); user_adiff = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; user_p=pitch; user_n=6; A_SetSmoothPitch(invoker, user_p * (user_n) / 12 );}
+		PAIN EEEEE 1 { { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; } user_n++; A_SetSmoothPitch(invoker, user_p * user_n / 12 ); }
+		PAIN F 0  BRIGHT { user_step=2; let a = angle; A_FaceTarget(0,0,0,0,FAF_MIDDLE); user_adiff = SpriteRotation==0?0:CheelloVoxSmoothDemonsStatics.fixMonsterAngle(a+SpriteRotation, angle); user_a=1; user_p=pitch; user_n=11; A_SetSmoothPitch(invoker, user_p * (user_n) / 12 );}
+		PAIN FF 1 BRIGHT { A_SetSpriteSmoothRotation(invoker, user_adiff*(user_a/user_step-1)); user_a++; user_n++; A_SetSmoothPitch(invoker, user_p * user_n / 12 ); }
+                PAIN F 3 BRIGHT;
+		PAIN F 0 BRIGHT A_PainAttack;
+		Goto See;
+	Pain:
+		PAIN G 6;
+		PAIN G 6 A_Pain;
+		Goto See;
+        }
+}
+
+extend class CheelloSmoothPainElemental
+{
+        action void A_SetSpriteSmoothRotation(actor SelfActor, double smoothangle)
+        {
+                SelfActor.A_SetSpriteRotation(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothangle:0);
+        }
+        
+        action void A_SetSmoothPitch(actor SelfActor, double smoothpitch)
+        {
+                smoothpitch = smoothpitch*CVar.GetCVar("cheello_smoothdemonsbite", players[consoleplayer]).GetInt();
+                SelfActor.A_SetPitch(CVar.GetCVar("cheello_smoothdemons", players[consoleplayer]).GetInt()?smoothpitch:0);
+
+        }
+}

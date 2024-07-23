@@ -1,0 +1,113 @@
+#include "models/nashgore/BloodSpot/_models.lmp"
+#include "models/nashgore/BloodTrail/_models.lmp"
+#include "models/nashgore/CorpseBlood/_models.lmp"
+#include "models/nashgore/Footprint/_models.lmp"
+
+/*Model Shambler
+{
+   Path "models"   
+   Model 0 "Shambler.md2"   
+   Skin 0 "Shambler.pcx"
+   ZOffset 42   
+   Scale 2.2 2.2 2.2          
+
+   FrameIndex SHAM A 0 0
+   FrameIndex SHAM B 0 0
+   FrameIndex SHAM C 0 2
+   FrameIndex SHAM D 0 2
+   FrameIndex SHAM E 0 4
+   FrameIndex SHAM F 0 4
+   FrameIndex SHAM G 0 6
+   FrameIndex SHAM H 0 6
+   FrameIndex SHAM I 0 8
+   FrameIndex SHAM J 0 8
+   FrameIndex SHAM K 0 10
+   FrameIndex SHAM L 0 10
+   FrameIndex SHAM M 0 12
+   FrameIndex SHAM N 0 12
+   FrameIndex SHAM O 0 14
+   FrameIndex SHAM P 0 14
+   FrameIndex SHAM Q 0 16
+   FrameIndex SHA2 A 0 30
+   FrameIndex SHA2 B 0 30
+   FrameIndex SHA2 C 0 32
+   FrameIndex SHA2 D 0 32
+   FrameIndex SHA2 E 0 34
+   FrameIndex SHA2 F 0 34
+   FrameIndex SHA0 A 0 48
+   FrameIndex SHA3 A 0 48
+   FrameIndex SHA3 B 0 50
+   FrameIndex SHA3 C 0 50
+   FrameIndex SHA3 D 0 52
+   FrameIndex SHA3 E 0 52
+   FrameIndex SHA3 F 0 54
+   FrameIndex SHA3 G 0 54
+   FrameIndex SHA3 H 0 56
+   FrameIndex SHA0 B 0 56
+   FrameIndex SHA4 A 0 58
+   FrameIndex SHA4 B 0 58
+   FrameIndex SHA4 C 0 60
+   FrameIndex SHA4 D 0 60
+   FrameIndex SHA4 E 0 62
+   FrameIndex SHA4 F 0 62
+   FrameIndex SHA4 G 0 64
+   FrameIndex SHA4 H 0 64
+   FrameIndex SHA0 C 0 36
+   FrameIndex SHA5 A 0 36
+   FrameIndex SHA5 B 0 38
+   FrameIndex SHA5 C 0 38
+   FrameIndex SHA5 D 0 40
+   FrameIndex SHA5 E 0 40
+   FrameIndex SHA5 F 0 42
+   FrameIndex SHA5 G 0 42
+   FrameIndex SHA5 H 0 44
+   FrameIndex SHA5 I 0 44
+   FrameIndex SHA5 J 0 46
+   FrameIndex SHA5 K 0 46
+   FrameIndex SHA6 A 0 66
+   FrameIndex SHA6 B 0 66
+   FrameIndex SHA6 C 0 67
+   FrameIndex SHA6 F 0 70
+   FrameIndex SHA6 G 0 70
+   FrameIndex SHA6 H 0 72
+   FrameIndex SHA6 I 0 72
+   FrameIndex SHA6 J 0 74
+   FrameIndex SHA6 K 0 74
+   FrameIndex SHA6 L 0 76
+   FrameIndex SHA7 A 0 76
+   FrameIndex SHA7 B 0 78
+   FrameIndex SHA7 C 0 78
+   FrameIndex SHA7 D 0 80
+   FrameIndex SHA7 E 0 80
+   FrameIndex SHA7 F 0 82
+   FrameIndex SHA8 A 0 82
+   FrameIndex SHA8 B 0 84
+   FrameIndex SHA8 C 0 84
+   FrameIndex SHA8 D 0 86
+   FrameIndex SHA8 E 0 86
+   FrameIndex SHA8 F 0 88
+   FrameIndex SHA8 G 0 88
+   FrameIndex SHA8 H 0 90
+   FrameIndex SHA8 I 0 90
+   FrameIndex SHA8 J 0 93
+   FrameIndex SHA8 K 0 93
+}
+
+Model Shambler
+{
+   Path "models"   
+   Model 0 "Shambler.md2"   
+   Skin 0 "Shambler.pcx" 
+   Model 1 "SLIGHT.md2"   
+   Skin 1 "SLIGHT.pcx"   
+   ZOffset 38
+   Scale 2.2 2.2 2.2          
+   NOINTERPOLATION
+   NOPERPIXELLIGHTING
+   CORRECTPIXELSTRETCH
+
+   FrameIndex SHA6 D 0 68 FrameIndex SHA6 D 1 0
+   FrameIndex SHA6 E 0 69 FrameIndex SHA6 E 1 2
+   FrameIndex SHA6 M 0 68 FrameIndex SHA6 M 1 1
+}
+*/

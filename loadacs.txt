@@ -1,0 +1,7 @@
+//This is for the aim punch & punching
+PL_PNC
+PL_PAIN
+//This is for the mod options
+MD_OPTN
+//This is for all the reloading
+MD_RELD

@@ -1,0 +1,64 @@
+server bool EAI_Debug = false;
+server bool EAI_Stealth = true;
+server float EAI_StealthFactor = 24;
+
+SERVER INT led_SmokeEffects = 1; //enable/disable smoke
+SERVER INT led_CasingSmoke = 1; //enable/disable casing smoke
+SERVER INT led_ShellCasings = 1; //enable/disable casings
+SERVER INT led_ShellLife = 1000; //shell casing lifetime
+SERVER INT led_ArmorBonus = 0; //vanilla/modified armor bonus
+SERVER INT led_SpentMags = 1; //enable/disable spent magazines
+SERVER INT led_MagLife = 1000; //spent magazine lifetime
+SERVER INT led_Barrels = 1; //modified/vanilla/mixed barrels
+SERVER INT led_AimPunch = 1; //enable/disable aim punch
+SERVER INT led_ShellSys = 1; //enable/disable individual shell system
+SERVER INT led_MedSys = 1; //enable/disable split medikit system
+SERVER INT led_ShotPump = 0; //enable/disable vanilla shotgun pump
+SERVER INT led_SSGAltFire = 0; //enable/disable switched super shotty altfire
+SERVER INT led_DeathAnim = 0; //enable/disable death animation
+SERVER INT led_ArmorSpark = 1; //enable/disable armor sparks
+
+USER INT led_RifleADS = 1; //enable/disable rifle ironsight
+USER INT led_ShotADS = 1; //enable/disable shotgun ironsight
+
+USER FLOAT led_PLRifFlsh = 0.1; //plasma rifle firing brightness
+USER FLOAT led_BFGFirFlsh = 0.65; //BFG firing brightness
+
+//And now, pickup cvars! There are quite a few of these.
+
+//Powerups
+USER FLOAT led_TogBrskBrght = 0.25; //berserk brightness
+USER FLOAT led_TogCmpMp = 0.40; //computer map brightness
+USER FLOAT led_TogInvln = 0.50; //invulnerability brightness
+USER FLOAT led_TogLghtAmp = 0.40; //light goggles brightness
+USER FLOAT led_TogMgSph = 0.40; //megasphere brightness
+USER FLOAT led_TogPartVis = 0.40; //partial invis brightness
+USER FLOAT led_TogRadSuit = 0.40; //radsuit brightness
+USER FLOAT led_TogSolSph = 0.40; //soulsphere brightness
+
+//Items
+USER FLOAT led_TogArmBns = 0.15; //armor bonus brightness
+USER FLOAT led_TogBckPck = 0.30; //backpack brightness
+USER FLOAT led_TogBluArm = 0.20; //blue armor brightness
+USER FLOAT led_TogGrnArm = 0.20; //green armor brightness
+USER FLOAT led_TogHlthBns = 0.15; //health bonus brightness
+
+//Keys
+USER FLOAT led_TogBluKey = 0.40; //blue key brightness
+USER FLOAT led_TogRedKey = 0.40; //red key brightness
+USER FLOAT led_TogYlwKey = 0.40; //yellow key brightness
+USER FLOAT led_TogBluSkl = 0.40; //blue skull brightness
+USER FLOAT led_TogRedSkl = 0.40; //red skull brightness
+USER FLOAT led_TogYlwSkl = 0.40; //yellow skull brightness
+
+//And now, all of the reloading functions
+
+SERVER INT led_ReloadToggle = 1;
+SERVER INT led_PistolReload = 1;
+SERVER INT led_RifleReload = 1;
+SERVER INT led_ShotgunReload = 1;
+SERVER INT led_SSGReload = 1;
+SERVER INT led_MinigunReload = 1;
+SERVER INT led_RLReload = 1;
+SERVER INT led_PlasmaReload = 1;
+SERVER INT led_BFGReload = 1;

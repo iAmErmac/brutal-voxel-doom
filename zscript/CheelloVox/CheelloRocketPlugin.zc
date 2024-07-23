@@ -1,0 +1,65 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// CheelloRocketPlugin
+// Sets the pitch of the rocket projectile so that the voxel model can
+// rotate the pitch correctly
+//
+//===========================================================================
+
+class CheelloRocketPlugin : Inventory
+{
+	Rocket rckt;
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	Default
+	{
+		Inventory.MaxAmount 1;
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	override void DoEffect(void)
+	{
+		Super.DoEffect();
+
+		if (Owner && Owner is "Rocket")
+		{
+			if (!rckt)
+			{
+				rckt = Rocket(Owner);
+
+				// face flight direction
+				if (rckt && rckt.InStateSequence(rckt.SpawnState, rckt.CurState))
+					rckt.A_FaceMovementDirection();
+			}
+
+			else if (rckt)
+			{
+				// face the camera upon explosion
+				State exp1 = rckt.Resolvestate('Death');
+				State exp2 = rckt.ResolveState('BrainExplode');
+				if (rckt.InStateSequence(exp1, rckt.CurState) || rckt.InStateSequence(exp2, rckt.CurState))
+					rckt.A_GiveInventory("CheelloRotateToCameraPlugin", 1);
+			}
+		}
+	}
+}

@@ -1,0 +1,45 @@
+class CheelloSuperShotgun : SuperShotgun replaces SuperShotgun
+{
+        action void A_InformCurState(string newState) { MyGlobalVariables.Get().curState[invoker.owner.playerNumber()] = newState; }
+	Default
+	{
+                Weapon.SlotNumber 3;
+	}
+ 
+	States
+	{
+	Ready:
+                TNT1 A 0 { A_InformCurState("Ready"); }
+		TNT1 A 1 A_WeaponReady;
+		Loop;
+	Deselect:
+                TNT1 A 0 { A_InformCurState("Deselect"); }
+		TNT1 A 1 A_Lower;
+		Loop;
+	Select:
+                TNT1 A 0 { A_InformCurState("Select"); }
+		TNT1 A 1 A_Raise;
+		Loop;
+	Fire:
+                TNT1 A 0 { A_InformCurState("Fire"); }
+		TNT1 A 3;
+		TNT1 A 7 A_FireShotgun2;
+		TNT1 A 7;
+		TNT1 A 7 A_CheckReload;
+		TNT1 A 7 A_OpenShotgun2;
+		TNT1 A 7;
+		TNT1 A 7 A_LoadShotgun2;
+		TNT1 A 6;
+		TNT1 A 6 A_CloseShotgun2;
+		TNT1 A 5 A_ReFire;
+		Goto Ready;
+	Flash:
+              TNT1 A 0 { A_InformCurState("Flash"); }
+		TNT1 I 4 Bright A_Light1;
+		TNT1 J 3 Bright A_Light2;
+		Goto LightDone;
+	Spawn:
+		SGN2 A -1;
+		Stop;
+	}
+}

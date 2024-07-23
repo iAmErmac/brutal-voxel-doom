@@ -1,0 +1,75 @@
+Actor HealthBonus2 : CustomInventory replaces HealthBonus
+{
+	Inventory.PickupSound "items/hbonus"
+	Inventory.PickupMessage "$GOTHTHBONUS"
+	+COUNTITEM
+	+INVENTORY.NOSCREENFLASH
+	States
+	{
+	Spawn:
+		BON1 ABCDCB 6
+		Loop
+	Pickup:
+		TNT1 A 0 A_SetBlend("Blue", GetCvar("led_TogHlthBns"), 10)
+		TNT1 A 0 A_GiveInventory("HealthBonus", 1)
+		Stop
+	}
+}
+
+Actor MiniStim : Health
+{
+	+DONTSPLASH
+	Inventory.Amount 5
+	Inventory.PickupSound "items/mstim"
+	Inventory.PickupMessage "Picked up a mini stimpack."
+	States
+	{
+	Spawn:
+		MSTI A -1
+		Stop
+	}
+}
+
+Actor Stimpack2 : Stimpack replaces Stimpack
+{
+	+DONTSPLASH
+	Inventory.PickupSound "items/stim"
+}
+
+Actor Medikit2 : Medikit
+{
+	Inventory.PickupSound "items/health"
+}
+
+Actor MedikitSpawner replaces Medikit
+{
+	-COUNTITEM
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("led_MedToggle")==1, 2)
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("led_MedToggle")==0, "VanSpawn")
+		TNT1 A 0 A_SpawnItem("SingleSpawner", 0, -20, 0, 0)
+		TNT1 A 1 A_NoBlocking
+		Stop
+	VanSpawn:
+		TNT1 A 0 A_SpawnItem("Medikit2")
+		TNT1 A 1 A_NoBlocking
+		Stop
+	}
+}
+
+Actor SingleSpawner
+{
+	-COUNTITEM
+	dropitem MiniStim 255
+	DropItem Stimpack2 255
+	DropItem Stimpack2 255
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 1 A_NoBlocking
+		Stop
+	}
+}

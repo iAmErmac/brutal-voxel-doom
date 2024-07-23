@@ -1,0 +1,82 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// CheelloVoxHandler
+// General helper functionality
+//
+//===========================================================================
+
+class CheelloVoxHandler : EventHandler
+{
+	override void WorldThingDied(WorldEvent e)
+	{
+		// make monsters face the player who killed them
+		if (e.Thing && e.Thing.bIsMonster && e.Thing.Target && e.Thing.Target is "PlayerPawn")
+			e.Thing.Angle = e.Thing.AngleTo(e.Thing.Target);
+	}
+
+	override void WorldThingSpawned(WorldEvent e)
+	{
+		if (!e.Thing)
+			return;
+
+		// install the rocket plugin
+		if (e.Thing is "Rocket")
+			e.Thing.A_GiveInventory("CheelloRocketPlugin", 1);
+
+		// install the face-to-camera plugin for objects that need them
+		bool isSphere =
+		(
+			e.Thing is "InvulnSphere" ||
+			e.Thing is "Supercharge" ||
+			e.Thing is "InvisSphere" ||
+			e.Thing is "MegaSphere2" ||
+			e.Thing is "DoomImpBall" ||
+			e.Thing is "CacodemonBall" ||	
+			(e.Thing is "EvilEye" && CVar.GetCVar("cheello_rotatingEvilEye", players[consoleplayer]).GetInt())
+		);
+
+		if (isSphere)
+			e.Thing.A_GiveInventory("CheelloRotateToCameraPlugin", 1);
+
+		// install spinning items plugin
+		bool isSpinning =
+		(
+			e.Thing is "DoomWeapon" ||
+			e.Thing is "Chainsaw" ||
+			e.Thing is "RadSuit" ||
+			e.Thing is "Allmap" ||
+			e.Thing is "Infrared" ||
+			e.Thing is "ArmorBonus" ||
+			e.Thing is "GreenArmor" ||
+			e.Thing is "BlueArmor" ||
+			e.Thing is "HealthBonus" ||
+			e.Thing is "DoomKey"
+		);
+
+		if (isSpinning)
+		{
+			e.Thing.A_GiveInventory("CheelloSpinPlugin", 1);
+
+			// randomize initial angle to reduce uniformity
+			if (CVar.GetCVar("cheello_spinningpickups", players[consoleplayer]).GetInt() > 0)
+				e.Thing.A_SetAngle(frandom[rnd_InitSpin](0, 360));
+		}
+
+		if (isSphere || isSpinning)
+			e.Thing.bInterpolateAngles = true;
+
+
+	} 
+}
+
+

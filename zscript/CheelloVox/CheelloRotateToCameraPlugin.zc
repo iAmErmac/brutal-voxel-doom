@@ -1,0 +1,49 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// CheelloRotateToCameraPlugin
+// Makes an actor always face the currently-viewed camera
+//
+//===========================================================================
+
+class CheelloRotateToCameraPlugin : Inventory
+{
+	Default
+	{
+		Inventory.MaxAmount 1;
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	override void DoEffect(void)
+	{
+		Super.DoEffect();
+
+		if (!Owner)
+			return;
+
+		Actor cam = players[consoleplayer].camera;
+		if (cam && cam.CheckLocalView())
+		{
+			//double a, p;
+			//Vector3 p2 = (cam && cam.player) ? cam.Vec3Offset(0, 0, cam.player.viewheight) : cam.Vec3Offset(0, 0, cam.CameraHeight);
+			//[a, p] = CheelloVoxStatics.AnglesTo(Owner.Pos, p2);
+			//Owner.A_SetAngle(a, SPF_INTERPOLATE);
+			//Owner.A_SetPitch(p, SPF_INTERPOLATE);
+                        Owner.A_Face(players[consoleplayer].mo,0,0,0,0,FAF_TOP);
+		}
+	}
+}

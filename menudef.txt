@@ -1,0 +1,177 @@
+AddOptionMenu "OptionsMenu" {
+	StaticText " "
+	Submenu "Universal Enhanced AI", "UEAIOptions"
+	Submenu "Led's Weapon Mod Options", "ledModOptions"
+}
+AddOptionMenu "OptionsMenuSimple" {
+	StaticText " "
+	Submenu "Universal Enhanced AI", "UEAIOptions"
+	Submenu "Led's Weapon Mod Options", "ledModOptions"
+}
+OptionMenu "UEAIOptions"
+{
+	Title "Universal Enhanced AI Settings"
+	Option "Light-based Stealth", "EAI_Stealth", "onoff"
+	StaticText "Makes you harder to see in dark sectors and applies a shader to"
+	StaticText "the screen when you are well-hidden."
+	StaticText " "
+	Slider "Stealth Threshold", "EAI_StealthFactor", 24, 64, 8, 0
+	StaticText "Light level threshold for stealth detection. Higher values make"
+	StaticText "it easier to hide. Default is 24."
+}
+
+OptionMenu "ledModOptions" {
+	Title "Led's Weapon Mod Options"
+	StaticText " "
+	Submenu "Visual & Performance Options",			"ledVisualOptions"
+	Submenu "Weapon & Gameplay Options", 		"ledModGameplayOptions"
+	Submenu "Experimental Options", 	"ledExperimentalOptions"
+	StaticText " "
+	SafeCommand "Reset to Default", "led_ModResetOptions", "This will reset all mod settings to default. Are you absolutely sure you want to do this?"
+}
+
+OptionMenu "ledVisualOptions" {
+	Title "Visual & Performance Settings"
+	StaticText " "
+	Submenu "Pickup Flash Options",	"ledItmPwrUpOptions"
+	StaticText " "
+	Option "Enable Gun Smoke Effects?", "led_SmokeEffects", "led_ModEffects"
+	Option "Enable Casing Smoke Effects?", "led_CasingSmoke", "led_ModEffects"
+	StaticText " "
+	Option "Enable Shell Casings?", "led_ShellCasings", "led_ModEffects"
+	Slider "Casing Lifetime", "led_ShellLife", 100, 10000, 100, 0, "led_ShellCasings"
+	Option "Enable Dropped Mags?", "led_SpentMags", "led_ModEffects"
+	Slider "Dropped Mag Lifetime", "led_MagLife", 100, 10000, 100, 0, "led_SpentMags"
+	StaticText " "
+	Option "Armor Bonus Type?", "led_ArmorBonus", "led_ModArmor"
+	Option "Enable Voxels?", "r_drawvoxels", "led_ModEffects"
+}
+
+OptionMenu "ledItmPwrUpOptions" {
+	Title "Pickup Flash Settings"
+	StaticText " "
+	Command "Reset All to Default", "led_ModResetFlash"
+	StaticText " "
+	StaticText "Item Pickup Flash Intensity", Gold
+	StaticText " "
+	Command "Reset to Default", "led_ResetItmFlsh"
+	StaticText " "
+	Slider "Armor bonus", "led_TogArmBns", 0, 1.0, 0.05, 2
+	Slider "Backpack", "led_TogBckPck", 0, 1.0, 0.05, 2
+	Slider "Blue armor", "led_TogBluArm", 0, 1.0, 0.05, 2
+	Slider "Green armor", "led_TogGrnArm", 0, 1.0, 0.05, 2
+	Slider "Health bonus", "led_TogHlthBns", 0, 1.0, 0.05, 2
+	StaticText " "
+	StaticText "Key Pickup Flash Intensity", Gold
+	StaticText " "
+	Command "Reset to Default", "led_ResetKeyFlsh"
+	StaticText " "
+	Slider "Blue key", "led_TogBluKey", 0, 1.0, 0.05, 2
+	Slider "Red key", "led_TogRedKey", 0, 1.0, 0.05, 2
+	Slider "Yellow key", "led_TogYlwKey", 0, 1.0, 0.05, 2
+	StaticText " "
+	Slider "Blue skull", "led_TogBluSkl", 0, 1.0, 0.05, 2
+	Slider "Red skull", "led_TogRedSkl", 0, 1.0, 0.05, 2
+	Slider "Yellow skull", "led_TogYlwSkl", 0, 1.0, 0.05, 2
+	StaticText " "
+	StaticText "Powerup Pickup Flash Intensity", Gold
+	StaticText " "
+	Command "Reset to Default", "led_ResetPwrFlsh"
+	StaticText " "
+	Slider "Berserk", "led_TogBrskBrght", 0, 1.0, 0.05, 2
+	Slider "Computer map", "led_TogCmpMp", 0, 1.0, 0.05, 2
+	Slider "Invulnerability", "led_TogInvln", 0, 1.0, 0.05, 2
+	Slider "Light-amp visor", "led_TogLghtAmp", 0, 1.0, 0.05, 2
+	Slider "Megasphere", "led_TogMgSph", 0, 1.0, 0.05, 2
+	Slider "Partial invisiblity", "led_TogPartVis", 0, 1.0, 0.05, 2
+	Slider "Radiation suit", "led_TogRadSuit", 0, 1.0, 0.05, 2
+	Slider "Soulsphere", "led_TogSolSph", 0, 1.0, 0.05, 2
+}
+
+OptionMenu "ledModGameplayOptions" {
+	Title "Weapon & Gameplay Settings"
+	StaticText " "
+	Submenu "Weapon Options", 		"ledModWeaponOptions"
+	StaticText " "
+	StaticText "Options marked with (*) require a map restart!", "Gold"
+	StaticText " "
+	Option "(*)Barrel Setting?", "led_Barrels", "led_ModBarrels"
+	StaticText "Modified barrels have new animations and sounds", "Gold"
+	StaticText "Mixed will randomize them and add supply crates in the mix", "Gold"
+	StaticText " "
+	Option "(*)Enable Individual Shell System?", "led_ShellSys", "led_ModEffects"
+	StaticText "Seperates the four shell pickup into four seperate shells", "Gold"
+	StaticText " "
+	Option "(*)Enable Split Medikit System?", "led_MedSys", "led_ModEffects"
+	StaticText "Splits the medikit pickup into two stimpacks and a mini stimpack", "Gold"
+	StaticText " "
+	Option "Enable Aim Punch?", "led_AimPunch", "led_ModEffects"
+	StaticText "Without armor, player damage will cause camera flinch", "Gold"
+	StaticText " "
+	Option "Enable Armor Sparks?", "led_ArmorSpark", "led_ModEffects"
+	StaticText "With armor, player damage will produce sparks and play sound effects", "Gold"
+}
+
+OptionMenu "ledModWeaponOptions" {
+	Title "Weapon Settings"
+	StaticText " "
+	Option "Enable Classic Shotgun Pump?", "led_ShotPump", "led_ModEffects"
+	StaticText " "
+	StaticText "Damage will be increased by 20% at the cost of rate of fire.", "Gold"
+	StaticText " "
+	Option "Enable Rifle Ironsight?", "led_RifleADS", "led_ModEffects"
+	Option "Enable Shotgun Ironsight?", "led_ShotADS", "led_ModEffects"
+	StaticText " "
+	Option "Switch Super Shotgun Fire/AltFire?", "led_SSGAltFire", "led_ModEffects"
+	StaticText " "
+	Slider "Plasma Rifle flash intensity", 	"led_PLRifFlsh", 0, 1.0, 0.05, 2
+	Slider "BFG flash intensity", 			"led_BFGFirFlsh", 0, 1.0, 0.05, 2
+	StaticText " "
+	Slider "Weapon bob intensity when firing",		"wbobfire", 0, 1.0, 0.1
+	StaticText " "
+	StaticText "Reloading Settings", "Gold"
+	StaticText " "
+	Command "Enable Reloading", "led_ModEnableReload"
+	Command "Disable Reloading", "led_ModDisableReload"
+	StaticText " "
+	Option "Pistol", "led_PistolReload", "led_ReloadToggle"
+	Option "Assault Rifle", "led_RifleReload", "led_ReloadToggle"
+	Option "Shotgun", "led_ShotgunReload", "led_ReloadToggle"
+	Option "Super Shotgun", "led_SSGReload", "led_ReloadToggle"
+	Option "Minigun", "led_MinigunReload", "led_ReloadToggle"
+	Option "Rocket Launcher", "led_RLReload", "led_ReloadToggle"
+	Option "Plasma Rifle", "led_PlasmaReload", "led_ReloadToggle"
+	Option "BFG9000", "led_BFGReload", "led_ReloadToggle"
+}
+
+OptionMenu "ledExperimentalOptions" {
+	Title "Experimental Settings"
+	StaticText " "
+	Option "Enable first person death animation?", "led_DeathAnim", "led_ModEffects"
+	StaticText "Plays a first person death animation", "Gold"
+}
+
+OptionValue "led_ReloadToggle"
+{
+	0, "Disabled"
+	1, "Enabled"
+}
+	
+OptionValue "led_ModEffects"
+{
+	0, "No"
+	1, "Yes"
+}
+
+OptionValue "led_ModBarrels"
+{
+	0, "Modified"
+	1, "Vanilla"
+	2, "Mixed"
+}
+
+OptionValue "led_ModArmor"
+{
+	0, "Vanilla"
+	1, "Modified"
+}

@@ -1,0 +1,7 @@
+#library "PlayerPunch"
+#include "zcommon.acs"
+
+Script "PunchToggle" (VOID) NET
+{
+GiveInventory("Punching", 1);
+}

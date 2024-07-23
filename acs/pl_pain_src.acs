@@ -1,0 +1,106 @@
+/*Please note that this isn't my code. I believe it is from one of the Real Guns Advanced mods.
+The author doesn't seem to exist on ZDoom forums anymore. His name was CommanderZ. Big thanks to him.*/
+
+#library "AimPunch"
+#include "zcommon.acs"
+
+script 600 (int Strength, int Reverse, int Mode) NET CLIENTSIDE
+{
+	int SideKick = 40 + (random(0,10)*10);
+	int VerticalKick = 40 + (random(0,12)*10);
+
+	if(Strength == 0)
+	{
+		Strength = 600;
+		Reverse = 600;
+		Mode = 0;
+	}
+
+	if(Mode == 8 || Mode == 9)
+	{
+		if(Mode == 9)
+			SideKick += 50;
+		if(random(0,3) == 0)		Mode = 0;
+		else if(random(0,3) == 1)	Mode = 6;
+		else if(random(0,3) == 2)	Mode = 7;
+		else	Mode = 8;
+
+	}
+
+	if(Mode == 0)
+	{
+		if(random(0,1) == 0)		Mode = 0;
+		else	Mode = 6;
+	}
+
+
+	int Counter;
+	if(Mode == 0)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-SideKick);
+			SetActorPitch(0,GetActorPitch(0)-VerticalKick);
+			Counter += 150;
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+SideKick);
+			SetActorPitch(0,GetActorPitch(0)+VerticalKick);
+			Counter += 150;
+			Delay(1);
+		}
+	}
+	else if(Mode == 6)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)+SideKick);
+			SetActorPitch(0,GetActorPitch(0)-VerticalKick);
+			Counter += 150;
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)-SideKick);
+			SetActorPitch(0,GetActorPitch(0)+VerticalKick);
+			Counter += 150;
+			Delay(1);
+		}
+	}
+	else if(Mode == 7)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)-SideKick);
+			SetActorPitch(0,GetActorPitch(0)+VerticalKick);
+			Counter += 150;
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)+SideKick);
+			SetActorPitch(0,GetActorPitch(0)-VerticalKick);
+			Counter += 150;
+			Delay(1);
+		}
+	}
+	else if(Mode == 8)
+	{
+		while(Counter < Strength)
+		{
+			SetActorAngle(0,GetActorAngle(0)+SideKick);
+			SetActorPitch(0,GetActorPitch(0)+VerticalKick);
+			Counter += 150;
+		}
+		Counter = 0;
+		while(Counter < Reverse)
+		{
+			SetActorAngle(0,GetActorAngle(0)-SideKick);
+			SetActorPitch(0,GetActorPitch(0)-VerticalKick);
+			Counter += 150;
+			Delay(1);
+		}
+	}
+}

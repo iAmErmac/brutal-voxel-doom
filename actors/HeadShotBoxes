@@ -1,0 +1,423 @@
+
+Actor HeadShotInvul : PowerProtection
+{
+	PainChance "BoomHeadShot", 0
+    DamageFactor "BoomHeadShot", 0
+    Powerup.Duration 0x7fffffff
+}
+
+Actor HeadshotHitBoxBASE
+{
+Health 2300
+Radius 9
+Height 19
+Mass 999999
+DamageType BoomHeadShot
+PainChance "BoomHeadShot", 0
+DamageFactor "BoomHeadShot", 0.0
+PainChance 255
+
+-COUNTKILL
++THRUSPECIES
++NOTELEPORT
++FORCERADIUSDMG
++NOTARGET
++SHOOTABLE
++NODAMAGETHRUST
+-SOLID
++NOGRAVITY
++NORADIUSDMG
+-COUNTKILL
++NOTAUTOAIMED
++THRUGHOST
+
+Species "Projectile"
+
+States
+{
+
+Spawn:
+tnt1 a 0
+xxxx A 5
+xxxx A 1 A_NoBlocking
+Stop
+
+EndP:
+	tnt1 a 0 a_jump(128,"Rotate")
+	
+ShowSprite:
+		tnt1 a 0 A_ChangeFlag(SHOOTABLE,0)
+		tnt1 a 0 A_ChangeFlag(NOCLIP,1)
+		tnt1 a 0 a_setscale(frandom(0.35,0.50))
+		DB11 ABCDEFG 1 A_FadeOut(0.015)
+		DB11 HIJKLMNOPQRSTUVWX 1 A_FadeOut(0.075)
+	Stop
+	
+Rotate:
+		boss z 0 a_setscale(-1,1)
+	Goto ShowSprite
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+Pain:
+TNT1 A 0 A_Explode(5,15, 0, 0, 15)
+TNT1 A 0
+TNT1 A 0 A_Stop
+TNT1 A 1
+TNT1 A 0 A_JumpIfHealthLower(1800, "Pain1200")
+TNT1 A 0 A_JumpIfHealthLower(2000, "Pain600")
+TNT1 A 0 A_JumpIfHealthLower(2025, "Pain550")
+TNT1 A 0 A_JumpIfHealthLower(2050, "Pain500")
+TNT1 A 0 A_JumpIfHealthLower(2075, "Pain450")
+TNT1 A 0 A_JumpIfHealthLower(2100, "Pain400")
+TNT1 A 0 A_JumpIfHealthLower(2125, "Pain350")
+TNT1 A 0 A_JumpIfHealthLower(2151, "Pain300")
+TNT1 A 0 A_JumpIfHealthLower(2176, "Pain250")
+TNT1 A 0 A_JumpIfHealthLower(2184, "Pain234")
+TNT1 A 0 A_JumpIfHealthLower(2201, "Pain200")
+TNT1 A 0 A_JumpIfHealthLower(2226, "Pain150")
+TNT1 A 0 A_JumpIfHealthLower(2251, "Pain100")
+TNT1 A 0 A_JumpIfHealthLower(2276, "Pain50")
+TNT1 A 0 A_JumpIfHealthLower(2281, "Pain40")
+TNT1 A 0 A_JumpIfHealthLower(2285, "Pain32")
+TNT1 A 0 A_JumpIfHealthLower(2286, "Pain30")
+TNT1 A 0 A_JumpIfHealthLower(2287, "Pain28")
+TNT1 A 0 A_JumpIfHealthLower(2288, "Pain26")
+TNT1 A 0 A_JumpIfHealthLower(2290, "Pain22")
+TNT1 A 0 A_JumpIfHealthLower(2291, "Pain20")
+TNT1 A 0 A_JumpIfHealthLower(2296, "Pain10")
+xxxx A 0 A_Explode(16,15, 0, 0, 15)
+PLAY A 0 A_NoBlocking
+Goto EndP
+
+Pain10:
+			TNT1 A 0
+			xxxx A 0 A_Explode(30,15, 0, 0, 15)
+			TNT1 A 1
+			TNT1 A 0 A_NoBlocking
+			MP5I  A 0
+	Goto EndP
+
+Pain20:
+			TNT1 A 0
+			xxxx A 0 A_Explode(40,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+			PIST  A 0
+	Goto EndP
+
+Pain22:
+			TNT1 A 0
+			xxxx A 0 A_Explode(61,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+
+Pain26:
+			TNT1 A 0
+			xxxx A 0 A_Explode(78,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain28:
+			TNT1 A 0
+			xxxx A 0 A_Explode(84,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+
+Pain30:
+			TNT1 A 0
+			xxxx A 0 A_Explode(90,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain32:
+			TNT1 A 0
+			xxxx A 0 A_Explode(96,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain40:
+			TNT1 A 0
+			xxxx A 0 A_Explode(120,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+			AK47  A 0
+	Goto EndP
+
+Pain50:
+			TNT1 A 0
+			xxxx A 0 A_Explode(150,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain100:
+			TNT1 A 0
+			xxxx A 0 A_Explode(300,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+			RVIC  A 0
+	Goto EndP
+
+Pain150:
+			TNT1 A 0
+			xxxx A 0 A_Explode(450,15, 0, 0, 15)
+			TNT1 A 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain200:
+			TNT1 A 0
+			xxxx A 0 A_Explode(600,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+			561I  A 0
+	Goto EndP
+
+Pain234:
+			TNT1 A 0
+			xxxx A 0 A_Explode(634,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+			ENFI  A 0
+	Goto EndP
+
+Pain250:
+			TNT1 A 0
+			xxxx A 0 A_Explode(790,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 AA 0 A_NoBlocking
+	Goto EndP
+
+Pain300:
+			TNT1 A 0
+			xxxx A 0 A_Explode(900,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain350:
+			TNT1 A 0
+			xxxx A 0 A_Explode(850,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain400:
+			TNT1 A 0
+			xxxx A 0 A_Explode(1200,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain450:
+			TNT1 A 0
+			xxxx A 0 A_Explode(1250,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain500:
+			TNT1 A 0
+			xxxx A 0 A_Explode(1500,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain550:
+			TNT1 A 0
+			xxxx A 0 A_Explode(1550,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain600:
+			TNT1 A 0
+			xxxx A 0 A_Explode(1600,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+
+Pain1200:
+			TNT1 A 0
+			xxxx A 0 A_Explode(1200,15, 0, 0, 15)
+			TNT1 AA 1
+			TNT1 A 0 A_NoBlocking
+	Goto EndP
+ }
+}
+
+
+
+
+
+actor HeadShotBox2: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+XXXX A 4
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+
+actor HeadShotBox5: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+XXXX A 7
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+actor HeadShotBox2B: HeadshotHitBoxBASE
+{
+	BloodColor "30 67 23"
+States
+ {
+Spawn:
+XXXX A 4
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+actor HeadShotBox10B: HeadshotHitBoxBASE
+{
+	BloodColor "30 67 23"
+States
+ {
+Spawn:
+XXXX A 12
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+actor HeadShotBox10: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+XXXX A 12
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+actor HeadShotBox15: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+XXXX A 17
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+actor HeadShotBox20: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+XXXX A 22
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+actor HeadShotBox30: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+xxxx A 32
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+actor HeadShotBox40: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+XXXX A 42
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+actor HeadShotBox50: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+xxxx A 52
+XXXX A 1
+XXXX A 0 A_NoBlocking
+Stop
+ }
+}
+
+
+actor HeadShotTEST: HeadshotHitBoxBASE
+{
+States
+ {
+Spawn:
+XXXX A 1
+LOOP
+
+Pain:
+xxxx b 3
+TNT1 A 0 A_playsound("HEADSHOOTGORE",1.0)
+TNT1 AAA 0 A_CustomMissile ("Blud", 2, 0, random (0, 360), 2, random (0, 360))
+
+ }
+}
+
+
+
+Actor Blud : Blood
+{
+ +RIPPER
+ +NOBLOCKMAP
+ +FORCEXYBILLBOARD
+}
+
+
+
+actor BigBox30: HeadShotBox30
+{
+Radius 14
+Height 36
+ }
+
+actor BigBox10: HeadShotBox10
+{
+Radius 14
+Height 36
+ }

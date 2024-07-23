@@ -1,0 +1,15 @@
+//===========================================================================
+//
+// VOXEL DOOM ZSCRIPT HELPER
+//
+// Copyright (C) 2022 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+/*#include "zscript/CheelloVox/CheelloSpinMixin.zc"
+#include "zscript/CheelloVox/CheelloMonstersDoom2.zc"
+#include "zscript/CheelloVox/CheelloWeaponsDoom2.zc"
+#include "zscript/CheelloVox/CheelloSmoothMonstersDoom2.zc"
+*/

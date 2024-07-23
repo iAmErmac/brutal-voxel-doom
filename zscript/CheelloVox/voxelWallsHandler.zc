@@ -1,0 +1,228 @@
+//***************************************************************
+//
+// VOXEL DOOM WALLS for CHEELLO VOXEL DOOM Events and Handlers
+//
+//***************************************************************
+
+class WallGlobalVariables : Thinker
+{
+        Array<string> Texture;
+        Array<int> Model;
+        Array<string> FlatTexture;
+        Array<float> PositionX;
+        Array<float> PositionY;
+        Array<float> PositionZ;
+        Array<float> angle;
+        Array<float> normaloffsetx;
+        Array<float> normaloffsety;
+        Array<Actor> VOXA;
+        Array<Actor> VOXB;
+        Array<Side> SIDES;
+        Array<Sector> SECTORS;
+        Array<int> which;
+        Array<int> whichSector;
+        
+	WallGlobalVariables Init()
+	{
+		ChangeStatNum(STAT_STATIC);
+
+                Texture.Clear();
+                Model.Clear();
+                FlatTexture.Clear();
+                PositionX.Clear();
+                PositionY.Clear();
+                PositionZ.Clear();
+                angle.Clear();
+                normaloffsetx.Clear();
+                normaloffsety.Clear();
+                VOXA.Clear();
+                VOXB.Clear();
+                SIDES.Clear();
+                SECTORS.Clear();
+                which.Clear();
+                whichSector.Clear();
+
+		return self;
+	}
+
+	static WallGlobalVariables Get()
+	{
+		ThinkerIterator it = ThinkerIterator.Create("WallGlobalVariables", STAT_STATIC);
+		let p = WallGlobalVariables(it.Next());
+		if (p == null)
+		{
+			p = new("WallGlobalVariables").Init();
+		}
+		return p;
+	}
+}
+
+
+class wallsEventHandler : EventHandler
+{
+bool started;
+bool z3;
+int lastOffset;
+
+        override void NetworkProcess(ConsoleEvent e)
+        {
+  
+                if (!e.IsManual && e.name == "renderWall")
+                {
+
+                        let g = WallGlobalVariables.Get();
+                        let player = players[e.Player].mo;
+                        if(!player) {return;}
+                        let i = 0;
+                        while(i < g.Model.Size()) {
+                                let n = g.Model[i];
+                                let position = (g.PositionX[n],g.PositionY[n],g.PositionZ[n]);
+                                let newWall = player.Spawn(g.Texture[n],position+(g.normaloffsetx[n],g.normaloffsety[n],0));
+                                g.VOXA.push(newWall);
+                                newWall.A_SetSpriteRotation(g.angle[n]);
+                                if(g.Texture[n] != "DBRAIN4" && g.Texture[n] != "DBRAIN3" && g.Texture[n] != "DBRAIN2" && g.Texture[n] != "DBRAIN1") {
+                                        let newWallB = player.Spawn(g.Texture[n].."B",position+(g.normaloffsetx[n],g.normaloffsety[n],0));
+                                        g.VOXB.push(newWallB);
+                                        newWallB.A_SetSpriteRotation(g.angle[n]);
+                                }
+                                i++;
+                        }
+                } else if (!e.IsManual && e.name == "restoreWalls")
+                {
+                        let g = WallGlobalVariables.Get();
+                        let nt = g.Texture.Size();
+
+                        if(nt == 0) return;
+                        for(int n = 0; n < nt; n++) {
+                                g.SIDES[n].setTexture(g.which[n], TexMan.CheckForTexture(g.Texture[n]));    
+                        }
+                        nt = g.VOXA.Size();
+
+                        if(nt == 0) return;
+                        for(int n = 0; n < nt; n++) {
+                                g.VOXA[n].destroy();
+                        }
+
+                        nt = g.VOXB.Size();
+
+                        if(nt == 0) return;
+                        for(int n = 0; n < nt; n++) {
+                                g.VOXB[n].destroy();
+                        }
+                } else if (!e.IsManual && e.name == "restoreFlats")
+                {
+                        let g = WallGlobalVariables.Get();
+                        let nt = g.SECTORS.Size();
+
+                        if(nt == 0) return;
+                        for(int n = 0; n < nt; n++) {                          
+                                g.SECTORS[n].setTexture(g.whichSector[n], TexMan.CheckForTexture(g.FlatTexture[n]));    
+                        }
+                }
+        }
+
+        void removeFlats(Side s, string name, int whichhight, int whichone, bool backsector)
+        {
+                let g = WallGlobalVariables.Get();
+                        let st = TexMan.getName(s.getTexture(whichhight));
+                        if(st == name) {
+                                let sec = s.sector;
+                                if(backsector) {
+                                sec = s.linedef.backsector;}
+                                sec.setTexture(whichone,TexMan.CheckForTexture("-")); // FLATS REMOVAL
+                                g.SECTORS.push(sec);
+                                g.FlatTexture.push(st);
+                                g.whichSector.push(whichone);
+                        } 
+        }
+        void replaceWall(Side s, string name, int textNum, float noffset, int xOffset)
+        {
+                let g = WallGlobalVariables.Get();
+
+                let st = TexMan.getName(s.getTexture(textNum));
+
+                if(st == name ) {
+
+                                s.setTexture(textNum,TexMan.CheckForTexture("-")); // TEXTURE REMOVAL
+                                if((name != "ZZZFACE3" || s.GetTextureXOffset(textNum) == 96)) {
+                                g.Model.push(g.Texture.Size());
+                                }
+                                g.Texture.push(st);
+                                g.SIDES.push(s);
+                                g.which.push(textNum);
+
+                                let length = (s.V2().p-s.V1().p).length();
+                                let angle = vectorAngle(s.V1().p.x-s.V2().p.x,s.V1().p.y-s.V2().p.y);
+                                g.PositionX.push(floor((s.V1().p.x+s.V2().p.x)*.5)+(s.GetTextureXOffset(textNum)-xOffset)*Cos(angle));
+                                g.PositionY.push(floor((s.V1().p.y+s.V2().p.y)*.5)+(s.GetTextureXOffset(textNum)-xOffset)*Sin(angle));
+                                g.PositionZ.push(s.sector.CenterFloor()+s.GetTextureYOffset(textNum));
+                                let normal = (cos(angle+90),sin(angle+90));
+                                g.angle.push(angle);
+                                g.normaloffsetx.push(normal.x*(noffset+1));
+                                g.normaloffsety.push(normal.y*(noffset+1));
+
+                        }
+
+        }
+
+	override void WorldTick(void)
+	{
+                let g = WallGlobalVariables.Get();
+                Super.WorldTick();
+                let extraOffset = CVar.GetCVar("cheello_voxelIconOffset", players[consoleplayer]).GetInt();
+
+                if(r_drawvoxels == 1 && (extraOffset == lastOffset) && (!started && CVar.GetCVar("cheello_voxelIconOfSin", players[consoleplayer]).GetBool() == true)) {
+                        g.Init();
+                        let n = 0;
+                        while(n < Level.Sides.Size()) {
+                                let s = Level.Sides[n];
+        
+                                removeFlats(s, "ZZZFACE1", 1, 0, false);
+                                //removeFlats(s, "ZZZFACE1", 1, 1);
+                                //removeFlats(s, "ZZZFACE2", 1, 0);
+                                //removeFlats(s, "ZZZFACE2", 1, 1);
+                                removeFlats(s, "ZZZFACE3", 1, 0, false);
+                                //removeFlats(s, "ZZZFACE3", 1, 1);
+                                removeFlats(s, "ZZZFACE4", 2, 0, false);
+                                //removeFlats(s, "ZZZFACE4", 2, 1);
+                                removeFlats(s, "ZZZFACE6", 2, 0, false);
+                                removeFlats(s, "ZZZFACE6", 2, 1, false);
+                                removeFlats(s, "ZZZFACE8", 2, 0, false);
+                                removeFlats(s, "ZZZFACE8", 2, 1, false);
+
+                                removeFlats(s, "DBRAIN4", 1, 1, true);
+                                removeFlats(s, "DBRAIN3", 1, 1, true);
+                                removeFlats(s, "DBRAIN2", 1, 1, true);
+                                removeFlats(s, "DBRAIN1", 1, 1, true);
+        
+
+                                replaceWall(s, "ZZZFACE1", 1, 6, extraOffset);
+                                replaceWall(s, "ZZZFACE8", 2, 4, extraOffset);
+                                replaceWall(s, "ZZZFACE9", 2, 2, extraOffset);
+                                replaceWall(s, "ZZZFACE3", 1, 4, 0);
+                                replaceWall(s, "ZZZFACE3", 0, 4, 0);
+                                replaceWall(s, "ZZZFACE2", 1, 6, 0);
+
+                                replaceWall(s, "ZZZFACE4", 2, 2, 0);
+                                replaceWall(s, "ZZZFACE6", 2, 3, 0);
+
+                                replaceWall(s, "ZZZFACE5", 2, 0, 0);
+                                replaceWall(s, "ZZZFACE7", 2, 1, 0);
+                                replaceWall(s, "DBRAIN4", 1, 4, 0);
+
+                                n++;
+                        }
+                                if(started != true) {
+                                        EventHandler.SendNetworkEvent("renderWall");    
+                                        started = true;
+                                }
+                } else if ((started == true && (CVar.GetCVar("cheello_voxelIconOfSin", players[consoleplayer]).GetInt() == 0 || r_drawvoxels == 0) ) || extraOffset != lastOffset) {
+                                EventHandler.SendNetworkEvent("restoreWalls");
+                                EventHandler.SendNetworkEvent("restoreFlats");
+                                started = false;
+                }
+                lastOffset = extraOffset;
+
+        }
+
+}

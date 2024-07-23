@@ -1,0 +1,319 @@
+HardwareShader PostProcess scene
+{
+	Name "stealthvision"
+	Shader "shaders/eai_stealth.fp" 330
+	Uniform float stealth
+}
+// Barrel
+pulselight BARREL
+{
+    color 0.0 0.3 0.0
+    size 20
+    secondarySize 21
+    interval 0.5
+    offset 0 36 0
+	dontlightself 1
+	attenuate 1
+}
+
+object ModBarrel
+{
+    frame BAR1  { light BARREL    }
+
+    frame BEXPC { light ROCKET_X1 }
+    frame BEXPD { light ROCKET_X2 }
+    frame BEXPE { light ROCKET_X3 }
+}
+
+pointlight LASER
+{
+    color 1.0 0.0 0.0
+    size 30
+} 
+
+flickerlight BPUFF1
+{
+    color 0.5 0.5 0.0
+    size 9
+    secondarySize 12
+    chance 0.8
+	attenuate 1
+}
+
+flickerlight BPUFF2
+{
+    color 0.5 0.5 0.0
+    size 4
+    secondarySize 6
+    chance 0.8
+	attenuate 1
+}
+flickerlight JetRev1
+{
+    color 0.5 0.5 0.0
+    size 64
+    secondarySize 24
+    chance 0.8
+	attenuate 1
+}
+flickerlight JetRev2
+{
+    color 0.5 0.5 0.0
+    size 48
+    secondarySize 18
+    chance 0.8
+	attenuate 1
+}
+flickerlight JetRev3
+{
+    color 0.5 0.5 0.0
+    size 32
+    secondarySize 12
+    chance 0.8
+	attenuate 1
+}
+Pointlight DarkBallFast1
+{
+Color 0.5 0.2 0.8
+Size 48
+}
+
+Pointlight DarkBallFast2
+{
+Color 0.4 0.2 0.8
+Size 64
+}
+
+Pointlight DarkBallFast3
+{
+Color 0.2 0.2 0.8
+Size 56
+}
+
+Pointlight DarkBallFast4
+{
+Color 0.0 0.0 0.5
+Size 32
+}
+
+object CheelloCyberdemon
+{
+    frame CYBRI { light ROCKET_X1    }
+    frame CYBRJ { light ROCKET_X1    }
+    frame CYBRK { light ROCKET_X2    }
+    frame CYBRL { light ROCKET_X2    }
+    frame CYBRM { light ROCKET_X3    }
+    frame CYBRN { light ROCKET_X3    }
+}
+Object DarkFast
+{
+Frame DKB1A { Light DarkBallFast1 }
+Frame DKB1B { Light DarkBallFast1 }
+Frame DKB1C { Light DarkBallFast2 }
+Frame DKB1D { Light DarkBallFast3 }
+Frame DKB1E { Light DarkBallFast4 }
+}
+object BulletPuff
+{
+    frame PUFFA { light BPUFF1 }
+    frame PUFFB { light BPUFF2 }
+}
+object ZombieSoldierTracer
+{
+    frame FTRC { light LASER }
+}
+object Reven
+{
+    frame JKELA { light JetRev1 }
+	frame JKELB { light JetRev2 }
+	frame JKELC { light JetRev3 }
+}
+object MancubusFireball
+{
+    frame MANFA { light IMPBALL   }
+    frame MANFB { light IMPBALL   }
+
+    frame MISLB { light ROCKET_X1 }
+    frame MISLC { light ROCKET_X2 }
+    frame MISLD { light ROCKET_X3 }
+}
+
+object ToxicShot
+{
+    frame MANFA { light BARONBALL   }
+    frame MANFB { light BARONBALL   }
+
+    frame MISLB { light BARONBALL_X1 }
+    frame MISLC { light BARONBALL_X2 }
+    frame MISLD { light BARONBALL_X3 }
+}
+object CheelloLostSoul
+{
+    frame SKULA { light LOSTSOUL    }
+    frame SKULB { light LOSTSOUL    }
+    frame SKULC { light LOSTSOUL    }
+    frame SKULD { light LOSTSOUL    }
+    frame SKULE { light LOSTSOUL    }
+    frame SKULF { light LOSTSOUL    }
+    frame SKULG { light LOSTSOUL    }
+
+    frame SKULH { light LOSTSOUL_X1 }
+    frame SKULI { light LOSTSOUL_X2 }
+    frame SKULJ { light LOSTSOUL_X3 }
+    frame SKULK { light LOSTSOUL_X4 }
+}
+flickerlight ROCKET_X1
+{
+    color 1.0 0.7 0.5
+    size 96
+    secondarySize 108
+    chance 0.3
+	attenuate 1
+}
+
+flickerlight ROCKET_X2
+{
+    color 0.5 0.3 0.2
+    size 120
+    secondarySize 132
+    chance 0.3
+	attenuate 1
+}
+
+flickerlight ROCKET_X3
+{
+    color 0.3 0.1 0.1
+    size 144
+    secondarySize 156
+    chance 0.3
+	attenuate 1
+}
+object Rocket2
+{
+	frame MISLA { light ROCKET }
+    frame MISLB { light ROCKET_X1 }
+    frame MISLC { light ROCKET_X2 }
+    frame MISLD { light ROCKET_X3 }
+}
+
+object Grenade2
+{
+
+    frame MISLB { light ROCKET_X1 }
+    frame MISLC { light ROCKET_X2 }
+    frame MISLD { light ROCKET_X3 }
+}
+object XtRevenantTracer
+{
+    frame FATBA { light TRACER    }
+    frame FATBB { light TRACER    }
+
+    frame FBXPA { light TRACER_X1 }
+    frame FBXPB { light TRACER_X2 }
+    frame FBXPC { light TRACER_X3 }
+}
+
+object ZombieFlame
+{
+    frame FIREA { light ARCHFIRE1 }
+    frame FIREB { light ARCHFIRE2 }
+    frame FIREC { light ARCHFIRE3 }
+    frame FIRED { light ARCHFIRE4 }
+    frame FIREE { light ARCHFIRE5 }
+    frame FIREF { light ARCHFIRE6 }
+    frame FIREG { light ARCHFIRE7 }
+    frame FIREH { light ARCHFIRE8 }
+}
+object Vile
+{
+    frame VILEH { light ARCHATK1 }
+    frame VILEI { light ARCHATK2 }
+    frame VILEJ { light ARCHATK3 }
+    frame VILEK { light ARCHATK4 }
+    frame VILEL { light ARCHATK4 }
+    frame VILEM { light ARCHATK4 }
+    frame VILEN { light ARCHATK5 }
+    frame VILEO { light ARCHATK6 }
+    frame VILEP { light ARCHATK7 }
+
+    frame VILE[ { light ARCHRES }
+    frame VILE\ { light ARCHRES }
+    frame VILE] { light ARCHRES }
+}
+flickerlight2 SPIDERATK
+{
+    color 1.0 0.8 0.2
+    size 152
+    secondarySize 174
+    interval 1
+    offset 0 40 0
+	attenuate 1
+}
+
+object CheelloSpiderMastermind
+{
+    frame SPIDG { light SPIDERATK }
+	frame SPIDH { light SPIDERATK }
+}
+flickerlight2 LASERATK
+{
+    color 1.0 0.0 0.0
+    size 72
+    secondarySize 84
+    interval 1
+    offset 0 40 0
+	attenuate 1
+}
+object AutoZombieMan
+{
+    frame POSSF { light ZOMBIEATK }
+}
+object NAZI
+{
+    frame SSWVG { light ZOMBIEATK }
+}
+object ZombieMarine
+{
+    frame PLAYF { light ZOMBIEATK }
+}
+object ZombieTank
+{
+    frame TANKD { light ZOMBIEATK }
+}
+object FasterShotgunGuy
+{
+    frame SPOSF { light ZOMBIEATK }
+}
+object blackShotgunGuy
+{
+    frame SPOSF { light ZOMBIEATK }
+}
+object Ogre
+{
+    frame OGREF { light ZOMBIEATK }
+}
+object Chaingunner
+{
+    frame CPOSE { light ZOMBIEATK }
+    frame CPOSF { light ZOMBIEATK }
+}
+object whitechaingunner
+{
+    frame CPOSE { light ZOMBIEATK }
+    frame CPOSF { light ZOMBIEATK }
+}
+object PlasmaZombieman
+{
+    frame CPOSE { light LASERATK }
+    frame CPOSF { light LASERATK }
+}
+object MechaZombie
+{
+    frame MECZF { light LASERATK }
+	frame MECZN { light ROCKET_X2 }
+    frame BEXPD { light ROCKET_X3 }
+}
+object DoomGuy
+{
+    frame PLAYF { light ZOMBIEATK }
+}

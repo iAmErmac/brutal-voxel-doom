@@ -1,0 +1,178 @@
+ACTOR Berserk2 : CustomInventory replaces Berserk
+{
+	+COUNTITEM
+	+INVENTORY.NOSCREENFLASH
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.FANCYPICKUPSOUND
+	Inventory.PickupMessage "$GOTBERSERK" // "Berserk!"
+	Inventory.PickupSound "powerups/berserk"
+	States
+	{
+	Spawn:
+		PSTR A -1
+		Stop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("DimStrength", 1)
+		TNT1 A 0 A_SetBlend("66 00 00", GetCvar("led_TogBrskBrght"), 35)
+		TNT1 A 0 HealThing(100)
+		Stop
+	}
+}
+
+ACTOR DimStrength : PowerStrength
+{
+	PowerUp.Color 255, 0, 0, 0.25
+}
+
+ACTOR Supercharge : CustomInventory replaces Soulsphere
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.FANCYPICKUPSOUND
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupMessage "$GOTSUPER" // "Supercharge!"
+	Inventory.PickupSound "powerups/soul"
+	States
+	{
+	Spawn:
+		SOUL ABCDCB 6 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("Soulsphere", 1)
+		TNT1 A 0 A_SetBlend("00 00 FF", GetCvar("led_TogSolSph"), 50)
+		Stop
+	}
+}
+
+ACTOR MegaSphere2 : CustomInventory replaces Megasphere
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.FANCYPICKUPSOUND
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupMessage "$GOTMSPHERE" // "Megasphere!"
+	Inventory.PickupSound "powerups/mega"
+	States
+	{
+	Spawn:
+		MEGA ABCDCB 6 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("Megasphere", 1)
+		TNT1 A 0 A_SetBlend("FF FF 66", GetCvar("led_TogMgSph"), 50)
+		Stop
+	}
+}
+
+ACTOR InvisSphere : CustomInventory replaces BlurSphere
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.FANCYPICKUPSOUND
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupMessage "$GOTINVIS" // "Partial Invisibility!"
+	Inventory.PickupSound "powerups/invis"
+	States
+	{
+	Spawn:
+		PINS ABCDCB 6 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("Blursphere", 1)
+		TNT1 A 0 A_SetBlend("FF 00 FF", GetCvar("led_TogPartVis"), 50)
+		Stop
+	}
+}
+
+ACTOR InvulnSphere : CustomInventory replaces InvulnerabilitySphere
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.FANCYPICKUPSOUND
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
+	Inventory.PickupSound "powerups/invuln"
+	States
+	{
+	Spawn:
+		PINV ABCDCB 6 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("InvulnerabilitySphere", 1)
+		TNT1 A 0 A_SetBlend("00 00 FF", GetCvar("led_TogInvln"), 90)
+		Stop
+	}
+}
+
+ACTOR CompMap : CustomInventory replaces Allmap
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.FANCYPICKUPSOUND
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupMessage "$GOTMAP" // "Computer Area Map"
+	Inventory.PickupSound "powerups/amap"
+	States
+	{
+	Spawn:
+		PMAP ABCDCB 6 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("Allmap", 1)
+		TNT1 A 0 A_SetBlend("00 00 FF", GetCvar("led_TogCmpMp"), 35)
+		Stop
+	}
+}
+
+ACTOR LightAmp : CustomInventory replaces Infrared
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.FANCYPICKUPSOUND
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupMessage "$GOTVISOR" // "Light Amplification Visor"
+	Inventory.PickupSound "powerups/lamp"
+	States
+	{
+	Spawn:
+		PVIS A 6 Bright
+		PVIS B 6
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("Infrared", 1)
+		TNT1 A 0 A_SetBlend("Green", GetCvar("led_TogLghtAmp"), 50)
+		Stop
+	}
+}
+
+ACTOR FeetSuit : CustomInventory replaces RadSuit
+{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.FANCYPICKUPSOUND
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupMessage "$GOTSUIT" // "Radiation Protection Suit"
+	Inventory.PickupSound "powerups/suit"
+	States
+	{
+	Spawn:
+		SUIT A -1 Bright
+		Stop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("DimIronFeet", 1)
+		TNT1 A 0 A_SetBlend("Green", GetCvar("led_TogRadSuit"), 35)
+		Stop
+	}
+}
+
+ACTOR DimIronFeet : PowerIronFeet
+{
+	PowerUp.Color 0, 255, 0, 0.0625
+}

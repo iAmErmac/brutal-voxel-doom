@@ -1,0 +1,27 @@
+Credits from WoS:
+"	SPRITES: Tormentor667, Mike12, perkristian, JoeyTD, CaptainJ, SgtMarkIV
+
+	CODE: wildweasel, Ed the Bat, Patriot1776, LedIris, faslrn
+
+	Resources have also been taken and modified from the following wads, mods and games:
+
+	Beautiful Doom by zer0
+	Brutal Doom by Sergeant_Mark_IV
+	Demon Eclipse by Eriance
+	Accessories to Murder by wildweasel and DoomNukem
+	Weasel Presents: NAZIS v2 by wildweasel
+	DOOMRL Arsenal by Yholl, SoloSpaghetti and Sgt. Shivers
+	Killing Floor by Tripwire Interactive
+	Return To Castle Wolfenstein by Gray Matter Interactive
+	Doom 3 by id Software"
+	
+Lippeth - Weapons of Saturn. Permission granted to use resources. (thank you, dude)
+Faslrn - Feedback, testing and code. (with permissions. Big thanks to him for the testing and support of the mod :) )
+Captain J - Sprites, testing & feedback (big thanks to J! :D )
+GAA1992 - Voxels, testing & feedback
+Minigunner, David G, Perkristian - new fist sprites
+Voxelbro - Voxels
+Magmacow - Dumpster fire vol I and II (under the stance "go ahead just give credit")
+Raven Software - Soldier Of Fortune II, Heretic/Hexen (sound effects)
+2015, Inc - Medal of Honor: Allied Assault (sound effects)
+Valve - Half-Life 2 (sound effects)

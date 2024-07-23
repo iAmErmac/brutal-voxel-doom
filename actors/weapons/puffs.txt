@@ -1,0 +1,115 @@
+actor BulletPuffed : BulletPuff replaces BulletPuff
+{
+  renderstyle Translucent
+  alpha 0.5
+  Decal BulletChip
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +ALLOWPARTICLES
+  +NOEXTREMEDEATH
+  states
+  {
+  Spawn:
+    PUFF A 1 Bright 
+    PUFF A 3 bright A_SpawnDebris("BulletSpark")
+    PUFF B 4
+    // Intentional fall-through
+  Melee:
+    PUFF CD 4
+    stop
+  } 
+}
+
+ACTOR BulletSpark
+{
+	Health 4
+	radius 3
+	height 6
+	speed .1
+	RenderStyle ADD
+	Alpha		1
+	Scale		.25
+	Mass		0
+	+missile
+	//+doombounce
+	+FLOORCLIP
+	+DONTSPLASH
+	+NOTELEPORT
+	States
+	{
+		Spawn:
+		SPRK A 1
+		SPRK ABCDA 1  Bright A_SetTranslucent(.8,1)
+		SPRK BCDABC 1  Bright A_SetTranslucent(.6,1)
+		SPRK DABCDABC 1  Bright A_SetTranslucent(.4,1)
+		SPRK DABCDABCDA 1 Bright A_SetTranslucent(.2,1)
+		Stop
+	}
+}
+
+ACTOR FistAttack: FastProjectile
+{
+	Radius 6
+	Height 6
+	DamageType FistFace
+	Projectile 
+	+FORCEXYBILLBOARD
+	+NOEXTREMEDEATH
+	+NORADIUSDMG
+	RenderStyle Add
+	Alpha 0.6
+    Damage (random(1,2) * 15)
+    Speed 32
+	ProjectileKickback 150
+	SeeSound "none"
+	DeathSound "none"
+	Decal "none"
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 1 BRIGHT
+			Stop
+		Death:
+			TNT1 A 3 A_PlaySound("smash")
+			TNT1 A 3
+			Stop
+		Crash:
+			TNT1 A 3 A_PlaySound("smash")
+			TNT1 A 3
+			Stop
+	}
+}
+
+ACTOR BerserkFistAttack: FastProjectile
+{
+	Radius 6
+	Height 6
+	DamageType FistFace
+	Projectile
+	+FORCEXYBILLBOARD
+	+NORADIUSDMG
+	RenderStyle Add
+	Alpha 0.6
+    Damage (random(1,2) * 60)
+    Speed 32
+	SeeSound "none"
+	DeathSound "none"
+	Decal Crack
+	ProjectileKickback 100
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 1 BRIGHT
+			Stop
+		Death:
+			TNT1 A 3 A_PlaySound("smash")
+			TNT1 A 3
+			Stop
+		Crash:
+			TNT1 A 3 A_PlaySound("smash")
+			TNT1 A 3
+			Stop
+	}
+}

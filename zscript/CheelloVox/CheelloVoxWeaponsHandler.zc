@@ -1,0 +1,144 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM - WEAPONS
+//
+// ZScript code: Agustin Alvarez
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// CheelloVoxWeaponsHandler
+// General helper functionality
+//
+//===========================================================================
+
+class CheelloVoxWeaponsHandler : EventHandler
+{
+	
+	override void WorldThingSpawned(WorldEvent e)
+	{
+		if (!e.Thing)
+			return;
+
+                /*If(e.Thing is "PlayerPawn"&&!e.Thing.FindInventory("NoOldItem")) //If the player has spawned and doesn't have the needed item
+                {
+                        e.Thing.GiveInventory("NoOldItem",1); //Give it to them
+                }*/
+
+	} 
+}
+
+extend class CheelloVoxWeaponsHandler
+{
+    override void NetworkProcess(ConsoleEvent e)
+    {
+        if (!e.IsManual && e.name == "renderEv")
+        {
+            /*let g = MyGlobalVariables.Get();
+            let playerinf = players[e.Player];
+            if(!playerinf) {return;}
+            let player = players[e.Player].mo;
+            if(!player) {return;}
+
+                        if(!g.voxelWeapons[e.Player] && (CVar.GetCVar("cheello_voxelweaponsOn", playerinf).GetInt() &&r_drawvoxels)) {
+                                //g.pnum=e.Player;
+                                //g.pinf[e.Player]=players[e.Player];
+                                //g.voxelWeapons[e.Player]=player.Spawn("CheelloWeaponVoxel",player.Vec3Offset(0,0,0));
+                        }
+						*/
+        }
+    }
+
+    override void RenderUnderlay(RenderEvent e)
+    {
+        EventHandler.SendNetworkEvent("renderEv");
+    }
+
+
+}
+
+
+
+/*class NoOldItem : Inventory //The item doing the work
+{
+
+String prefix1;
+String prefix2;
+Array<String> weaponNames;
+String nextWeapon;
+String lastWeapon;
+bool ready;
+bool lastSetting;
+bool started;
+bool started2;
+
+    Override void DoEffect()
+    {
+        let weaponson =  CVar.GetCVar("cheello_voxelweaponsOn", owner.player).GetInt() && r_drawvoxels == 1;
+        Super.DoEffect();
+        If(owner)
+        {
+            
+            if(weaponson == 1) {
+                prefix1="";
+                prefix2="Cheello";
+            } else {
+                prefix1="Cheello";
+                prefix2="";
+            }
+        if (!started) {
+            weaponNames.push("Fist");
+            weaponNames.push("Pistol");
+            weaponNames.push("Shotgun");
+            weaponNames.push("SuperShotgun");
+            weaponNames.push("Chaingun");
+            weaponNames.push("RocketLauncher");
+            weaponNames.push("PlasmaRifle");
+            weaponNames.push("BFG9000");
+            weaponNames.push("Chainsaw");
+            started = true;
+        }
+                if(owner.player.pendingWeapon.getClassName() != "Object" && owner.player.pendingWeapon.getClassName() != nextWeapon) {
+                nextWeapon = owner.player.pendingWeapon.getClassName();
+                }
+/*
+                if(!weaponson) {
+                        nextWeapon.Substitute("Cheello","");
+                }
+                if(!nextWeapon) {
+                    nextWeapon = !weaponson?"Pistol":"CheelloPistol";
+                }
+                if(!ready || weaponson != lastSetting || nextWeapon != lastWeapon) {
+                lastSetting = weaponson;
+                lastWeapon = nextWeapon;
+
+                        let readyNext = "";
+                        forEach (wName : weaponNames)
+                        {
+                                if(owner.FindInventory(prefix1..wName))
+                                {   
+                                        owner.TakeInventory(prefix1..wName,1);
+                                        owner.GiveInventory(prefix2..wName,1);
+                                        if(prefix2..wName == nextWeapon || wName == nextWeapon) {
+                                                readyNext = prefix2..wName;
+                                        }
+                                }
+                        }
+                        if(readyNext != "") {
+                                ready = true;
+                                owner.UseInventory(owner.FindInventory(readyNext));
+                                nextWeapon = readyNext;
+                        }
+                }
+
+        }
+    }
+
+} 
+*/
+
+
+

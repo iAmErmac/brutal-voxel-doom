@@ -1,0 +1,34 @@
+#library "ReloadSettings"
+#include "zcommon.acs"
+
+Script "led_TogglePistol" (VOID) NET {
+	SetResultValue(GetCVar("led_PistolReload"));
+}
+
+Script "led_ToggleRifle" (VOID) NET {
+	SetResultValue(GetCVar("led_RifleReload"));
+}
+
+Script "led_ToggleShotgun" (VOID) NET {
+	SetResultValue(GetCVar("led_ShotgunReload"));
+}
+
+Script "led_ToggleSSG" (VOID) NET {
+	SetResultValue(GetCVar("led_SSGReload"));
+}
+
+Script "led_ToggleMinigun" (VOID) NET {
+	SetResultValue(GetCVar("led_MinigunReload"));
+}
+
+Script "led_ToggleRL" (VOID) NET {
+	SetResultValue(GetCVar("led_RLReload"));
+}
+
+Script "led_TogglePlasma" (VOID) NET {
+	SetResultValue(GetCVar("led_PlasmaReload"));
+}
+
+Script "led_ToggleBFG" (VOID) NET {
+	SetResultValue(GetCVar("led_BFGReload"));
+}

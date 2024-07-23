@@ -1,0 +1,339 @@
+// Weapon voxels
+
+RIFLA = "RIFLA"
+{
+	Scale = 0.5
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+RIOBA = "RIOBA"
+{
+	Scale = 0.5
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+PISTA = "PISTA"
+{
+	Scale = 0.5
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+MNIGA = "MNIGA"
+{
+	Scale = 0.5
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+LAWNA = "LAWNA"
+{
+	Scale = 0.5
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+DBBLA = "DBBLA"
+{
+	Scale = 0.5
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+CSAWZ = "CSAWZ"
+{
+	Scale = 0.9
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+PLASA = "PLASA"
+{
+	Scale = 0.9
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+BFUGA = "BFUGA"
+{
+	Scale = 0.9
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+// Ammo voxels
+
+CLIPA = "CLIPA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+CLIPB = "CLIPB"
+{
+	Scale = 0.5
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+AMMOA = "AMMOA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+SHELD = "SHELD"
+{
+	Scale = 0.75
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+SHELB = "SHELB"
+{
+	Scale = 0.75
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+SHELE = "SHELC"
+{
+	Scale = 0.75
+	AngleOffset = 180
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+SHELC = "SHELC"
+{
+	Scale = 0.75
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+SHELA = "SHELA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+CELLA = "CELLA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+CELPA = "CELPA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+SBOXA = "SBOXA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+ROCKA = "ROCKA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BROKA = "BROKA"
+{
+	Scale = 0.8
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BPAKA = "BPAKA"
+{
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+// Item voxels
+
+BKEY = "BKEY"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+RKEY = "RKEY"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+YKEY = "YKEY"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+BSKU = "BSKU"
+{
+	Scale = 0.5
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+RSKU = "RSKU"
+{
+	Scale = 0.5
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+YSKU = "YSKU"
+{
+	Scale = 0.5
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+BON1A = "BON1A"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BON1B = "BON1B"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BON1C = "BON1C"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BON1D = "BON1D"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BON2A = "BON2A"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BON2B = "BON2B"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BON2C = "BON2C"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+BON2D = "BON2D"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+ARM1A = "ARM1A"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+ARM1B = "ARM1B"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+ARM2A = "ARM2A"
+{
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+ARM2B = "ARM2B"
+{
+	DroppedSpin = 10
+	PlacedSpin = 10
+}
+
+STIMA = "STIMA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+MEDIA = "MEDIA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+MSTIA = "MSTIA"
+{
+	Scale = 0.75
+	DroppedSpin = 0
+	PlacedSpin = 0
+}
+
+// Powerup voxels
+
+PVISA = "PVISA"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+PVISB = "PVISB"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+SUITA = "SUITA"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+PMAPA = "PMAPA"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+PMAPB = "PMAPB"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+PMAPC = "PMAPC"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+PMAPD = "PMAPD"
+{
+	DroppedSpin = 50
+	PlacedSpin = 50
+}
+
+PSTRA = "PSTRA"
+{
+	DroppedSpin = 0
+	PlacedSpin = 0
+}

@@ -1,0 +1,109 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// Zombie Man
+//
+//===========================================================================
+
+class CheelloZombieMan : ZombieMan replaces ZombieMan
+{
+	States
+	{
+	Missile:
+		POSS E 10 A_FaceTarget();
+		POSS F 8 Bright A_PosAttack();
+		POSS E 8;
+		Goto See;
+	}
+}
+
+//===========================================================================
+//
+// Cyberdemon
+//
+//===========================================================================
+
+class CheelloCyberdemon : Cyberdemon replaces Cyberdemon
+{
+	States
+	{
+	Missile:
+		CYBR E 6 A_FaceTarget();
+		CYBR F 12 Bright A_CyberAttack();
+		CYBR E 12 A_FaceTarget();
+		CYBR F 12 Bright A_CyberAttack();
+		CYBR E 12 A_FaceTarget();
+		CYBR F 12 Bright A_CyberAttack();
+		Goto See;
+	}
+}
+
+//===========================================================================
+//
+// Spider Mastermind
+//
+//===========================================================================
+
+class CheelloSpiderMastermind : SpiderMastermind replaces SpiderMastermind
+{
+	States
+	{
+	Missile:
+		SPID A 20 A_FaceTarget();
+		SPID G 4 Bright A_SPosAttackUseAtkSound();
+		SPID H 4 Bright A_SposAttackUseAtkSound();
+		SPID H 1 Bright A_SpidRefire();
+		Goto Missile + 1;
+	}
+}
+
+//===========================================================================
+//
+// Spectre
+//
+//===========================================================================
+
+class CheelloSpectre : Spectre replaces Spectre
+{
+	Default
+	{
+		RenderStyle "Shadow";
+	}
+}
+
+//===========================================================================
+//
+// Cacodemon
+//
+//===========================================================================
+
+class CheelloCacodemon : Cacodemon replaces Cacodemon
+{
+	Default
+	{
+		BloodColor "00 00 F9";
+	}
+}
+
+//===========================================================================
+//
+// Baron of Hell
+//
+//===========================================================================
+
+class CheelloBaronOfHell : BaronOfHell replaces BaronOfHell
+{
+	Default
+	{
+		BloodColor "30 67 23";
+	}
+}

@@ -1,0 +1,34 @@
+user int cheello_spinningpickups = 1;
+user int cheello_voxelweaponsOn = 1;
+user int cheello_voxelweaponsSide = 0;
+user int cheello_voxelweaponsClose = 0;
+user int cheello_voxelweaponsPhase = 1;
+user int cheello_smoothdemons = 0;
+user int cheello_smoothdemonsbite = 1;
+user bool cheello_voxelIconOfSin = true;
+user bool cheello_voxelIconAlign = false;
+user int cheello_voxelIconOffset = 0;
+user int cheello_rotatingEvilEye = 1;
+
+server bool nashgore_permanentgore = false;
+server int nashgore_maxgore = 1024;
+server int nashgore_bloodtype = 0;
+server float nashgore_bloodmult = 1.0;
+server bool nashgore_spriteblood = false;
+server bool nashgore_bloodspurt = true;
+server int nashgore_gibtype = 0;
+server float nashgore_gibmult = 1.0;
+server bool nashgore_corpseblood = true;
+server bool nashgore_footprints = true;
+server int nashgore_footprinttype = 0;
+server bool nashgore_bloodtrail = true;
+server bool nashgore_deathflip = true;
+server bool nashgore_squish = true;
+server bool nashgore_icedeath = true;
+server bool nashgore_splat = true;
+server bool nashgore_gibbablecorpses = false;
+server bool nashgore_precisefloatcheck = false;
+server bool nashgore_slaughtermapmode = false;
+user float nashgore_bloodimpactsoundvolume = 0.55;
+
+

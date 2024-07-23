@@ -1,0 +1,100 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// Chaingun Guy
+//
+//===========================================================================
+
+class CheelloChaingunGuy : ChaingunGuy replaces ChaingunGuy
+{
+	States
+	{
+	Missile:
+		CPOS E 10 A_FaceTarget();
+		CPOS FE 4 Bright A_CPosAttack();
+		CPOS F 1 Bright A_CPosRefire();
+		Goto Missile + 1;
+	}
+}
+
+//===========================================================================
+//
+// Arachnotron
+//
+//===========================================================================
+
+class CheelloArachnotron : Arachnotron replaces Arachnotron
+{
+	States
+	{
+	Missile:
+		BSPI A 20 A_FaceTarget();
+		BSPI G 4 Bright A_BspiAttack();
+		BSPI H 4 Bright;
+		BSPI H 1 Bright A_SpidRefire();
+		Goto Missile + 1;
+	}
+}
+
+//===========================================================================
+//
+// Hell Knight
+//
+//===========================================================================
+
+class CheelloHellKnight : HellKnight replaces HellKnight
+{
+	Default
+	{
+		BloodColor "30 67 23";
+	}
+}
+
+//===========================================================================
+//
+// Arch Vile
+//
+//===========================================================================
+
+class CheelloArchVile : ArchVile replaces ArchVile
+{
+	// temporary hack!!!
+	States
+	{
+	Heal:
+		VILE [ 10 Bright;
+		VIL2 A 10 Bright;
+		VILE ] 10 Bright;
+		Goto See;
+	}
+}
+
+//===========================================================================
+//
+// Spawn shot (Romero boss cube)
+//
+//===========================================================================
+
+class CheelloSpawnShot : SpawnShot replaces SpawnShot
+{
+	mixin CheelloSpinMixin;
+
+	override void Tick(void)
+	{
+		Super.Tick();
+
+		if (!bNoTimeFreeze && isFrozen())
+			return;
+
+		A_CheelloSpin(self);
+	}
+}

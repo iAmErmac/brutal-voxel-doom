@@ -1,0 +1,27 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// CheelloSpinMixin
+// Re-usable spinner mixin
+//
+//===========================================================================
+
+mixin class CheelloSpinMixin
+{
+	void A_CheelloSpin(Actor mo)
+	{
+		if (!mo)
+			return;
+		
+		mo.A_SetAngle(mo.Angle + 3.33, SPF_INTERPOLATE);
+	}
+}

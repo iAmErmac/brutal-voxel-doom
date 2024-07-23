@@ -1,0 +1,125 @@
+Actor BlueKey : CustomInventory replaces BlueCard
+{
+	+COUNTITEM
+	+INVENTORY.NOSCREENFLASH
+	Inventory.MaxAmount 1
+	Inventory.PickupSound "keys/card"
+	Inventory.Icon "STKEYS0"
+	Inventory.PickupMessage "$GOTBLUECARD"
+	States
+	{
+	Spawn:
+		BKEY ABCDEFGHIJKL 3 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("BlueCard", 1)
+		TNT1 A 0 A_SetBlend("00 00 FF", GetCvar("led_TogBluKey"), 35)
+		Stop
+	}
+}
+
+Actor RedKey : CustomInventory replaces RedCard
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupSound "keys/card"
+	Inventory.Icon "STKEYS2"
+	Inventory.PickupMessage "$GOTREDCARD"
+	States
+	{
+	Spawn:
+		RKEY ABCDEFGHIJKL 3 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("RedCard", 1)
+		TNT1 A 0 A_SetBlend("66 00 00", GetCvar("led_TogRedKey"), 35)
+		Stop
+	}
+}
+
+Actor YellowKey : CustomInventory replaces YellowCard
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupSound "keys/card"
+	Inventory.Icon "STKEYS1"
+	Inventory.PickupMessage "$GOTYELWCARD"
+	States
+	{
+	Spawn:
+		YKEY ABCDEFGHIJKL 3 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("YellowCard", 1)
+		TNT1 A 0 A_SetBlend("Yellow", GetCvar("led_TogYlwKey"), 35)
+		Stop
+	}
+}
+
+Actor BlueSkul : CustomInventory replaces BlueSkull
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupSound "keys/skull"
+	Inventory.Icon "STKEYS3"
+	Inventory.PickupMessage "$GOTBLUESKUL"
+	States
+	{
+	Spawn:
+		BSKU ABCDEFGH 3 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("BlueSkull", 1)
+		TNT1 A 0 A_SetBlend("00 00 FF", GetCvar("led_TogBluSkl"), 35)
+		Stop
+	}
+}
+
+Actor RedSkul : CustomInventory replaces RedSkull
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupSound "keys/skull"
+	Inventory.Icon "STKEYS5"
+	Inventory.PickupMessage "$GOTREDSKUL"
+	States
+	{
+	Spawn:
+		RSKU ABCDEFGH 3 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("RedSkull", 1)
+		TNT1 A 0 A_SetBlend("66 00 00", GetCvar("led_TogRedSkl"), 35)
+		Stop
+	}
+}
+
+Actor YellowSkul : CustomInventory replaces YellowSkull
+{
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.NOSCREENFLASH
+	Inventory.PickupSound "keys/skull"
+	Inventory.Icon "STKEYS4"
+	Inventory.PickupMessage "$GOTYELWSKUL"
+	States
+	{
+	Spawn:
+		YSKU ABCDEFGH 3 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("YellowSkull", 1)
+		TNT1 A 0 A_SetBlend("Yellow", GetCvar("led_TogYlwSkl"), 35)
+		Stop
+	}
+}
+

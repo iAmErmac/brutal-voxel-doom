@@ -1,0 +1,15 @@
+addkeysection "Led's Generic Mod Actions" modactions
+
+addmenukey "Quick Punch (no use on punch)" punchemnouse
+alias punchemnouse "pukename PunchToggle"
+defaultbind Q punchemnouse
+addmenukey "Quick Punch (use on punch)" punchem
+alias punchem "pukename PunchToggle; wait 9; +use; wait 1; -use"
+
+alias led_ModEnableReload "led_PistolReload 1; led_RifleReload 1; led_ShotgunReload 1; led_SSGReload 1; led_MinigunReload 1; led_RLReload 1; led_PlasmaReload 1; led_BFGReload 1;"
+alias led_ModDisableReload "led_PistolReload 0; led_RifleReload 0; led_ShotgunReload 0; led_SSGReload 0; led_MinigunReload 0; led_RLReload 0; led_PlasmaReload 0; led_BFGReload 0;"
+alias led_ModResetFlash "led_TogBrskBrght 0.25; led_TogCmpMp 0.4; led_TogInvln 0.5; led_TogLghtAmp 0.4; led_TogMgSph 0.4; led_TogPartVis 0.4; led_TogRadSuit 0.4; led_TogSolSph 0.4; led_TogArmBns 0.15; led_TogBckPck 0.3; led_TogBluArm 0.2; led_TogGrnArm 0.2; led_TogHlthBns 0.15; led_TogBluKey 0.4; led_TogRedKey 0.4; led_TogYlwKey 0.4; led_TogBluSkl 0.4; led_TogRedSkl 0.4; led_TogYlwSkl 0.4"
+alias led_ResetPwrFlsh "led_TogBrskBrght 0.25; led_TogCmpMp 0.4; led_TogInvln 0.5; led_TogLghtAmp 0.4; led_TogMgSph 0.4; led_TogPartVis 0.4; led_TogRadSuit 0.4; led_TogSolSph 0.4"
+alias led_ResetItmFlsh "led_TogArmBns 0.15; led_TogBckPck 0.3; led_TogBluArm 0.2; led_TogGrnArm 0.2; led_TogHlthBns 0.15"
+alias led_ResetKeyFlsh "led_TogBluKey 0.4; led_TogRedKey 0.4; led_TogYlwKey 0.4; led_TogBluSkl 0.4; led_TogRedSkl 0.4; led_TogYlwSkl 0.4"
+alias led_ModResetOptions "led_SmokeEffects 1; led_CasingSmoke 1; led_ShellLife 1000; led_MagLife 1000; led_ArmorSpark 1; led_ShellCasings 1; led_ArmorBonus 0; led_SpentMags 1; led_Barrels 1; led_AimPunch 1; led_ShellSys 1; led_MedSys 1; led_ShotPump 0; led_SSGAltFire 0; led_RifleADS 1; led_ShotADS 1; led_PLRifFlsh 0.1; led_BFGFirFlsh 0.65; led_DeathAnim 0; led_ModResetFlash; led_ModEnableReload;"

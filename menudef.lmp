@@ -1,0 +1,225 @@
+AddOptionMenu "OptionsMenu"
+{
+	StaticText ""
+	StaticText "Nash's NEXT Gore mod"
+	Submenu "$OPTMNU_NASHGORE", "NashGoreOptionMenu"
+	StaticText "VOXEL DOOM"
+	Submenu "$OPTMNU_VOXELDOOMOPTS", "VoxelDoomOptionMenu"
+	
+}
+OptionMenu "NashGoreOptionMenu"
+{
+	Class "NashGoreOptionMenu"
+	Title "$NASHGOREMNU_TITLE"
+	Position -32
+
+	StaticText ""
+
+	StaticText "$NASHGOREMNU_BLOOD_TITLE", 1
+	NashGoreOption "$NASHGOREMNU_BLOOD_TYPE",		"$NASHGOREMNU_HELPTEXT_BLOOD_TYPE",			"nashgore_bloodtype",	"NashGoreBloodTypes"
+	NashGoreSlider "$NASHGOREMNU_BLOOD_AMOUNT",		"$NASHGOREMNU_HELPTEXT_BLOOD_AMOUNT",		"nashgore_bloodmult",	0.0, 10.0, 0.1, 1
+	NashGoreOption "$NASHGOREMNU_BLOOD_SPRITES",	"$NASHGOREMNU_HELPTEXT_BLOOD_SPRITES",		"nashgore_spriteblood",	"NashGoreBloodSpriteValues"
+	NashGoreOption "$NASHGOREMNU_BLOOD_SPURTS",		"$NASHGOREMNU_HELPTEXT_BLOOD_SPURTS",		"nashgore_bloodspurt",	"OnOff"
+
+	StaticText ""
+
+	StaticText "$NASHGOREMNU_GIB_TITLE", 1
+	NashGoreOption "$NASHGOREMNU_GIB_TYPE",			"$NASHGOREMNU_HELPTEXT_GIB_TYPE",			"nashgore_gibtype",		"NashGoreGibTypes"
+	NashGoreSlider "$NASHGOREMNU_GIB_AMOUNT",		"$NASHGOREMNU_HELPTEXT_GIB_AMOUNT",			"nashgore_gibmult",		0.0, 10.0, 0.1, 1
+
+	StaticText ""
+
+	StaticText "$NASHGOREMNU_MISC_TITLE", 1
+	NashGoreSlider "$NASHGOREMNU_MISC_MAXGORE",				"$NASHGOREMNU_HELPTEXT_MISC_MAXGORE",				"nashgore_maxgore",				0, 5000, 1, 0
+	NashGoreOption "$NASHGOREMNU_MISC_PERMAGORE",			"$NASHGOREMNU_HELPTEXT_MISC_PERMAGORE",				"nashgore_permanentgore",		"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_CORPSEBLOOD",			"$NASHGOREMNU_HELPTEXT_MISC_CORPSEBLOOD",			"nashgore_corpseblood",			"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_BLOODTRAIL",			"$NASHGOREMNU_HELPTEXT_MISC_BLOODTRAIL",			"nashgore_bloodtrail",			"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_FOOTPRINTS",			"$NASHGOREMNU_HELPTEXT_MISC_FOOTPRINTS",			"nashgore_footprints",			"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_FOOTPRINTTYPE",		"$NASHGOREMNU_HELPTEXT_MISC_FOOTPRINTTYPE",			"nashgore_footprinttype",		"NashGoreFootprintTypeValues"
+	NashGoreOption "$NASHGOREMNU_MISC_DEATHFLIP",			"$NASHGOREMNU_HELPTEXT_MISC_DEATHFLIP",				"nashgore_deathflip",			"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_SQUISH",				"$NASHGOREMNU_HELPTEXT_MISC_SQUISH",				"nashgore_squish",				"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_ICEDEATH",			"$NASHGOREMNU_HELPTEXT_MISC_ICEDEATH",				"nashgore_icedeath",			"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_SPLAT",				"$NASHGOREMNU_HELPTEXT_MISC_SPLAT",					"nashgore_splat",				"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_GIBCORPSE",			"$NASHGOREMNU_HELPTEXT_MISC_GIBCORPSE",				"nashgore_gibbablecorpses",		"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_PRECISEFLOATCHECK",	"$NASHGOREMNU_HELPTEXT_MISC_PRECISEFLOATCHECK",		"nashgore_precisefloatcheck",	"OnOff"
+	NashGoreOption "$NASHGOREMNU_MISC_SLAUGHTERMAP",		"$NASHGOREMNU_HELPTEXT_MISC_SLAUGHTERMAP",			"nashgore_slaughtermapmode",	"OnOff"
+
+	StaticText ""
+
+	StaticText "$$OPTMNU_SOUND", 1
+	NashGoreSlider "$NASHGOREMNU_SOUND_BLOODIMPACTVOLUME",	"$NASHGOREMNU_HELPTEXT_SOUND_BLOODIMPACTVOLUME", "nashgore_bloodimpactsoundvolume", 0.0, 1.0, 0.1, 2
+
+	StaticText ""
+
+	StaticText "$NASHGOREMNU_CONTROLS_TITLE", 1
+	StaticTextSwitchable "$CNTRLMNU_SWITCHTEXT1", "$CNTRLMNU_SWITCHTEXT2", "ControlMessage"
+	NashGoreControl "$NASHGOREMNU_CONTROLS_CLEARGORE", "$NASHGOREMNU_HELPTEXT_CONTROLS_CLEARGORE", "netevent EV_ClearGore"
+
+	StaticText ""
+
+	SafeCommand "$NASHGOREMNU_MISC_CLEARGORENOW",			"netevent EV_ClearGore"
+	SafeCommand "$OPTMNU_DEFAULTS",							"netevent EV_NashGore_ResetToDefault"
+	/*
+	StaticText ""
+	// uninstall feature intentionally disabled for the time being. it doesn't work properly.
+	SafeCommand "$NASHGOREMNU_MISC_UNINSTALL",				"netevent EV_NashGore_Uninstall"
+	*/
+}
+
+OptionValue "NashGoreBloodTypes"
+{
+	0, "$NASHGOREMNU_DEFAULT"
+	1, "$NASHGOREMNU_BLOOD_TYPE_CLASSIC"
+	2, "$NASHGOREMNU_VANILLA"
+}
+
+OptionValue "NashGoreBloodSpriteValues"
+{
+	0, "$NASHGOREMNU_BLOOD_SPRITE_DECALS"
+	1, "$NASHGOREMNU_BLOOD_SPRITE_SPRITES"
+}
+
+OptionValue "NashGoreGibTypes"
+{
+	0, "$NASHGOREMNU_DEFAULT"
+	1, "$NASHGOREMNU_GIB_TYPE_NOSTICKYGIBS"
+	2, "$NASHGOREMNU_VANILLA"
+}
+
+OptionValue "NashGoreFootprintTypeValues"
+{
+	0, "$NASHGOREMNU_FOOTPRINT_TYPE_TREADEDBOOTS"
+	1, "$NASHGOREMNU_FOOTPRINT_TYPE_GENERICSHOES"
+	2, "$NASHGOREMNU_FOOTPRINT_TYPE_BAREFOOTHUMAN"
+}
+
+
+AddOptionMenu "OptionsMenuSimple"
+{
+	StaticText "VOXEL DOOM"
+	Submenu "$OPTMNU_VOXELDOOMOPTS", "VoxelDoomOptionMenu"
+	StaticText ""
+	StaticText "Nash's Gore Mod: Vengeance Edition v1.0"
+	Submenu "$OPTMNU_NASHGORE", "NashGoreMenu"
+}
+
+OptionMenu "VoxelDoomOptionMenu"
+{
+	Title "$OPTMNU_VOXELDOOMOPTS"
+	Option "$VOXELDOOMMNU_VOXELONOFF", "r_drawvoxels", "VoxelsOnOff"
+	Option "$VOXELDOOMMNU_SPINITEMS", "cheello_spinningpickups", "SpinningPickupOptions"
+	Option "$VOXELDOOMMNU_SPINEYE", "cheello_rotatingEvilEye", "SpinningEyeOptions"
+
+
+	StaticText ""
+	StaticText "VOXEL WEAPONS"
+	Submenu "$OPTMNU_VOXELDOOMWEAPONSOPTS", "VoxelDoomWeaponsMain"
+	StaticText "VOXEL DOOM SMOOTH ROTATION"
+	Submenu "$VOXELDOOMMNU_SMOOTHDEMONS", "VoxelDoomSmoothDemons"
+	StaticText "VOXEL DOOM ICON OF SIN"
+	Submenu "$OPTMNU_VOXELDOOMICONMNU", "VoxelDoomIcon"
+}
+
+OptionValue "VoxelsOnOff"
+{
+	0, "$OPTVAL_OFF"
+	1, "$OPTVAL_ON"
+}
+
+OptionValue "SpinningPickupOptions"
+{
+	0, "$OPTVAL_OFF"
+	1, "$OPTVAL_VOXELDOOM_SPINALL"
+	2, "$OPTVAL_VOXELDOOM_SPIN_NODROPPED"
+}
+
+OptionValue "SpinningEyeOptions"
+{
+	0, "$OPTVAL_OFF"
+	1, "$OPTVAL_ON"
+}
+
+
+OptionMenu "VoxelDoomWeaponsMain"
+{
+	StaticText ""
+	StaticText "VOXEL WEAPONS"
+	Option "$VOXELDOOMMNU_WEAPONONOFF", "cheello_voxelweaponsOn", "VoxelWeaponOnOff"
+	StaticText ""
+	Title "$OPTMNU_VOXELDOOMWEAPONSOPTS"
+	StaticText ""
+	Option "$VOXELDOOMMNU_WEAPONONCLOSE", "cheello_voxelweaponsClose", "VoxelWeaponClose"
+	StaticText ""
+        Slider "$OPTVAL_WEAPONDISTANCE", "cheello_voxelweaponsSide", -50, 50, 1, 0
+	StaticText ""
+        Slider "$OPTVAL_WEAPONPHASE", "cheello_voxelweaponsPhase", -5, 5, 1, 0
+	StaticText ""
+	StaticText "Rendering Interpolation - Turn off if weapon glitches", "White"
+        Option "$OPTVAL_WEAPONRENDINT", "cl_capfps", "VoxelWeaponRenderingInterpolation"
+
+}
+
+OptionValue "VoxelWeaponOnOff"
+{
+	0, "$OPTVAL_OFF"
+	1, "$OPTVAL_ON"
+}
+
+OptionValue "VoxelWeaponClose"
+{
+	0, "$OPTVAL_WEAPONFAR"
+	1, "$OPTVAL_WEAPONCLOSE"
+}
+
+OptionValue "VoxelWeaponRenderingInterpolation"
+{
+	1, "$OPTVAL_OFF"
+	0, "$OPTVAL_ON"
+}
+
+OptionMenu "VoxelDoomSmoothDemons"
+{
+	Title "$VOXELDOOMMNU_SMOOTHDEMONS"
+	Option "$VOXELDOOMMNU_SMOOTHDEMONSON", "cheello_smoothdemons", "SmoothDemonsOptions"
+	StaticText ""
+	StaticText "Allow cacodemons and pain elementals to look up and down when attacking or in pain", "White"
+	Option "$VOXELDOOMMNU_SMOOTHDEMONSBITE", "cheello_smoothdemonsbite", "SmoothDemonsBiteOptions"
+	StaticText ""
+	StaticText "Rendering Interpolation - Turn off if Smooth Demons Rotation glitches", "White"
+        Option "$OPTVAL_WEAPONRENDINT", "cl_capfps", "VoxelWeaponRenderingInterpolation"
+}
+
+
+OptionValue "SmoothDemonsOptions"
+{
+	0, "$OPTVAL_OFF"
+	1, "$OPTVAL_ON"
+}
+
+OptionValue "SmoothDemonsBiteOptions"
+{
+	0, "$OPTVAL_OFF"
+	1, "$OPTVAL_ON"
+}
+
+OptionMenu "VoxelDoomIcon"
+{
+        StaticText "Show Icon of Sin as a Voxel Model", "White"
+	Option "$VOXELDOOMMNU_ICONONOFF", "cheello_voxelIconOfSin", "IconOnOff"
+	StaticText ""
+        StaticText "Icon of Sin left or right alignment", "White"
+	Option "$VOXELDOOMMNU_ICONALIGN", "cheello_voxelIconAlign", "IconAlign"
+        Slider "$VOXELDOOMMNU_ICONOFFSET", "cheello_voxelIconOffset", -32, 32, 1, 0
+}
+
+OptionValue "IconOnOff"
+{
+	1, "$OPTVAL_ON"
+	0, "$OPTVAL_OFF"
+}
+
+OptionValue "IconAlign"
+{
+	0, "$OPTVAL_RIGHT"
+	1, "$OPTVAL_LEFT"
+}

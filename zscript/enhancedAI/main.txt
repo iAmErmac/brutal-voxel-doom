@@ -1,0 +1,43 @@
+class EnhancedAIHandler : EventHandler
+{
+	override void WorldThingSpawned(WorldEvent e)
+	{
+		if (e.Thing && e.Thing.bIsMonster)
+			e.Thing.GiveInventory("EnhancedAIScript", 1);
+	}
+	
+	override void PlayerEntered(PlayerEvent e)
+	{
+		players[e.PlayerNumber].mo.GiveInventory('EAI_StealthScript',1);
+	}
+}
+
+class EnhancedAIScript : Inventory
+{
+	override void BeginPlay()
+	{
+		super.BeginPlay();
+		countdown = -1; // -1 = "no countdown", to prevent repeated triggering of zero conditions
+	}
+
+	override void DoEffect()
+	{
+		super.DoEffect();
+		if(!owner) { return; }
+
+		if(!PlayerPawn(owner))
+			SearchBehavior();
+		else
+		{
+			owner.RemoveInventory(self);
+			Destroy();
+		}
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		Stop;
+	}
+}

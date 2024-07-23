@@ -1,0 +1,25 @@
+[enu default]
+
+STSTR_DQDON = "Invulnerability ON";
+STSTR_DQDOFF = "Invulnerability OFF";
+STSTR_KFAADDED = "Where's the fun in that?!";
+STSTR_FAADDED = "All weapons added! (No Keys)";
+STSTR_NCON = "You feel ethereal.";
+STSTR_NCOFF = "You feel normal again.";
+STSTR_CHOPPERS = "FIND SOME MEAT!";
+
+CC_HERO = "Hey, it's you!";
+
+OB_SUICIDE = "%o ended it all.";
+OB_FALLING = "%o cratered.";
+OB_CRUSH = "%o was pulped.";
+OB_EXIT = "%o hit the big exit button.";
+OB_WATER = "%o never took swimming lessons.";
+OB_SLIME = "%o melted in the sludge.";
+OB_LAVA = "%o was evaporated by lava.";
+OB_BARREL = "%o got barreled over.";
+OB_SPLASH = "%o learnt about splash damage.";
+OB_R_SPLASH = "%o sure taught that wall a lesson.";
+OB_ROCKET = "%o sure taught that wall a lesson.";
+
+DOSY = "  ";

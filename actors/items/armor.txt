@@ -1,0 +1,87 @@
+ACTOR ArmorBonus2 : CustomInventory replaces ArmorBonus
+{
+	Inventory.PickupSound "items/helmet"
+	Inventory.PickupMessage "$GOTARMBONUS"
+	+COUNTITEM
+	+INVENTORY.NOSCREENFLASH
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("led_ArmorBonusToggle")==1, "ModSpawn")
+		BON2 A 1
+		BON2 A 5
+		BON2 BCDCB 6
+		Loop
+	ModSpawn:
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("led_ArmorBonusToggle")==0, "Spawn")
+		BNO2 A 1
+		BNO2 A 5
+		BNO2 BCDCB 6
+		Loop
+	Pickup:
+		TNT1 A 1 A_SetBlend("Green", GetCvar("led_TogArmBns"), 10)
+		TNT1 A 0 A_GiveInventory("ArmorBonus", 1)
+		Stop
+	}
+}
+
+ACTOR LightArmor : BasicArmorBonus
+{
+	Armor.SaveAmount 10
+	Armor.SavePercent 33.333
+	Armor.MaxSaveAmount 200
+	Inventory.PickupSound "items/helmet"
+	Inventory.PickupMessage "Picked up light armor."
+	States
+	{
+	Spawn:
+		ARM3 A 6
+		ARM3 B 6 Bright
+		Loop
+	}
+}
+
+ACTOR GreenArmor2 : CustomInventory replaces GreenArmor
+{
+	Inventory.PickupSound "items/garmor"
+	Inventory.Pickupmessage "$GOTARMOR"
+	+INVENTORY.NOSCREENFLASH
+	States
+	{
+	Spawn:
+		ARM1 A 6
+		ARM1 B 6 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfArmorType("BlueArmor", "NoPickup", 50)
+		TNT1 A 0 A_JumpIfInventory("BasicArmor", 100, "NoPickup")
+		TNT1 A 0 A_SetBlend("Green", GetCvar("led_TogGrnArm"), 20)
+		TNT1 A 0 A_GiveInventory("GreenArmor", 1)
+		Stop
+    NoPickup:
+		TNT1 A 0
+		Fail
+	}
+}
+
+ACTOR BlueArmor2 : CustomInventory replaces BlueArmor
+{
+	Inventory.PickupSound "items/barmor"
+	Inventory.Pickupmessage "$GOTMEGA"
+	+INVENTORY.NOSCREENFLASH
+	States
+	{
+	Spawn:
+		ARM2 A 6
+		ARM2 B 6 Bright
+		Loop
+	Pickup:
+		TNT1 A 0 A_JumpIfInventory("BasicArmor", 200, "NoPickup")
+		TNT1 A 0 A_SetBlend("Blue", GetCvar("led_TogBluArm"), 20)
+		TNT1 A 0 A_GiveInventory("BlueArmor", 1)
+		Stop
+    NoPickup:
+		TNT1 A 0
+		Fail
+	}
+}

@@ -1,0 +1,53 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+version "4.10"
+#include "zscript/NashGore/NashGoreMath.zc"
+#include "zscript/NashGore/NashGorePlugin.zc"
+#include "zscript/NashGore/NashGoreGameplayStatics.zc"
+#include "zscript/NashGore/NashGoreFloaterDetector.zc"
+#include "zscript/NashGore/NashGoreHandler.zc"
+#include "zscript/NashGore/NashGoreBlood.zc"
+#include "zscript/NashGore/NashGoreBloodPlane.zc"
+#include "zscript/NashGore/NashGoreGibs.zc"
+#include "zscript/NashGore/NashGoreRealGibs.zc"
+#include "zscript/NashGore/NashGoreCrushedGibs.zc"
+#include "zscript/NashGore/NashGoreSquishyGibs.zc"
+#include "zscript/NashGore/NashGoreIceChunk.zc"
+#include "zscript/NashGore/NashGoreLiquidBlood.zc"
+#include "zscript/NashGore/NashGoreActor.zc"
+#include "zscript/NashGore/NashGoreCorpseHitbox.zc"
+#include "zscript/NashGore/NashGoreTestMonster.zc"
+#include "zscript/NashGore/NashGoreOptionMenu.zc"
+
+// global constants
+const STAT_NashGore_Gore = Thinker.STAT_USER + 1;
+const SLAUGHTERMAP_DIST = 1000.0;
+const MAP_EPSILON = 1 / 65536.;
+
+
+#include "zscript/CheelloVox/CheelloVoxStatics.zc"
+#include "zscript/CheelloVox/CheelloVoxHandler.zc"
+//#include "zscript/CheelloVox/CheelloBlood.zc"
+#include "zscript/CheelloVox/CheelloRocketPlugin.zc"
+#include "zscript/CheelloVox/CheelloRotateToCameraPlugin.zc"
+#include "zscript/CheelloVox/CheelloSpinMixin.zc"
+#include "zscript/CheelloVox/CheelloSpinPlugin.zc"
+#include "zscript/CheelloVox/CheelloMonstersDoom1.zc"
+//#include "zscript/CheelloVox/CheelloWeapons.zc"
+#include "zscript/CheelloVox/CheelloVoxWeaponsHandler.zc"
+#include "zscript/CheelloVox/CheelloVoxSmoothStatics.zc"
+#include "zscript/CheelloVox/CheelloSmoothMonstersDoom1.zc"
+#include "zscript/CheelloVox/voxelWallsHandler.zc"
+#include "zscript/CheelloVox/wallsDecorates.zc"
+#include "zscript/CheelloVox/CheelloMonstersDoom2.zc"
+#include "zscript/CheelloVox/CheelloSmoothMonstersDoom2.zc"
+
+

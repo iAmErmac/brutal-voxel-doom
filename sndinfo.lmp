@@ -1,0 +1,441 @@
+//Player Sounds
+$random playerjump {jump01 jump02}
+jump01 pljmp01
+jump02 pljmp02
+
+$playeralias	player	male	*land		playerland
+$playeralias	player	male	*jump		playerjump
+
+$random player/armorhit { armhit1 armhit2 armhit3 armhit4 }
+armhit1 	armhit1
+armhit2 	armhit2
+armhit3 	armhit3
+armhit4 	armhit4
+
+$volume player/armorhit 0.35
+
+playerland 			dspland
+
+//Items
+laserBlast	LazrZom
+shieldBlast	ShldZom
+items/garmor 	getarm
+items/barmor 	getmarm
+items/helmet 	helmet
+
+items/hbonus 	hbonus
+items/mstim 	pmstim
+items/stim 		pstim
+items/health 	phealth
+
+$random items/clip { items/cli1 items/cli2 }
+items/cli1 		clip
+items/cli2		cli2
+
+items/clipb 	clipbox
+
+$volume items/clip 0.9
+
+$random items/shell { shell1 shel2 }
+shell1 			shell
+shel2			shel2
+
+items/sbox 		shelbox
+items/rocket 	rockget
+items/rocketb 	rockbox
+items/smcell 	plamoup
+items/cellb 	cellbox
+items/bpack 	packget
+
+powerups/soul 	getsoul
+powerups/mega 	getmega
+powerups/invis 	getvis
+powerups/invuln getinvl
+powerups/amap 	getmap
+powerups/lamp 	getlite
+powerups/suit 	getsuit
+powerups/berserk getbzrk
+
+keys/card 		getkey
+keys/skull 		getskl
+
+misc/crateopen 	crtopn
+
+//Firesticks!
+
+$random weapons/deselect { holstr1 holstr2 holstr3 }
+holstr1 holstr
+holstr2 holstr2
+holstr3 holstr3
+
+weapons/rlaunch/equp 	wequp
+weapons/sguns/equp		sgequp
+weapons/minig/upsnd		mgupsn
+weapons/plsweps/upsnd	plsusnd
+
+$random weapons/foley { foley1 foley2 foley3 foley4 foley5 }
+foley1 foley1
+foley2 foley2
+foley3 foley3
+foley4 foley4
+foley5 foley5
+
+$volume weapons/foley 0.45
+
+//Barrels
+
+$random barrel/explode { baexp01 baexp02 baexp03 }
+baexp01 ba_exp01
+baexp02 ba_exp02
+baexp03 ba_exp03
+
+$limit barrel/explode 2
+
+//Casings
+
+$random weapons/casing { DSCASIN1 DSCASIN2 DSCASIN3 }
+
+DSCASIN1	DSCASIN1
+DSCASIN2	DSCASIN2
+DSCASIN3	DSCASIN3
+
+$random weapons/shotgunshells { DSSHELL1 DSSHELL2 DSSHELL3 DSSHELL4 DSSHELL5 DSSHELL6 DSSHELL7 }
+
+DSSHELL1	DSSHELL1
+DSSHELL2	DSSHELL2
+DSSHELL3	DSSHELL3
+DSSHELL4	DSSHELL4
+DSSHELL5	DSSHELL5
+DSSHELL6	DSSHELL6
+DSSHELL7	DSSHELL7
+
+$random chaingun/casing { chgncas1 chgncas2 chgncas3 }
+CHGNCAS1 	DSRIFLC1
+CHGNCAS2 	DSRIFLC2
+CHGNCAS3 	DSRIFLC3
+
+$volume chaingun/casing 0.85
+
+$random weapons/smallclip { sc1 sc2 sc3 sc4 sc5 sc6 }
+sc1 dsbounc1
+sc2 dsbounc2
+sc3 dsbounc3
+sc4 dsbounc4
+sc5 dsbounc5
+sc6 dsbounc6
+
+$volume weapons/smallclip 0.75
+
+$random weapons/largeclip { lc1 lc2 lc3 lc4 lc5 lc6 }
+lc1 dsaounc1
+lc2 dsaounc2
+lc3 dsaounc3
+lc4 dsaounc4
+lc5 dsaounc5
+lc6 dsaounc6
+
+$random weapons/bfgclip { bfgclip1 bfgclip2 bfgclip3 }
+bfgclip1	bfgcli01
+bfgclip2	bfgcli02
+bfgclip3	bfgcli03
+
+$volume weapons/largeclip 0.65
+$volume weapons/bfgclip 0.7
+
+// Fist
+
+$random weapons/fist/punch { fist/punch1 fist/punch2 fist/punch3 }
+fist/punch1		fistpun1
+fist/punch2 	fistpun2
+fist/punch3 	fistpun3
+
+$random weapons/fist/swing { fist/swing1 fist/swing2 }
+fist/swing1 	fistsw1
+fist/swing2 	fistsw2
+
+$random weapons/fist/strp { fist/strswing1 fist/strswing2 fist/strswing3 }
+fist/strswing1 	fiststr1
+fist/strswing2 	fiststr2
+fist/strswing3 	fiststr3
+
+$random smash { smash1 smash2 smash3 }
+smash1			smash1
+smash2			smash2
+smash3			smash3
+
+bsrkswing bfistsw
+
+$random swing { swing1 swing2 swing3 swing4 swing5 swing6 }
+swing1 swing1
+swing2 swing2
+swing3 swing3
+swing4 swing4
+swing5 swing5
+swing6 swing6
+
+// Chainsaw
+
+chainsaw/equp 	csequp
+chainsaw/pkup 	csget
+weapons/chainsaw/zip 	cszip
+weapons/chainsaw/idle 	csidle
+weapons/chainsaw/lower 	cslow
+weapons/chainsaw/start 	cstrt
+weapons/chainsaw/stop 	cstop
+weapons/chainsaw/loop 	csloop
+weapons/chainsaw/off	csoff
+
+$volume weapons/chainsaw/idle 0.6
+$volume weapons/chainsaw/loop 0.6
+$volume weapons/chainsaw/stop 0.6
+$volume weapons/chainsaw/hitwall 0.6
+
+$random weapons/chainsaw/hitwall { SAWALL01	SAWALL02 SAWALL03 }
+SAWALL01	CSWAL1
+SAWALL02	CSWAL2
+SAWALL03	CSWAL3
+
+$volume saw/flesh 0.8
+
+$random saw/flesh { SAWHIT01 SAWHIT02 SAWHIT03 }
+SAWHIT01	CSHIT1
+SAWHIT02	CSHIT2
+SAWHIT03	CSHIT3
+
+// Pistol
+
+$random weapons/pistol/fire 	{ pfire01 pfire02 pfire03 }
+pfire01 	pfire01
+pfire02 	pfire02
+pfire03 	pfire03
+
+weapons/pistol/equip 	pequp
+weapons/pistol/holster 	phols
+weapons/pistol/slide 	pslid
+weapons/pistol/cout 	pcout
+weapons/pistol/cin 		pcin
+weapons/pistol/snap 	psnap
+weapons/pistol/dryf 	pdry
+
+$volume weapons/pistol/slide 0.8
+$volume weapons/pistol/cout 0.8
+$volume weapons/pistol/cin 0.8
+$volume weapons/pistol/snap 0.8
+$volume weapons/pistol/slide 0.85
+
+// Shotgun
+
+weapons/riotgun/select 	rselct
+weapons/riotgun/pump 	rcock
+weapons/riotgun/deselect 	rdeslct
+
+$volume weapons/riotgun/select 0.6
+$volume weapons/riotgun/pump 0.75
+
+$random weapons/riotgun/fire { rfire1 rfire2 rfire3 }
+rfire1 		rfire1
+rfire2 		rfire2
+rfire3 		rfire3
+
+$random weapons/riotgun/load { load1 load2 load3 }
+load1 		sgs1
+load2 		sgs2
+load3 		sgs3
+
+$volume weapons/riotgun/load 0.45
+
+$random weapons/riotgun/move { move1 move2 }
+move1 		riron1
+move2 		riron2
+
+// Double Shotgun
+
+weapons/dbsg/opn dbopn
+weapons/dbsg/load dblod
+weapons/dbsg/cls dbcls
+
+$volume weapons/dbsg/opn 0.6
+$volume weapons/dbsg/load 0.6
+$volume weapons/dbsg/cls 0.6
+
+$random weapons/dbsg/sfir { sfire1 sfire2 }
+sfire1 		single1
+sfire2 		single2
+
+$random weapons/kapow { dfire1 dfire2 }
+dfire1 		double1
+dfire2 		double2
+
+// Rifle
+
+weapons/rifle/equp 	requp
+weapons/rifle/dslct rdslct
+weapons/rifle/cout 	rcout
+weapons/rifle/cin 	rcin
+weapons/rifle/slap 	rslap
+weapons/rifle/pkup 	rpkup
+weapons/rifle/click rclck
+weapons/rifle/move 	rrdy
+weapons/rifle/foley rfley1
+
+$volume weapons/rifle/foley 0.8
+$volume weapons/rifle/equp 0.6
+$volume weapons/rifle/slap 0.7
+$volume weapons/rifle/cout 0.9
+$volume weapons/rifle/cin 0.9
+$volume weapons/rifle/click 0.9
+$volume weapons/rifle/equip 0.9
+
+$random weapons/rifle/fire { rifire1 rifire2 rifire3 }
+rifire1	rifire1
+rifire2 rifire2
+rifire3 rifire3
+
+// Minigun
+
+weapons/minig/equp 	mgequp
+weapons/minig/start mgstrt
+weapons/minig/spin 	mgspin
+weapons/minig/stop 	mgstop
+weapons/minig/fire 	mgfire
+weapons/minig/reload mgload
+weapons/minig/down 	mgdown
+weapons/minig/pkup 	mgpkup
+weapons/minig/empty mgempt
+weapons/minig/chain mgchain
+
+$volume weapons/minig/chain 0.6
+
+// Rocket Launcher
+
+$random weapons/launcher/hit { rexp01 rexp02 }
+rexp01 	rexp01
+rexp02 	rexp02
+
+$limit weapons/launcher/lit 0
+
+$random rocket/distexp { distexp1 distexp2 distexp3 distexp4 distexp5 }
+distexp1 distexp1
+distexp2 distexp2
+distexp3 distexp3
+distexp4 distexp4
+distexp5 distexp5
+
+$random weapons/grenade/hit { gexp01 gexp02 }
+gexp01 	gexp01
+gexp02 	gexp02
+
+$limit weapons/grenade/hit 0
+
+$random weapons/grenade/bounce { gbnce1 gbnce2 gbnce3 }
+gbnce1 	gbnce1
+gbnce2 	gbnce2
+gbnce3 	gbnce3
+
+weapons/rlaunch/raise 	rlselct
+weapons/rlaunch/dslct 	rldslct
+weapons/rocket/fire 	rlfire
+weapons/rocket/cycle 	rlcycl
+weapons/rocket/grencycle rlgcy
+weapons/rocket/out 		rlcout
+weapons/rocket/in 		rlcin
+weapons/rlaunch/pkup 	rlpkup
+weapons/grenade/fire 	gnfire
+
+// Plasma Rifle
+
+$random weapons/prifle/fire { plfire1 plfire2 plfire3 }
+plfire1 		plfire1
+plfire2 		plfire2
+plfire3 		plfire3
+
+weapons/prifle/altfire 	plaltf
+weapons/prifle/equp 	plequp
+weapons/prifle/beep 	plbeep
+weapons/prifle/cout 	plcout
+weapons/prifle/cin 		plcin
+weapons/prifle/pkup 	plpkup
+weapons/prifle/chrge  	plchrg
+weapons/plasma/dryf 	plasdry
+weapons/plasma/paway	plholstr
+
+$volume weapons/plasma/paway 0.8
+
+$random weapons/plasmad/explode { plexp1 plexp2 plexp3 }
+plexp1 		plexp1
+plexp2 		plexp2
+plexp3 		plexp3
+
+$limit weapons/plasmad/explode 0
+
+// BFG
+
+weapons/bfg/equp 	bfgup
+weapons/bfg/charge 	bfgchrg
+weapons/bfg/fire 	bfgfire
+weapons/bfg/open 	bfgopn
+weapons/bfg/clipout bfgcout
+weapons/bfg/close 	bfgcls
+weapons/bfg/prefir	bfgpfr
+weapons/bfg/pickup 	bfgpu
+weapons/bfg/ochrg 	bfgochg
+
+$volume weapons/bfg/prefir 0.85
+
+// Enemy sounds
+
+$random grunt/attack { gatk01 gatk02 gatk03 }
+gatk01 		rifire1
+gatk02 		rifire2
+gatk03 		rifire3
+
+$random shotguy/attack { ZSHOT1 ZSHOT2 ZSHOT3 }
+ZSHOT1	ZFIRE1
+ZSHOT2	ZFIRE1
+ZSHOT3	ZFIRE3
+
+chainguy/attack 	mgfire
+
+$random ZombieFodder/Sight { FODDERSEE1 FODDERSEE2 }
+FODDERSEE1	FODDSEE1
+FODDERSEE2	FODDSEE2
+
+$random ZombieFodder/Active { FODDERACT1 FODDERACT2 }
+FODDERACT1	FODDACT1
+FODDERACT2	FODDACT2
+
+ZombieFodder/Pain	FODDPAIN
+
+$random ZombieFodder/Death { FODDERDIE1 FODDERDIE2 }
+FODDERDIE1	FODDDIE1
+FODDERDIE2	FODDDIE2
+
+ZombieFodder/Melee DSCLAW
+ZombieFodder/Soul	FODDSOUL
+
+ZFlesh/Throw	FODDATK
+ZFlesh/Miss		FODDMISS
+ZFlesh/Hit		FODDHIT
+
+JetpackRevenant/Fly		JPZMFLY
+demon/attack DSSGTJMP
+baron/charge DSBRSJMP
+
+Grenade/Bounce Bounce
+Ogre/sight OGWAKE
+Ogre/pain OGPAIN1
+Ogre/death OGDTH
+$RANDOM Ogre/active { oga1 oga2 }
+oga1 OGIDLE
+oga2 OGIDLE2
+
+Shambler/boom SBOOM
+shambler/Sight SSIGHT
+Shambler/Active SIDLE
+Shambler/Pain SHURT2
+Shambler/Death SDEATH
+Shambler/Swing Melee1
+Shambler/Smash Melee2
+Shambler/Magic SATTCK1
+Shambler/cast SBOOM
+Shambler/Hit SMACK

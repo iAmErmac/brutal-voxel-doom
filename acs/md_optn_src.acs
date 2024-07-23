@@ -1,0 +1,104 @@
+#library "ModOptions"
+#include "zcommon.acs"
+
+Script "led_ReloadToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_ReloadToggle"));
+}
+
+Script "led_SmokeToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_SmokeEffects"));
+}
+
+Script "led_ShellSmoke" (VOID) NET
+{
+	SetResultValue(GetCVar("led_CasingSmoke"));
+}
+
+Script "led_CasingsToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_ShellCasings"));
+}
+
+Script "led_CasingLife" (VOID) NET
+{
+	SetResultValue(GetCVar("led_ShellLife"));
+}
+
+Script "led_ArmorBonusToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_ArmorBonus"));
+}
+
+Script "led_SpentMagsToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_SpentMags"));
+}
+
+Script "led_SpentMagLife" (VOID) NET
+{
+	SetResultValue(GetCVar("led_MagLife"));
+}
+
+Script "led_BarrelToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_Barrels"));
+}
+
+Script "led_FlinchToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_AimPunch"));
+}
+
+Script "led_ShellToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_ShellSys"));
+}
+
+Script "led_MedToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_MedSys"));
+}
+
+Script "led_PumpToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_ShotPump"));
+}
+
+Script "led_SSGAltFireToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_SSGAltFire"));
+}
+
+Script "led_AnimToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_DeathAnim"));
+}
+
+Script "led_ArmorToggle" (VOID) NET
+{
+	SetResultValue(GetCVar("led_ArmorSpark"));
+}
+
+//Powerup Brightness Settings
+
+Script "led_BrskBrght" (VOID) NET
+{
+	SetResultValue(GetCVar("led_TogBrskBrght"));
+}
+
+/*Attention! Following script created by KeksDose!*/
+
+script "led_DeathPitch" death
+{
+int tvAng = Random(-0.1, 0.1); // The target pitch we end up at
+int vAng = 0, tics = Random(10, 20);
+
+for(int i = 1; i <= tics; i++) // start at 1 and end including tics so tvAng is hit
+{
+    vAng = FixedMul(tvAng, (i << 16) / tics);
+    ChangeActorPitch(0, vAng);
+    Delay(const:1);
+}
+}

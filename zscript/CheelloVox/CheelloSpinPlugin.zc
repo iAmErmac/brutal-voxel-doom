@@ -1,0 +1,49 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+//===========================================================================
+//
+// CheelloSpinPlugin
+// Handles optional voxel rotation
+//
+//===========================================================================
+
+class CheelloSpinPlugin : Inventory
+{
+	mixin CheelloSpinMixin;
+
+	Default
+	{
+		Inventory.MaxAmount 1;
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	override void DoEffect(void)
+	{
+		Super.DoEffect();
+
+		if (!Owner)
+			return;
+
+		if (Owner.bSpecial && CVar.GetCVar("cheello_spinningpickups", players[consoleplayer]).GetInt() > 0)
+		{
+			// don't spin dropped items (if the user chooses it)
+			if (Owner.bDropped && CVar.GetCVar("cheello_spinningpickups", players[consoleplayer]).GetInt() == 2)
+				return;
+
+			A_CheelloSpin(Owner);
+		}
+	}
+}

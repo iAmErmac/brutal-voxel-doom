@@ -1,0 +1,58 @@
+decal FistScorch
+{
+	pic SCORCH1
+	add .5
+	shade "00 00 00"
+	x-scale 0.2
+	y-scale 0.08
+	randomflipx
+	randomflipy
+}
+
+Decal ChainsawMarkLower
+{
+	Pic SAWMARK
+	Translucent 0.75
+	Shade "00 00 00"
+	X-Scale 0.2
+	Y-Scale 0.5
+	RandomFlipX
+	RandomflipY
+}
+
+Decal ChainsawMark
+{
+	Pic SAWMARK
+	Shade "00 00 00"
+	X-Scale 0.1
+	Y-Scale 0.4
+	RandomFlipX
+	RandomFlipY
+	LowerDecal ChainsawMarkLower
+}
+
+decal Crack1
+{
+	pic BFGLITE1
+	shade "00 00 00"
+	x-scale 0.55
+	y-scale 0.55
+	randomflipy
+	randomflipx
+}
+
+decal Crack2
+{
+	pic BFGLITE2
+	shade "00 00 00"
+	x-scale 0.55
+	y-scale 0.55
+	randomflipy
+	randomflipx
+}
+
+decalgroup Crack
+{
+	Crack1	1
+	Crack2	1
+}

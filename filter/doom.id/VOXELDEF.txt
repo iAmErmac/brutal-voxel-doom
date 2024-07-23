@@ -1,0 +1,312 @@
+//===========================================================================
+//
+// WEAPONS AND AMMO
+//
+//===========================================================================
+
+// Super Shotgun
+sgn2a = "sgn2a" {}
+
+// Super Shotgun Voxel Model
+sh2va = "sh2va" {UseActorPitch useActorRoll }  
+sh2vb = "sh2vb" {UseActorPitch useActorRoll }  
+sh2vc = "sh2vc" {UseActorPitch useActorRoll }  
+sh2vd = "sh2vd" {UseActorPitch useActorRoll }  
+sh2ve = "sh2ve" {UseActorPitch useActorRoll }  
+sh2vf = "sh2vf" {UseActorPitch useActorRoll }  
+sh2vg = "sh2vg" {UseActorPitch useActorRoll }  
+sh2vh = "sh2vh" {UseActorPitch useActorRoll }  
+sh2vi = "sh2vi" {UseActorPitch useActorRoll }  
+sh2vj = "sh2vj" {UseActorPitch useActorRoll }
+shtva = "shtva" {UseActorPitch useActorRoll }  
+shtvb = "shtvb" {UseActorPitch useActorRoll }  
+shtvc = "shtvc" {UseActorPitch useActorRoll }  
+shtvd = "shtvd" {UseActorPitch useActorRoll }  
+shfva = "shfva" {UseActorPitch useActorRoll }  
+shfvb = "shfvb" {UseActorPitch useActorRoll }  
+
+
+
+//===========================================================================
+//
+// POWERUPS
+//
+//===========================================================================
+
+// Megasphere
+megaa = "megaa" {  }
+megab = "megab" {  }
+megac = "megac" {  }
+megad = "megad" {  }
+
+//===========================================================================
+//
+// MONSTERS
+//
+//===========================================================================
+
+
+// Arachnotron
+bspia = "bspia" {}
+bspib = "bspib" {}
+bspic = "bspic" {}
+bspid = "bspid" {}
+bspie = "bspie" {}
+bspif = "bspif" {}
+bspig = "bspig" {}
+bspih = "bspih" {}
+bspii = "bspii" {}
+bspij = "bspij" {}
+bspik = "bspik" {}
+bspil = "bspil" {}
+bspim = "bspim" {}
+bspin = "bspin" {}
+bspio = "bspio" {}
+bspip = "bspip" {}
+
+//Arachnotron Plasma
+
+aplsa = "aplsa" { UseActorPitch PitchFromMomentum }
+aplsb = "aplsb" { UseActorPitch PitchFromMomentum }
+apbxa = "apbxa" { UseActorPitch PitchFromMomentum }
+apbxb = "apbxb" { UseActorPitch PitchFromMomentum }
+apbxc = "apbxc" { UseActorPitch PitchFromMomentum }
+apbxd = "apbxd" { UseActorPitch PitchFromMomentum }
+apbxe = "apbxe" { UseActorPitch PitchFromMomentum }
+
+// Arch Vile
+vilea = "vilea" {}
+vileb = "vileb" {}
+vilec = "vilec" {}
+viled = "viled" {}
+vilee = "vilee" {}
+vilef = "vilef" {}
+vileg = "vileg" {}
+vileh = "vileh" {}
+vilei = "vilei" {}
+vilej = "vilej" {}
+vilek = "vilek" {}
+vilel = "vilel" {}
+vilem = "vilem" {}
+vilen = "vilen" {}
+vileo = "vileo" {}
+vilep = "vilep" {}
+vileq = "vileq" {}
+viler = "viler" {}
+viles = "viles" {}
+vilet = "vilet" {}
+vileu = "vileu" {}
+vilev = "vilev" {}
+vilew = "vilew" {}
+vilex = "vilex" {}
+viley = "viley" {}
+vilez = "vilez" {}
+vile[ = "vile[" {}
+//vile^ = "vile^" {}
+vil2a = "vil2a" {} // temporary hack!!!
+vile] = "vile]" {}
+
+// Chaingunner
+cposa = "cposa" {}
+cposb = "cposb" {}
+cposc = "cposc" {}
+cposd = "cposd" {}
+cpose = "cpose" {}
+cposf = "cposf" {}
+cposg = "cposg" {}
+cposh = "cposh" {}
+cposi = "cposi" {}
+cposj = "cposj" {}
+cposk = "cposk" {}
+cposl = "cposl" {}
+cposm = "cposm" {}
+cposn = "cposn" {}
+
+// Cube
+bosfa = "bosfa" {}
+bosfb = "bosfb" {}
+bosfc = "bosfc" {}
+bosfd = "bosfd" {}
+
+// Hell Knight
+bos2a = "bos2a" {}
+bos2b = "bos2b" {}
+bos2c = "bos2c" {}
+bos2d = "bos2d" {}
+bos2e = "bos2e" {}
+bos2f = "bos2f" {}
+bos2g = "bos2g" {}
+bos2h = "bos2h" {}
+bos2i = "bos2i" {}
+bos2j = "bos2j" {}
+bos2k = "bos2k" {}
+bos2l = "bos2l" {}
+bos2m = "bos2m" {}
+bos2n = "bos2n" {}
+bos2o = "bos2o" {}
+
+// Mancubus
+fatta = "fatta" {}
+fattb = "fattb" {}
+fattc = "fattc" {}
+fattd = "fattd" {}
+fatte = "fatte" {}
+fattf = "fattf" {}
+fattg = "fattg" {}
+fatth = "fatth" {}
+fatti = "fatti" {}
+fattj = "fattj" {}
+fattk = "fattk" {}
+fattl = "fattl" {}
+fattm = "fattm" {}
+fattn = "fattn" {}
+fatto = "fatto" {}
+fattp = "fattp" {}
+fattq = "fattq" {}
+fattr = "fattr" {}
+fatts = "fatts" {}
+fattt = "fattt" {}
+
+// Pain Elemental
+paina = "paina" { UseActorPitch }
+painb = "painb" { UseActorPitch }
+painc = "painc" { UseActorPitch }
+paind = "paind" { UseActorPitch }
+paine = "paine" { UseActorPitch }
+painf = "painf" { UseActorPitch }
+paing = "paing" { UseActorPitch }
+painh = "painh" { UseActorPitch }
+paini = "paini" { UseActorPitch }
+painj = "painj" { UseActorPitch }
+paink = "paink" { UseActorPitch }
+painl = "painl" { UseActorPitch }
+painm = "painm" { UseActorPitch }
+
+// Revenant
+skela = "skela" {}
+skelb = "skelb" {}
+skelc = "skelc" {}
+skeld = "skeld" {}
+skele = "skele" {}
+skelf = "skelf" {}
+skelg = "skelg" {}
+skelh = "skelh" {}
+skeli = "skeli" {}
+skelj = "skelj" {}
+skelk = "skelk" {}
+skell = "skell" {}
+skelm = "skelm" {}
+skeln = "skeln" {}
+skelo = "skelo" {}
+skelp = "skelp" {}
+skelq = "skelq" {}
+
+//Revenant Projectile
+
+fatba = "fatba" { UseActorPitch PitchFromMomentum }
+fatbb = "fatbb" { UseActorPitch PitchFromMomentum }
+fbxpa = "fbxpa" { UseActorPitch PitchFromMomentum }
+fbxpb = "fbxpb" { UseActorPitch PitchFromMomentum }
+fbxpc = "fbxpc" { UseActorPitch PitchFromMomentum }
+
+// Keen
+keena = "keena" {}
+keenb = "keenb" {}
+keenc = "keenc" {}
+keend = "keend" {}
+keene = "keene" {}
+keenf = "keenf" {}
+keeng = "keeng" {}
+keenh = "keenh" {}
+keeni = "keeni" {}
+keenj = "keenj" {}
+keenk = "keenk" {}
+keenl = "keenl" {}
+keenm = "keenm" {}
+
+// Romero
+bbrna = "bbrna" {}
+bbrnb = "bbrnb" {}
+
+//SS Soldier
+
+sswva = "sswva" {}
+sswvb = "sswvb" {}
+sswvc = "sswvc" {}
+sswvd = "sswvd" {}
+sswve = "sswve" {}
+sswvf = "sswvf" {}
+sswvg = "sswvg" {}
+sswvh = "sswvh" {}
+sswvi = "sswvi" {}
+sswvj = "sswvj" {}
+sswvk = "sswvk" {}
+sswvl = "sswvl" {}
+sswvm = "sswvm" {}
+sswvn = "sswvn" {}
+sswvo = "sswvo" {}
+sswvp = "sswvp" {}
+sswvq = "sswvq" {}
+sswvr = "sswvr" {}
+sswvs = "sswvs" {}
+sswvt = "sswvt" {}
+sswvu = "sswvu" {}
+sswvv = "sswvv" {}
+
+
+//===========================================================================
+//
+// DECORATION
+//
+//===========================================================================
+
+// Colon gibs
+pob1a = "pob1a" {}
+
+// Blood Puddle
+pob2a = "pob2a" {}
+
+//Brain and spine
+brs1a = "brs1a" {}
+
+// Small pool o' blood
+//pob2a = "pob2a" {}
+
+// Hanging with no guts
+hdb1a = "hdb1a" {}
+
+// Hanging from bottom with no brain
+//hdb2a = "hdb2a" {}
+
+// Hanging from top, looking down
+//hdb3a = "hdb3a" {}
+
+// Hanging from top, skully
+//hdb4a = "hdb4a" {}
+
+// Hanging from top, looking up
+//hdb5a = "hdb5a" {}
+
+// Hanging from top without a brain
+//hdb6a = "hdb6a" {}
+
+// Tech lamp large
+tlmpa = "tlmpa" {}
+tlmpb = "tlmpb" {}
+tlmpc = "tlmpc" {}
+tlmpd = "tlmpd" {}
+
+// Tech lamp small
+tlp2a = "tlp2a" {}
+tlp2b = "tlp2b" {}
+tlp2c = "tlp2c" {}
+tlp2d = "tlp2d" {}
+
+// Burning barrel
+fcana = "fcana" {}
+fcanb = "fcanb" {}
+fcanc = "fcanc" {}
+
+// Mancubus Flames
+manfa = "manfa" { UseActorPitch PitchFromMomentum }
+manfb = "manfb" { UseActorPitch PitchFromMomentum }

@@ -1,0 +1,309 @@
+//***************************************************************
+//
+// VOXEL DOOM WALLS for CHEELLO VOXEL DOOM "Wall Actors"
+//
+//***************************************************************
+
+class DBRAIN4: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                DBRN A 8;
+                DBRN B 8;
+                DBRN C 8;
+                DBRN D 8;
+                Loop;
+        }
+}
+
+class ZZZFACE1: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA1 A 1 NoDelay A_JumpIf(CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Aligned");
+                Loop;
+        Aligned:
+                ZFB1 C 1 A_JumpIf(!CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Spawn");
+                Loop;
+        }
+}
+
+class ZZZFACE2: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA2 A 1;
+                Loop;
+        }
+}
+class ZZZFACE3: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA3 A 1;
+                Loop;
+        }
+}
+class ZZZFACE4: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA4 A 1;
+                Loop;
+        }
+}
+
+class ZZZFACE5: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA5 A 1;
+                Loop;
+        }
+}
+
+class ZZZFACE6: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA6 A 1;
+                Loop;
+        }
+}
+
+class ZZZFACE7: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA7 A 1;
+                Loop;
+        }
+}
+
+class ZZZFACE8: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA8 A 1 NoDelay A_JumpIf(CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Aligned");
+                Loop;
+        Aligned:
+                ZFB8 C 1 A_JumpIf(!CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Spawn");
+                Loop;
+        }
+
+}
+
+class ZZZFACE9: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA9 A 1 NoDelay A_JumpIf(CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Aligned");
+                Loop;
+        Aligned:
+                ZFB9 C 1 A_JumpIf(!CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Spawn");
+                Loop;
+        }
+}
+
+
+class ZZZFACE1B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA1 B 1 NoDelay A_JumpIf(CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Aligned");
+                Loop;
+        Aligned:
+                ZFB1 D 1 A_JumpIf(!CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Spawn");
+                Loop;
+        }
+}
+
+class ZZZFACE2B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA2 B 1;
+                Loop;
+        }
+}
+class ZZZFACE3B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA3 B 1;
+                Loop;
+        }
+}
+class ZZZFACE4B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA4 B 1;
+                Loop;
+        }
+}
+
+class ZZZFACE5B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA5 B 1;
+                Loop;
+        }
+}
+
+class ZZZFACE6B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA6 B 1;
+                Loop;
+        }
+}
+
+class ZZZFACE7B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA7 B 1;
+                Loop;
+        }
+}
+
+class ZZZFACE8B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA8 B 1 NoDelay A_JumpIf(CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Aligned");
+                Loop;
+        Aligned:
+                ZFB8 D 1 A_JumpIf(!CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Spawn");            
+                Loop;
+        }
+}
+
+class ZZZFACE9B: Actor
+{
+        Default
+        {
+                +NOINTERACTION
+                +NOTIMEFREEZE
+        }
+        States
+        {
+        Spawn:
+                ZFA9 B 1 NoDelay A_JumpIf(CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Aligned");
+                Loop;
+        Aligned:
+                ZFB9 D 1 A_JumpIf(!CVar.GetCVar("cheello_voxelIconAlign", players[consoleplayer]).GetBool() == true, "Spawn");
+                Loop;
+        }
+}

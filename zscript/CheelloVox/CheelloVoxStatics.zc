@@ -1,0 +1,20 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+class CheelloVoxStatics
+{
+	static double, double AnglesTo(Vector3 p1, Vector3 p2)
+	{
+		let diffVec = Level.Vec3Diff(p1, p2);
+		double angle = VectorAngle(diffVec.X, diffVec.Y);
+		double pitch = -VectorAngle(diffVec.Length(), diffVec.Z);
+		return angle, pitch;
+	}
+}

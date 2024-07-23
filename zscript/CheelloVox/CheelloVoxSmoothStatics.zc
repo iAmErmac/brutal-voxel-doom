@@ -1,0 +1,44 @@
+//===========================================================================
+//
+// CHEELLO VOXEL DOOM
+//
+// ZScript code: Copyright (C) 2022 - 2023 Nash Muhandes
+//
+// License: MIT
+//
+//===========================================================================
+
+
+class CheelloVoxSmoothDemonsStatics
+{
+
+        static double fixMonsterAngle(double a, double b)
+        {
+                a = a % 360;
+                b = b % 360;
+                let aDiff = b - a;
+                if(aDiff > 180) {
+                        aDiff = b - 360 - a;
+                } else if(aDiff < -180) {
+                        aDiff = 360 - a + b;
+                }
+                return aDiff;
+        }
+
+        static double doMonsterRoll(double roll, double side)
+        {
+                let r = roll;
+                if(r>180) {
+                        r=r-360;
+                }
+                if(side == 0) {
+                        r=r*39/40;
+                } else {
+                        let rd = 10*side/Abs(side);
+                        r=r-rd/(1+Abs(r));
+                }
+                if(r<0) {r=r+360;}
+                return r;
+        }
+
+}
