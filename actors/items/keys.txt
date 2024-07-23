@@ -1,4 +1,4 @@
-Actor BlueKey : CustomInventory replaces BlueCard
+Actor BlueKey : ZCustomItem replaces BlueCard
 {
 	+COUNTITEM
 	+INVENTORY.NOSCREENFLASH
@@ -18,7 +18,7 @@ Actor BlueKey : CustomInventory replaces BlueCard
 	}
 }
 
-Actor RedKey : CustomInventory replaces RedCard
+Actor RedKey : ZCustomItem replaces RedCard
 {
 	+COUNTITEM
 	+INVENTORY.AUTOACTIVATE
@@ -39,7 +39,7 @@ Actor RedKey : CustomInventory replaces RedCard
 	}
 }
 
-Actor YellowKey : CustomInventory replaces YellowCard
+Actor YellowKey : ZCustomItem replaces YellowCard
 {
 	+COUNTITEM
 	+INVENTORY.AUTOACTIVATE
@@ -60,7 +60,7 @@ Actor YellowKey : CustomInventory replaces YellowCard
 	}
 }
 
-Actor BlueSkul : CustomInventory replaces BlueSkull
+Actor BlueSkul : ZCustomItem replaces BlueSkull
 {
 	+COUNTITEM
 	+INVENTORY.AUTOACTIVATE
@@ -81,7 +81,7 @@ Actor BlueSkul : CustomInventory replaces BlueSkull
 	}
 }
 
-Actor RedSkul : CustomInventory replaces RedSkull
+Actor RedSkul : ZCustomItem replaces RedSkull
 {
 	+COUNTITEM
 	+INVENTORY.AUTOACTIVATE
@@ -102,7 +102,7 @@ Actor RedSkul : CustomInventory replaces RedSkull
 	}
 }
 
-Actor YellowSkul : CustomInventory replaces YellowSkull
+Actor YellowSkul : ZCustomItem replaces YellowSkull
 {
 	+COUNTITEM
 	+INVENTORY.AUTOACTIVATE

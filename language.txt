@@ -23,3 +23,16 @@ OB_R_SPLASH = "%o sure taught that wall a lesson.";
 OB_ROCKET = "%o sure taught that wall a lesson.";
 
 DOSY = "  ";
+
+BVDOPTIONS_VOXELDOOM = "Voxel Doom";
+BVDOPTIONS_NASHGORE = "NashGore Next";
+BVDOPTIONS_UEA = "Universal Enhanced AI";
+
+BVDOPTIONS_SPINITEMS = "Spinning Voxel Items";
+BVDOPTIONS_SMOOTHMOVE = "Smooth Turning Monsters";
+BVDOPTIONS_BLOOD_AMOUNT = "Blood Amount";
+BVDOPTIONS_BLOOD_SPURTS = "Blood Spurts";
+BVDOPTIONS_GIB_AMOUNT = "Gib Amount";
+BVDOPTIONS_MISC_MAXGORE = "Max Gore Amount";
+BVDOPTIONS_MISC_GIBCORPSE = "Gibbable Corpse";
+BVDOPTIONS_MISC_SLAUGHTERMAP = "Performant Gore";

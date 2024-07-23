@@ -1,0 +1,177 @@
+
+#include "zscript/smoothmove.txt"
+
+class ZMonsterBase : Actor
+{
+	mixin SmoothMoveTurnMixin;
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		InitSmoothMoveTurnMixin(self,turnSpeedMax : 10.0);
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		getConfig();
+		UpdateSmoothMoveTurnMixin();
+	}
+	
+	private void getConfig()
+	{
+		Playerinfo player = players[consoleplayer];
+		if(!player) return;
+		
+		if(GetAge() && GetAge() % 35 * 5 == 0) {
+			smoothMove = CVar.GetCVar("cheello_smoothdemons", player).GetInt();
+			smoothBite = CVar.GetCVar("cheello_smoothdemonsbite", player).GetInt();
+		}
+	}
+	
+	action void Z_Wander(int chaseFlags = 0)
+	{
+		if(invoker.smoothMove)
+			invoker.WanderSmooth(chaseFlags);
+		else
+			A_Wander(chaseFlags);
+	}
+	
+	action void Z_Chase(statelabel melee = '_a_chase_default', statelabel missile = '_a_chase_default', int flags = 0)
+	{
+		if(invoker.smoothMove)
+			invoker.ChaseSmooth(melee, missile, flags, true);
+		else
+			A_Chase(melee, missile, flags);
+	}
+	
+	action void Z_Face(Actor faceto, double max_turn = 0, double max_pitch = 270, double ang_offset = 0, double pitch_offset = 0, int flags = 0, double z_ofs = 0)
+	{
+		if(invoker.smoothMove)
+			invoker.FaceSmooth(faceto, flags);
+		else
+			A_Face(faceto, max_turn, max_pitch, ang_offset, pitch_offset, flags, z_ofs);
+	}
+	
+	action void Z_FaceTarget(double max_turn = 0, double max_pitch = 270, double ang_offset = 0, double pitch_offset = 0, int flags = 0, double z_ofs = 0)
+	{
+		//if(invoker is "ZombieTank") Z_TurretAdjust();
+	
+		if(invoker.smoothMove && invoker.target)
+			invoker.FaceSmooth(invoker.target, FAF_MIDDLE);
+		else
+			A_FaceTarget(max_turn, max_pitch, ang_offset, pitch_offset, flags, z_ofs);
+	}
+	
+	action void Z_FatRaise(void)
+	{
+		if(invoker.smoothMove && invoker.target)
+			invoker.FaceSmooth(invoker.target, FAF_MIDDLE);
+		else
+			A_FaceTarget();
+		A_StartSound("fatso/raiseguns", CHAN_WEAPON);
+	}
+	
+	action void Z_FatAttack1(class<Actor> spawntype = "FatShot")
+	{
+		if (target)
+		{
+			if(invoker.smoothMove && invoker.target)
+				invoker.FaceSmooth(invoker.target, FAF_MIDDLE);
+			else
+				A_FaceTarget ();
+			// Change direction  to ...
+			Angle += FATSPREAD;
+			SpawnMissile (target, spawntype);
+			Actor missile = SpawnMissile (target, spawntype);
+			if (missile)
+			{
+				missile.Angle += FATSPREAD;
+				missile.VelFromAngle();
+			}
+		}
+	}
+	
+	action void Z_FatAttack2(class<Actor> spawntype = "FatShot")
+	{
+		if (target)
+		{
+			if(invoker.smoothMove && invoker.target)
+				invoker.FaceSmooth(invoker.target, FAF_MIDDLE);
+			else
+				A_FaceTarget ();
+			// Now here choose opposite deviation.
+			Angle -= FATSPREAD;
+			SpawnMissile (target, spawntype);
+			Actor missile = SpawnMissile (target, spawntype);
+			if (missile)
+			{
+				missile.Angle -= FATSPREAD;
+				missile.VelFromAngle();
+			}
+		}
+	}
+	
+	action void Z_FatAttack3(class<Actor> spawntype = "FatShot")
+	{
+		if (target)
+		{
+			if(invoker.smoothMove && invoker.target)
+				invoker.FaceSmooth(invoker.target, FAF_MIDDLE);
+			else
+				A_FaceTarget ();
+			Actor missile = SpawnMissile (target, spawntype);
+			if (missile)
+			{
+				missile.Angle -= FATSPREAD/2;
+				missile.VelFromAngle();
+			}
+			missile = SpawnMissile (target, spawntype);
+			if (missile)
+			{
+				missile.Angle += FATSPREAD/2;
+				missile.VelFromAngle();
+			}
+		}
+	}
+	
+	action void Z_VileChase(void)
+	{
+		if(invoker.smoothMove) invoker.ChaseSmooth();
+		A_VileChase();
+	}
+	
+	action void Z_VileTarget(class<Actor> fire = "ArchvileFire")
+	{
+		if (invoker.target)
+		{
+			if(invoker.smoothMove)
+				invoker.FaceSmooth(invoker.target, FAF_MIDDLE);
+			else
+				A_FaceTarget ();
+
+			Actor fog = Spawn (fire, invoker.target.Pos, ALLOW_REPLACE);
+			if (fog != null)
+			{
+				invoker.tracer = fog;
+				fog.target = invoker;
+				fog.tracer = invoker.target;
+				fog.A_Fire(0);
+			}
+		}
+	}
+	
+	private int smoothMove, smoothBite;
+}
+
+class ZTankTurret : ZMonsterBase
+{
+	override void Tick()
+	{
+		Super.Tick();
+		vector3 turretOffset = (0, 5, 41);
+		if(master) SetOrigin(master.pos + turretOffset, true);
+	}
+}
+
+class ZCustomItem : CustomInventory {}

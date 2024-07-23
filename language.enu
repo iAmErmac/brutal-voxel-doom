@@ -94,6 +94,7 @@ OPTMNU_VOXELDOOMWEAPONSOPTS = "Voxel weapons models options";
 
 VOXELDOOMMNU_VOXELONOFF = "Voxels Rendering Active";
 VOXELDOOMMNU_SPINITEMS = "Spinning items";
+VOXELDOOMMNU_SPINEYE = "Rotating Evil Eye";
 VOXELDOOMMNU_SMOOTHDEMONS = "Smooth Rotating Demons";
 
 OPTVAL_VOXELDOOM_SPINALL = "All items";

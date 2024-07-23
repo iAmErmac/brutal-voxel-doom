@@ -109,7 +109,7 @@ ACTOR InvulnSphere : CustomInventory replaces InvulnerabilitySphere
 	}
 }
 
-ACTOR CompMap : CustomInventory replaces Allmap
+ACTOR CompMap : ZCustomItem replaces Allmap
 {
 	+COUNTITEM
 	+INVENTORY.AUTOACTIVATE
@@ -130,7 +130,7 @@ ACTOR CompMap : CustomInventory replaces Allmap
 	}
 }
 
-ACTOR LightAmp : CustomInventory replaces Infrared
+ACTOR LightAmp : ZCustomItem replaces Infrared
 {
 	+COUNTITEM
 	+INVENTORY.AUTOACTIVATE
@@ -152,7 +152,7 @@ ACTOR LightAmp : CustomInventory replaces Infrared
 	}
 }
 
-ACTOR FeetSuit : CustomInventory replaces RadSuit
+ACTOR FeetSuit : ZCustomItem replaces RadSuit
 {
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP

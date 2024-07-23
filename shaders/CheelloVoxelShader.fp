@@ -2,7 +2,7 @@
 //
 // CHEELLO VOXEL DOOM MASTER SHADER
 //
-// License: MIT
+// License: GPL v3.0
 //
 //===========================================================================
 
@@ -10,6 +10,55 @@ mat3 GetTBN(void);
 vec3 GetNormMap(mat3 tbn, vec2 texcoord);
 vec3 GetSpecMap(vec2 texcoord);
 vec2 ParallaxMap(mat3 tbn);
+vec3 GetBumpedNormal(mat3 tbn, vec2 texcoord);
+
+//===========================================================================
+//
+//
+//
+//===========================================================================
+
+Material ProcessMaterial()
+{
+    mat3 tbn = GetTBN();
+    vec2 texCoord = ParallaxMap(tbn);
+
+    Material material;
+    material.Base = getTexel(texCoord);
+    material.Normal = GetBumpedNormal(tbn, texCoord);
+#if defined(SPECULAR)
+    material.Specular = texture(speculartexture, texCoord).rgb;
+    material.Glossiness = uSpecularMaterial.x;
+    material.SpecularLevel = uSpecularMaterial.y;
+#endif
+#if defined(PBR)
+    material.Metallic = texture(metallictexture, texCoord).r;
+    material.Roughness = texture(roughnesstexture, texCoord).r;
+    material.AO = texture(aotexture, texCoord).r;
+#endif
+#if defined(BRIGHTMAP)
+    material.Bright = texture(brighttexture, texCoord);
+#endif
+    return material;
+}
+
+//===========================================================================
+//
+//
+//
+//===========================================================================
+
+vec3 GetBumpedNormal(mat3 tbn, vec2 texcoord)
+{
+#if defined(NORMALMAP)
+    vec3 map = texture(normaltexture, texcoord).xyz;
+    map = map * 255./127. - 128./127.; // Math so "odd" because 0.5 cannot be precisely described in an unsigned format
+    map.xy *= vec2(0.5, -0.5); // Make normal map less strong and flip Y
+    return normalize(tbn * map);
+#else
+    return normalize(vWorldNormal.xyz);
+#endif
+}
 
 //===========================================================================
 //
@@ -19,10 +68,26 @@ vec2 ParallaxMap(mat3 tbn);
 
 void SetupMaterial(inout Material mat)
 {
-	mat3 tbn = GetTBN();
-	vec2 texCoord = ParallaxMap(tbn);
+	vec2 texCoord = vec2(.0);
+
+	// don't use the shader in 2D mode
+	// yes, branching bad hurrdurr. but there's no other way in GZDoom, unfortunately.
+	// WARNING: this will produce a compile error in VKDoom because we got rid of uniforms
+	// in VKD. I won't bother dealing with this until VKDoom has been officially released - Nash
+	if (uFogEnabled == -3)
+	{
+		texCoord = vTexCoord.st;
+		mat.Normal = ApplyNormalMap(texCoord);
+	}
+	else
+	{
+		mat3 tbn = GetTBN();
+		texCoord = ParallaxMap(tbn);
+		mat.Normal = GetNormMap(tbn, texCoord);
+	}
+
 	mat.Base = getTexel(texCoord);
-	mat.Normal = GetNormMap(tbn, texCoord);
+
 #if defined(SPECULAR)
 	mat.Specular = GetSpecMap(texCoord);
 	mat.Glossiness = uSpecularMaterial.x;

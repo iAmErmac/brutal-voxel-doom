@@ -1,0 +1,143 @@
+Mixin class SmoothMoveTurnMixin
+{
+	//ChaseSmooth works by  storing the state ChaseSmooth was called from, and using that information along with
+	//the actor's tics value to determine if the ChaseSmoth call each tic should have the chance to result in an attack, or just moving & turning.
+	//The smooth turning functions work in a similar way.
+	Actor smtActor;//the actor instance this mixin belongs to
+	State smtChaseState;
+	bool smtChasing;//controls wether to call A_Chase or A_Wander in ChaseSmooth
+	int smtChaseFlags;//stores any A_Chase flags for use during Tick()
+	
+	State smtTurnState;
+	double smtAngleTarget;
+	double smtTurnSpeed;//the difference between starting angle and smtAngleTarget divided by smtTurnState.tics
+	double smtTurnSpeedMax;//if > 0, if smtLimitTurnSpeed is true and when chasing or wandering, limit smtTurnSpeed to to this
+	bool smtLimitTurnSpeed;//set to true when chasing or wandering
+	
+	void InitSmoothMoveTurnMixin(Actor other, double turnSpeedMax = 0)
+	{
+		smtActor = other;
+		smtTurnSpeedMax = turnSpeedMax;
+	}
+	
+	//To be called from the smtActor's Tick()
+	void UpdateSmoothMoveTurnMixin()
+	{
+		if(smtActor == null)
+		{
+			return;
+		}
+		//this chase behavior is called when the monster is in a state that called A_ChaseSmooth, 
+		//but is not the first tic in that state
+		if(smtChaseState && smtActor.curState && smtActor.tics != smtActor.curState.tics)
+		{
+			if (smtActor.curState == smtChaseState)
+			{
+				ChaseSmooth(melee : null, missile : null, chaseFlags : smtChaseFlags, chase : smtChasing);
+			}
+			else
+			{
+				smtChaseState = null;
+				smtChasing = false;
+				smtChaseFlags = 0;
+			}
+		}
+		//this is used for turning smoothly.
+		if (smtTurnState && smtActor.curState && smtActor.tics != smtActor.curState.tics)
+		{
+			if(smtActor.curState == smtTurnState)
+			{
+				TurnTowards();
+			}
+			else
+			{
+				smtTurnState = null;
+				smtLimitTurnSpeed = false;
+			}
+		}
+	}
+	
+	//Smooth chasing code by Boondorl
+	//Smooth turning code by phantombeta
+	void ChaseSmooth(StateLabel melee = '_a_chase_default', StateLabel missile = '_a_chase_default', int chaseFlags = 0, bool chase = true)
+	{
+		smtChasing = chase;
+		smtChaseState = smtActor.curState;
+		smtChaseFlags = chaseFlags;
+
+		Vector3 tempPos = smtActor.pos;
+		double angleTemp = smtActor.angle;
+		smtLimitTurnSpeed = true;
+		
+		if(chase)
+		{
+			if(smtActor.target == null)
+			{
+				return;
+			}
+			A_Chase(melee,missile,chaseFlags);
+		}
+		else
+		{
+			A_Wander(chaseFlags);
+		}
+
+		Vector3 diff = (smtActor.pos - tempPos);
+		Vector3 dir = !(diff ~== (0, 0, 0)) ? diff.Unit() : (0, 0, 0);
+		smtActor.SetOrigin(tempPos + dir * smtActor.speed/2,true);
+		
+		smtActor.A_SetAngle(angleTemp);
+		//only rotate for the initial ChaseSmooth call, and not the automatic ones from Tick()
+		if(smtActor.tics == smtActor.curState.tics)
+		{
+			FaceAngleSmooth(smtActor.moveDir * 45);
+		}
+	}
+
+	//Shortcut for smooth wandering.  
+	void WanderSmooth(int flags = 0)
+	{
+		ChaseSmooth(null,null,flags,false);
+	}
+	
+	//Smooth variant of A_Face(). Pass target as a parameter to replicate A_FaceTarget.
+	void FaceSmooth(Actor other = null,int flags = 0)
+	{
+		if(other == null)
+		{
+			return;
+		}
+		double angleTemp = smtActor.angle;
+		smtActor.A_Face(other,0,0,0,0,flags);//for pitch setting
+		smtActor.A_SetAngle(angleTemp);
+		FacePosSmooth(other.pos + (0,0,flags == FAF_MIDDLE ? double(other.height) / 2 : 0));
+	}
+	//for facing a position
+	void FacePosSmooth(Vector3 targetPos)
+	{
+		Vector3 sCoords = LevelLocals.SphericalCoords(smtActor.pos,targetPos,(smtActor.angle,smtActor.pitch));
+		FaceAngleSmooth(smtActor.angle - sCoords.x);
+	}
+	
+	void FaceAngleSmooth(double a)
+	{
+		smtTurnState = smtActor.curState;
+		smtAngleTarget = a;
+		double angDiff = DeltaAngle(smtActor.angle,smtAngleTarget);
+		smtTurnSpeed = abs(angDiff / (smtTurnState.tics > 0 ? smtTurnState.tics : 1));
+		if(smtLimitTurnSpeed && smtTurnSpeedMax > 0)
+		{
+			smtTurnSpeed = Clamp(smtTurnSpeed,0,smtTurnSpeedMax);
+		}
+		TurnTowards();
+	}
+	//the base smooth turning function, turns smoothly towards any angle. 
+	//This is only  to be called from Tick(), ChaseSmooth, or the other smooth rotating functions.
+	protected void TurnTowards()
+	{
+		double angDiff = DeltaAngle(smtActor.angle,smtAngleTarget);
+		double angleChange = angDiff < 0 ? max(-smtTurnSpeed, angDiff) : min(smtTurnSpeed, angDiff);
+		smtActor.A_SetAngle(smtActor.angle + angleChange);
+		//console.printf("[SmoothMoveTurnMixin/TurnTowards] smtAngleTarget = %f, angDiff = %f, smtTurnSpeed = %f, angleChange = %f, angle = %f",smtAngleTarget,angDiff,smtTurnSpeed,angleChange,smtActor.angle);
+	}
+}

@@ -1,4 +1,4 @@
-ACTOR ArmorBonus2 : CustomInventory replaces ArmorBonus
+ACTOR ArmorBonus2 : ZCustomItem replaces ArmorBonus
 {
 	Inventory.PickupSound "items/helmet"
 	Inventory.PickupMessage "$GOTARMBONUS"
@@ -41,7 +41,7 @@ ACTOR LightArmor : BasicArmorBonus
 	}
 }
 
-ACTOR GreenArmor2 : CustomInventory replaces GreenArmor
+ACTOR GreenArmor2 : ZCustomItem replaces GreenArmor
 {
 	Inventory.PickupSound "items/garmor"
 	Inventory.Pickupmessage "$GOTARMOR"
@@ -64,7 +64,7 @@ ACTOR GreenArmor2 : CustomInventory replaces GreenArmor
 	}
 }
 
-ACTOR BlueArmor2 : CustomInventory replaces BlueArmor
+ACTOR BlueArmor2 : ZCustomItem replaces BlueArmor
 {
 	Inventory.PickupSound "items/barmor"
 	Inventory.Pickupmessage "$GOTMEGA"

@@ -60,7 +60,9 @@ class CheelloVoxHandler : EventHandler
 			e.Thing is "GreenArmor" ||
 			e.Thing is "BlueArmor" ||
 			e.Thing is "HealthBonus" ||
-			e.Thing is "DoomKey"
+			e.Thing is "DoomKey" ||
+			e.Thing is "Backpack" ||
+			e.Thing is "ZCustomItem"
 		);
 
 		if (isSpinning)

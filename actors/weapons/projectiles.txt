@@ -75,7 +75,7 @@ ACTOR Plasma : PlasmaBall
 		plss AB 6 Bright
 		Loop
 	Death:
-		TNT1 A 0 A_CustomMissile("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160))
+		//TNT1 A 0 A_CustomMissile("PlasmaSmoke", 1, 0, random (0, 360), 2, random (0, 160))
 		plze ABCDE 4 Bright
 		Stop
 	}

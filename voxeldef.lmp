@@ -17,7 +17,7 @@ RIOBA = "RIOBA"
 PISTA = "PISTA"
 {
 	Scale = 0.5
-	DroppedSpin = 10
+	//DroppedSpin = 10
 	PlacedSpin = 10
 }
 
@@ -152,49 +152,49 @@ BROKA = "BROKA"
 
 BPAKA = "BPAKA"
 {
-	DroppedSpin = 10
-	PlacedSpin = 10
+	//DroppedSpin = 10
+	//PlacedSpin = 10
 }
 
 // Item voxels
 
 BKEY = "BKEY"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 RKEY = "RKEY"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 YKEY = "YKEY"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 BSKU = "BSKU"
 {
 	Scale = 0.5
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 RSKU = "RSKU"
 {
 	Scale = 0.5
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 YSKU = "YSKU"
 {
 	Scale = 0.5
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 BON1A = "BON1A"
@@ -259,14 +259,14 @@ ARM1B = "ARM1B"
 
 ARM2A = "ARM2A"
 {
-	DroppedSpin = 10
-	PlacedSpin = 10
+	//DroppedSpin = 10
+	//PlacedSpin = 10
 }
 
 ARM2B = "ARM2B"
 {
-	DroppedSpin = 10
-	PlacedSpin = 10
+	//DroppedSpin = 10
+	//PlacedSpin = 10
 }
 
 STIMA = "STIMA"
@@ -292,48 +292,48 @@ MSTIA = "MSTIA"
 
 PVISA = "PVISA"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 PVISB = "PVISB"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 SUITA = "SUITA"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 PMAPA = "PMAPA"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 PMAPB = "PMAPB"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 PMAPC = "PMAPC"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 PMAPD = "PMAPD"
 {
-	DroppedSpin = 50
-	PlacedSpin = 50
+	//DroppedSpin = 50
+	//PlacedSpin = 50
 }
 
 PSTRA = "PSTRA"
 {
-	DroppedSpin = 0
-	PlacedSpin = 0
+	//DroppedSpin = 0
+	//PlacedSpin = 0
 }

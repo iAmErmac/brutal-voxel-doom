@@ -313,7 +313,3 @@ object MechaZombie
 	frame MECZN { light ROCKET_X2 }
     frame BEXPD { light ROCKET_X3 }
 }
-object DoomGuy
-{
-    frame PLAYF { light ZOMBIEATK }
-}

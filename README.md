@@ -4,7 +4,7 @@
 
 Taking Cheello's famous Voxel Doom and putting some brutality into it, brutal voxel doom adds headshots, tons of gore, new monsters and weapons to DooM, all in the form of voxels. 
 
-Note: This versions is the Monster Only version of the mod and needs to be loaded with other weapon mods
+Note: This versions is the **Monster Only** version of the mod and needs to be loaded with other weapon mods
 
 This mod is modified by Ermac to add backward compatibility for LZDoom and QuestZDoom. It also fixes wadsmoosh compatibility.
 
@@ -34,6 +34,11 @@ This mod is modified by Ermac to add backward compatibility for LZDoom and Quest
 
 ## Whats updated in VR mod
 * Made compatible for QuestZDoom (which is based on LZDoom v3.88)
+* Replaced some of the voxel with pallete tranlation with md3 models to avoid voxel pallete tranlation bug in LZDoom
+* Added smooth turning and chasing (optional) to voxel monsters (was removed by this mod)
+* Enabled Item spinning option back into the mod (was not optional)
+* Consolidated the options menus for more readability, removed unused options
+* Removed a lot of unused/broken codes to get rid of startup errors/warnings
 
 ## Installation
 
@@ -97,6 +102,7 @@ To install:
 
 * Cheello - Brutal Doom voxels, Nashgore voxels
 * Nash - Zscript for Voxel Doom, Nashgore Next
+* Cherno, Boondorl, phantombeta - Smooth turning and chase zscript
 * GAA1992 - Additional voxels, testing & feedback
 * Voxelbro - Additional Voxels
 * Faslrn - Feedback, testing and code

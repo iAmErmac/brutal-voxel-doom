@@ -1,66 +1,8 @@
-/*
-Weapon base. This makes it easier to change viewbobbing and punching as changing this
-will change it for every weapon.
-*/
 
-ACTOR ModWeapon : Weapon
-{
-	Weapon.BobStyle "Smooth"
-	Weapon.BobSpeed 1.5
-	Weapon.BobRangeX 0.30
-	Weapon.BobRangeY 0.40
-	Scale 			0.9
-	States
-	{
-	ActualPunch:
-		TNT1 A 0 A_JumpIfInventory("DimStrength", 1, "BerserkPunch")
-		TNT1 A 0 A_JumpIfInventory("PowerStrength", 1, "BerserkPunch")
-		TNT1 A 0 A_PlaySound("weapons/foley", CHAN_AUTO)
-		PUN3 A 1 A_SetPitch(pitch+0.1)
-		PUN3 B 1 A_SetPitch(pitch+0.7)
-		PUN3 D 1 A_SetPitch(pitch+0.5)
-		TNT1 A 0 A_FireProjectile("FistAttack",0,0,0,0)
-		PUN3 E 1 A_SetPitch(pitch+0.5)
-		PUN3 G 1 A_SetPitch(pitch+0.2)
-		PUN3 H 1 A_SetPitch(pitch-0.5)
-		PUN3 I 1 A_SetPitch(pitch-0.5)
-		PUN3 J 1 A_SetPitch(pitch-0.25)
-		PUN3 K 1 A_SetPitch(pitch-0.25)
-		PUN3 L 1 A_SetPitch(pitch-0.25)
-		TNT1 A 1 A_SetPitch(pitch-0.125)
-		TNT1 A 1 A_SetPitch(pitch-0.125)
-		TNT1 A 1 A_TakeInventory("Punching", 1)
-		TNT1 A 0 A_Jump(256, "PunchDone")
-	BerserkPunch:
-		TNT1 A 0 A_PlaySound("bsrkswing", CHAN_AUTO)
-		TNT1 A 0 A_PlaySound("weapons/foley", CHAN_AUTO)
-		TNT1 A 0 A_ZoomFactor(1.04, ZOOM_INSTANT)
-		PUN3 A 1 A_SetPitch(pitch+0.2)
-		TNT1 A 0 A_ZoomFactor(1.03)
-		PUN3 B 1 A_SetPitch(pitch+0.9)
-		TNT1 A 0 A_ZoomFactor(1.02)
-		PUN3 D 1 A_SetPitch(pitch+0.7)
-		TNT1 A 0 A_ZoomFactor(1.01)
-		TNT1 A 0 A_FireProjectile("BerserkFistAttack",0,0,0,0)
-		PUN3 E 1 A_SetPitch(pitch+0.7)
-		TNT1 A 0 A_ZoomFactor(1.00)
-		PUN3 G 1 A_SetPitch(pitch+0.4)
-		PUN3 H 1 A_SetPitch(pitch-0.8)
-		PUN3 I 1 A_SetPitch(pitch-0.8)
-		PUN3 J 1 A_SetPitch(pitch-0.35)
-		PUN3 K 1 A_SetPitch(pitch-0.35)
-		PUN3 L 1 A_SetPitch(pitch-0.35)
-		TNT1 A 1 A_SetPitch(pitch-0.125)
-		TNT1 A 1 A_SetPitch(pitch-0.125)
-		TNT1 A 1 A_TakeInventory("Punching", 1)
-		TNT1 A 0 A_Jump(256, "PunchDone")
-	}
-}
-
-// The player. DoomGuy at his finest!
+// Monsters
 
 #include actors/monsters.txt
-#include actors/HeadShotBoxes
+#include actors/HeadShotBoxes.txt
 
 // Items!
 
@@ -74,6 +16,3 @@ ACTOR ModWeapon : Weapon
 #include actors/weapons/projectiles.txt
 #include actors/weapons/barrels.txt
 #include actors/weapons/puffs.txt
-
-
-// Effects. (casings and smoke)

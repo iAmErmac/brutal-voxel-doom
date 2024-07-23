@@ -46,51 +46,6 @@ DBRNB = "DBRAIN3" {}
 DBRNC = "DBRAIN2" {}
 DBRND = "DBRAIN1" {}
 
-// Pistol Voxel Fist
-punva = "punva" { UseActorPitch useActorRoll }
-punvb = "punvb" { UseActorPitch useActorRoll }
-punvc = "punvc" { UseActorPitch useActorRoll }
-punvd = "punvd" { UseActorPitch useActorRoll }
-
-// Pistol Voxel Chainsaw
-sawva = "sawva" { UseActorPitch useActorRoll }
-sawvb = "sawvb" { UseActorPitch useActorRoll }
-
-// Pistol Voxel Weapon
-pisva = "pisva" { UseActorPitch useActorRoll }
-pisvb = "pisvb" { UseActorPitch useActorRoll }
-pisvc = "pisvc" { UseActorPitch useActorRoll }
-pisvd = "pisvd" { UseActorPitch useActorRoll }
-pisve = "pisve" { UseActorPitch useActorRoll }
-
-// Shotgun Voxel Weapon
-shgva = "shgva" { UseActorPitch useActorRoll }
-shgvb = "shgvb" { UseActorPitch useActorRoll }
-shgvc = "shgvc" { UseActorPitch useActorRoll }
-shgvd = "shgvd" { UseActorPitch useActorRoll }
-shgve = "shgva_a" { UseActorPitch useActorRoll }
-shgvf = "shgva_b" { UseActorPitch useActorRoll }
-
-// Chaingun Voxel Weapon
-chgva = "chgva" { UseActorPitch useActorRoll }
-chgvb = "chgvb" { UseActorPitch useActorRoll }
-chgvc = "chgvc" { UseActorPitch useActorRoll }
-
-// Rocket Launcher Voxel Weapon
-misva = "misva" { UseActorPitch useActorRoll }
-misvb = "misvb" { UseActorPitch useActorRoll }
-
-// Plasma Rifle Voxel Weapon
-plsva = "plsva" { UseActorPitch useActorRoll }
-plsvb = "plsvb" { UseActorPitch useActorRoll }
-plfva = "plfva" { UseActorPitch useActorRoll }
-plfvb = "plfvb" { UseActorPitch useActorRoll }
-plfxa = "plfxa" { UseActorPitch useActorRoll }
-
-// BFG9000 Voxel Weapon
-bfgva = "bfgva" { UseActorPitch useActorRoll }
-bfgvb = "bfgvb" { UseActorPitch useActorRoll }
-
 // Chainsaw
 csawa = "csawa" {}
 
