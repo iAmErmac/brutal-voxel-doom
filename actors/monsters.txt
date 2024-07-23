@@ -262,7 +262,7 @@ Actor XtRevenantTracer
 		Goto RocketBehaviour
 		
 	RocketBehaviour:
-		FATB AB 4 NoDelay Bright
+		FATB AB 4 Bright
 			{
 				A_SpawnItemEx ("XtRevenantTracerSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_ORIGINATOR, 0, 0);
 				A_SeekerMissile (10, 30, SMF_LOOK | SMF_PRECISE, 256, 16);

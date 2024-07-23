@@ -78,6 +78,6 @@ class NashGoreRealGibsPlayer : RealGibs
 {
 	Default
 	{
-		+MASTERNOSEE
+		//+MASTERNOSEE
 	}
 }

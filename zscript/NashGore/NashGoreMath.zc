@@ -123,6 +123,7 @@ struct NashGoreMath
 	// * length - Scalar for the vector's final size.
 	static Vector3 AnglesToVector(double yaw, double pitch, double length = 1.0)
 	{
-		return (yaw.ToVector() * cos(pitch), -sin(pitch)) * length;
+		//return (yaw.ToVector() * cos(pitch), -sin(pitch)) * length;
+		return (Actor.AngleToVector(yaw) * cos(pitch), -sin(pitch)) * length;
 	}
 }

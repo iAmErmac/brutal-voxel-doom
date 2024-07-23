@@ -78,7 +78,7 @@ class NashGoreSquishyGibs : RealGibs
 	Default
 	{
 		Radius 12.5;
-		+MASTERNOSEE
+		//+MASTERNOSEE
 		+FORCEYBILLBOARD
 		+NOTONAUTOMAP
 	}

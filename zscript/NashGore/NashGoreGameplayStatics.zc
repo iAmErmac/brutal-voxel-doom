@@ -146,7 +146,8 @@ class NashGoreGameplayStatics play
 
 	static void FixZFighting(Actor self)
 	{
-		self.WorldOffset = (0.0, 0.0, frandom[rnd_wofs](0.0, 0.10001));
+		//self.WorldOffset = (0.0, 0.0, frandom[rnd_wofs](0.0, 0.10001));
+		self.SetOrigin((self.pos.x, self.pos.y, self.pos.z + frandom[rnd_wofs](0.0, 0.10001)), false);
 	}
 
 	//===========================================================================
@@ -169,9 +170,13 @@ class NashGoreGameplayStatics play
 	// * ceiling - If true, get data on the ceiling instead of the floor.
 	static void SetFloorCeilingData(Actor mo, out FLineTraceData res, bool ceiling = false)
 	{
+		double z;
+		Sector sec;
+		F3DFloor ff;
+		
 		if (ceiling)
 		{
-			let [z, sec, ff] = mo.CurSector.NextHighestCeilingAt(mo.Pos.X, mo.Pos.Y, mo.Pos.Z, mo.Pos.Z + mo.Height);
+			[z, sec, ff] = mo.CurSector.NextHighestCeilingAt(mo.Pos.X, mo.Pos.Y, mo.Pos.Z, mo.Pos.Z + mo.Height);
 
 			res.HitSector = sec;
 			res.Hit3DFloor = ff;
@@ -185,7 +190,7 @@ class NashGoreGameplayStatics play
 		}
 		else
 		{
-			let [z, sec, ff] = mo.CurSector.NextLowestFloorAt(mo.Pos.X, mo.Pos.Y, mo.Pos.Z + MAP_EPSILON);
+			[z, sec, ff] = mo.CurSector.NextLowestFloorAt(mo.Pos.X, mo.Pos.Y, mo.Pos.Z + MAP_EPSILON);
 
 			res.HitSector = sec;
 			res.Hit3DFloor = ff;
@@ -209,7 +214,8 @@ class NashGoreGameplayStatics play
 		Vector3 normal;
 		if (res.HitType == TRACE_HitWall)
 		{
-			if (Level.PointOnLineSide(res.HitLocation.XY - res.HitDir.XY, res.HitLine))
+			//if (Level.PointOnLineSide(res.HitLocation.XY - res.HitDir.XY, res.HitLine))
+			if (GetPointOnLineSide(res.HitLocation.X, res.HitLocation.Y, res.HitDir.X, res.HitDir.Y, res.HitLine.delta.X, res.HitLine.delta.Y))
 				normal.XY = (res.HitLine.delta.Y, -res.HitLine.delta.X);
 			else
 				normal.XY = (-res.HitLine.delta.Y, res.HitLine.delta.X);
@@ -223,6 +229,11 @@ class NashGoreGameplayStatics play
 			normal = res.Hit3DFloor ? -res.Hit3DFloor.model.CeilingPlane.normal : res.HitSector.FloorPlane.normal;
 
 		return normal;
+	}
+	
+	static double GetPointOnLineSide(double x, double y, double linex, double liney, double deltax, double deltay)
+	{
+		return (x - linex) * deltay - (y - liney) * deltax;
 	}
 
 	//===========================================================================

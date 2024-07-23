@@ -175,7 +175,7 @@ int lastOffset;
                         g.Init();
                         let n = 0;
                         while(n < Level.Sides.Size()) {
-                                let s = Level.Sides[n];
+                                Side s = Level.Sides[n];
         
                                 removeFlats(s, "ZZZFACE1", 1, 0, false);
                                 //removeFlats(s, "ZZZFACE1", 1, 1);
