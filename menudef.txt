@@ -18,7 +18,7 @@ OptionMenu "BVDOptions"
 	Slider "$BVDOPTIONS_BLOOD_AMOUNT",			"nashgore_bloodmult", 0.0, 10.0, 0.1, 1
 	Option "$BVDOPTIONS_BLOOD_SPURTS",			"nashgore_bloodspurt", "OnOff"
 	Slider "$BVDOPTIONS_GIB_AMOUNT",			"nashgore_gibmult", 0.0, 10.0, 0.1, 1
-	Slider "$BVDOPTIONS_MISC_MAXGORE",			"nashgore_maxgore", 0, 5000, 1, 0
+	Slider "$BVDOPTIONS_MISC_MAXGORE",			"nashgore_maxgore", 0, 5000, 50, 0
 	Option "$BVDOPTIONS_MISC_GIBCORPSE",			"nashgore_gibbablecorpses", "OnOff"
 	Option "$BVDOPTIONS_MISC_SLAUGHTERMAP",			"nashgore_slaughtermapmode", "OnOff"
 	Command "$NASHGOREMNU_MISC_CLEARGORENOW",		"netevent EV_ClearGore"
@@ -54,7 +54,7 @@ OptionMenu "NashGoreOptionMenu"
 	StaticText ""
 
 	StaticText "$NASHGOREMNU_MISC_TITLE", 1
-	NashGoreSlider "$NASHGOREMNU_MISC_MAXGORE",				"$NASHGOREMNU_HELPTEXT_MISC_MAXGORE",				"nashgore_maxgore",				0, 5000, 1, 0
+	NashGoreSlider "$NASHGOREMNU_MISC_MAXGORE",				"$NASHGOREMNU_HELPTEXT_MISC_MAXGORE",				"nashgore_maxgore",				0, 5000, 50, 0
 	NashGoreOption "$NASHGOREMNU_MISC_PERMAGORE",			"$NASHGOREMNU_HELPTEXT_MISC_PERMAGORE",				"nashgore_permanentgore",		"OnOff"
 	NashGoreOption "$NASHGOREMNU_MISC_CORPSEBLOOD",			"$NASHGOREMNU_HELPTEXT_MISC_CORPSEBLOOD",			"nashgore_corpseblood",			"OnOff"
 	NashGoreOption "$NASHGOREMNU_MISC_BLOODTRAIL",			"$NASHGOREMNU_HELPTEXT_MISC_BLOODTRAIL",			"nashgore_bloodtrail",			"OnOff"

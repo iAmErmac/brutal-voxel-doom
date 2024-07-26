@@ -16,6 +16,11 @@ class ZMonsterBase : Actor
 		Super.Tick();
 		getConfig();
 		UpdateSmoothMoveTurnMixin();
+		
+		if(self is "NewCacodemon" && target)
+		{
+			A_SetPitch(GetPitchTo(self, target));
+		}
 	}
 	
 	private void getConfig()
@@ -161,7 +166,33 @@ class ZMonsterBase : Actor
 		}
 	}
 	
+	action void Z_FallDeath(void)
+	{
+		if(invoker.pos.z > (invoker.floorz + invoker.height * 1.5)) {
+			invoker.falldeath = true;
+		}
+		
+		if(invoker.falldeath && invoker.pos.z < invoker.floorz + 5) {
+			invoker.SetStateLabel("XDeath");
+		}
+	}
+	
+	double GetPitchTo(Actor source, Actor target, double zOfs = 0, double targZOfs = 0, bool absolute = false)
+	{
+		Vector3 origin = (source.pos.xy, source.pos.z - source.floorClip + zOfs);
+		Vector3 dest = (target.pos.xy, target.pos.z - target.floorClip + targZOfs);
+
+		Vector3 diff;
+		if (!absolute)
+			diff = level.Vec3Diff(origin, dest);
+		else
+			diff = dest - origin;
+
+		return -atan2(diff.z, diff.xy.Length());
+	}
+	
 	private int smoothMove, smoothBite;
+	protected bool falldeath;
 }
 
 class ZTankTurret : ZMonsterBase

@@ -420,11 +420,56 @@ Model zombiemarine
    Model 0 "playu.md3"
    FrameIndex PLAY U 0 0
    
+   Model 0 "playv.md3"
+   FrameIndex PLAY V 0 0
+   
+   Model 0 "playw.md3"
+   FrameIndex PLAY W 0 0
+   
    Model 0 "plyce.md3"
    FrameIndex PLYC E 0 0
    
    Model 0 "plycf.md3"
    FrameIndex PLYC F 0 0
+   
+   Model 0 "sposi.md3"
+   FrameIndex SPOS I 0 0
+   
+   Model 0 "sposj.md3"
+   FrameIndex SPOS J 0 0
+   
+   Model 0 "sposk.md3"
+   FrameIndex SPOS K 0 0
+   
+   Model 0 "sposl.md3"
+   FrameIndex SPOS L 0 0
+   
+   Model 0 "sposm.md3"
+   FrameIndex SPOS M 0 0
+   
+   Model 0 "sposn.md3"
+   FrameIndex SPOS N 0 0
+   
+   Model 0 "sposo.md3"
+   FrameIndex SPOS O 0 0
+   
+   Model 0 "sposp.md3"
+   FrameIndex SPOS P 0 0
+   
+   Model 0 "sposq.md3"
+   FrameIndex SPOS Q 0 0
+   
+   Model 0 "sposr.md3"
+   FrameIndex SPOS R 0 0
+   
+   Model 0 "sposs.md3"
+   FrameIndex SPOS S 0 0
+   
+   Model 0 "spost.md3"
+   FrameIndex SPOS T 0 0
+   
+   Model 0 "sposu.md3"
+   FrameIndex SPOS U 0 0
 }
 
 Model DarkImp
@@ -773,13 +818,25 @@ Model ToxicShot
 Model Ogre
 {
    Path "models/voxels"
-   Model 0 "ogrea.md3"
    Skin 0 "pallete.png"
    ZOffset 38
    Scale 1.0 1.0 1.2
    Offset -20.0 -20.0 0.0
    AngleOffset 90
    
+   Model 0 "cposq.md3"
+   FrameIndex CPOS Q 0 0
+   
+   Model 0 "cposr.md3"
+   FrameIndex CPOS R 0 0
+   
+   Model 0 "cposs.md3"
+   FrameIndex CPOS S 0 0
+   
+   Model 0 "cpost.md3"
+   FrameIndex CPOS T 0 0
+   
+   Model 0 "ogrea.md3"
    FrameIndex OGRE A 0 0
    
    Model 0 "ogreb.md3"
@@ -813,6 +870,8 @@ Model Ogre
    FrameIndex OGRE K 0 0
    
    Model 0 "ogrel.md3"
+   Scale 1.5 1.0 1.2
+   ZOffset -8.0
    FrameIndex OGRE L 0 0
 }
 
@@ -986,4 +1045,52 @@ Model Rocket2
    
    Model 0 "misld.md3"
    FrameIndex MISL D 0 0
+}
+
+Model CacoChunkBlue
+{
+   Path "models/voxels"
+   Model 0 "gib1a.md3"
+   Skin 0 "pallete.png"
+   ZOffset 38
+   Scale 1.0 1.0 1.2
+   Offset -10.0 -10.0 0.0
+   AngleOffset 90
+
+   PitchFromMomentum
+   
+   FrameIndex GIB1 A 0 0
+   
+   Model 0 "gib1b.md3"
+   FrameIndex GIB1 B 0 0
+   
+   Model 0 "gib3a.md3"
+   FrameIndex GIB3 A 0 0
+   
+   Model 0 "gib3b.md3"
+   FrameIndex GIB3 B 0 0
+   
+   Model 0 "gib5a.md3"
+   FrameIndex GIB5 A 0 0
+   
+   Model 0 "gib5b.md3"
+   FrameIndex GIB5 B 0 0
+   
+   Model 0 "gib7a.md3"
+   FrameIndex GIB7 A 0 0
+   
+   Model 0 "gib7b.md3"
+   FrameIndex GIB7 B 0 0
+   
+   Model 0 "gib8a.md3"
+   FrameIndex GIB8 A 0 0
+   
+   Model 0 "gib8b.md3"
+   FrameIndex GIB8 B 0 0
+   
+   Model 0 "gib9a.md3"
+   FrameIndex GIB9 A 0 0
+   
+   Model 0 "gib99b.md3"
+   FrameIndex GIB9 B 0 0
 }

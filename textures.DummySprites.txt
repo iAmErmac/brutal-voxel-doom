@@ -24,3 +24,6 @@ sprite NGMVW0, 1, 1 { patch TNT1A0, 0, 0 {} }
 sprite NGMVX0, 1, 1 { patch TNT1A0, 0, 0 {} }
 sprite NGMVY0, 1, 1 { patch TNT1A0, 0, 0 {} }
 sprite NGMVZ0, 1, 1 { patch TNT1A0, 0, 0 {} }
+sprite MECZN0, 1, 1 { patch TNT1A0, 0, 0 {} }
+sprite SARGR0, 1, 1 { patch TNT1A0, 0, 0 {} }
+sprite SARGV0, 1, 1 { patch TNT1A0, 0, 0 {} }

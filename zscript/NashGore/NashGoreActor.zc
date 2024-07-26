@@ -497,7 +497,7 @@ class NashGoreActor : NashGorePlugin
 		// - It's already spawned
 		// - If turned to ice
 		// - If this is a player pawn (not a good idea to destroy a dead player's body)
-		if (!nashgore_gibbablecorpses || spawnedCorpseHitbox || Owner.bIceCorpse || Owner.player)
+		if (!nashgore_gibbablecorpses || spawnedCorpseHitbox || Owner.bIceCorpse || Owner.bNoBlood || Owner.player)
 			return;
 
 		chb = NashGoreCorpseHitbox(Owner.Spawn("NashGoreCorpseHitbox", Owner.Pos, NO_REPLACE));
