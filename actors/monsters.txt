@@ -354,6 +354,13 @@ actor babySpid : ZMonsterBase Replaces Arachnotron
 		BSPI P 5
 		BSPI ONMLKJ 5
 		Goto See+1
+	XDeath:
+		TNT1 A 0
+		BSPI J 20 A_Scream
+		BSPI K 7 A_NoBlocking
+		BSPI LMNO 7
+		BSPI P -1 A_BossDeath
+		Stop
 	}
 }
 
@@ -721,6 +728,14 @@ ACTOR Vile : ZMonsterBase Replaces Archvile
 	Death.Fire:
 		TNT1 A 0 A_SetTranslation("DarkBloodyScorched")
 		goto Death
+	XDeath:
+		TNT1 A 0
+		VILE Q 7
+		VILE R 7 A_Scream
+		VILE S 7 A_NoBlocking
+		VILE TUVWXY 7
+		VILE Z -1
+		Stop
 	}
 }
 
@@ -1573,6 +1588,15 @@ actor NewBaronOfHell : ZMonsterBase replaces BaronOfHell
 		BOSS O 8
 		BOSS NMLKJI  8
 		Goto See
+	XDeath:
+		TNT1 A 0
+		BOSS I 8
+		BOSS J 8 A_Scream
+		BOSS K 8
+		BOSS L 8 A_NoBlocking
+		BOSS MN 8
+		BOSS O -1 A_BossDeath   
+		Stop
 	}
 }
 
@@ -1672,6 +1696,15 @@ ACTOR HekNight : ZMonsterBase 1011
 		BOS2 O 8
 		BOS2 NMLKJI  8
 		Goto See
+	XDeath:
+		TNT1 A 0
+		BOS2 I 8
+		BOS2 J 8 A_XScream
+		BOS2 K 8
+		BOS2 L 8 A_NoBlocking
+		BOS2 MN 8
+		BOS2 O -1
+		Stop
 	}
 }
 
@@ -1772,6 +1805,14 @@ ACTOR CyberMancubus : ZMonsterBase 1012
 		FATT QPON 5
 		FATC MLK 5
 		Goto See
+	XDeath:
+		TNT1 A 0
+		FATC K 6
+		FATC L 6 A_Scream
+		FATC M 6 A_NoBlocking
+		FATT NOPQRS 6
+		FATT T -1 A_BossDeath    
+		Stop
 
 	}
 }
@@ -1879,6 +1920,14 @@ ACTOR NewMancubus : ZMonsterBase 1013
 		FATT R 5
 		FATT QPONMLK 5
 		Goto See
+	XDeath:
+		TNT1 A 0
+		FATT K 6
+		FATT L 6 A_Scream
+		FATT M 6 A_NoBlocking
+		FATT NOPQRS 6
+		FATT T -1 A_BossDeath    
+		Stop
 	}
 }
 
@@ -3034,6 +3083,14 @@ ACTOR Shambler : ZMonsterBase 1022
 		TNT1 A 0 A_SpawnItemEx("ForceSpawnNewBorn")
 		TNT1 A 1 A_PlaySound("GIBBED")
 		Stop*/
+	XDeath:
+		TNT1 A 0
+		SHAM M 4
+		SHAM N 4 A_XScream
+		SHAM O 4
+		SHAM P 4 A_NoBlocking
+		SHAM R 1 Z_LowerCorpse(5)
+		Wait
 	}
 }
 

@@ -177,6 +177,11 @@ class ZMonsterBase : Actor
 		}
 	}
 	
+	action void Z_LowerCorpse(int zOffset = 10)
+	{
+		if(invoker.pos.z >= invoker.floorZ) invoker.SetOrigin((invoker.pos.xy, invoker.floorz - zOffset), true);
+	}
+	
 	double GetPitchTo(Actor source, Actor target, double zOfs = 0, double targZOfs = 0, bool absolute = false)
 	{
 		Vector3 origin = (source.pos.xy, source.pos.z - source.floorClip + zOfs);
